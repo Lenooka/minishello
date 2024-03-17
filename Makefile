@@ -1,6 +1,6 @@
 NAME = minishell
 CC = cc
-SRCS = main.c
+SRCS = minishell.c
 OBJS = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRCS))
 CFLAGS = -Werror -Wall -Wextra -g
 RM = rm -rf
