@@ -3,44 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 16:03:20 by otolmach          #+#    #+#             */
-/*   Updated: 2024/03/18 00:32:40 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/03/21 18:08:47 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <readline/readline.h>
-#include <readline/history.h>
 #include "minishell.h"
 
-int check_syntax(char    *str)
+int	find_com_pos(char **com_array, int	pos)
 {
-    int i;
-
-    i = 0;
-    while(str[i])
-    {
-        if (str[i] == '"')
-        return (1);
-        i++;
-    }
-    return (0);
-
+	//find position untill "|"
 }
+
+void    start_procces(t_mnshll *mnshll)
+{
+    int     com_run;
+    int     pipefd[2];
+    pid_t   pid;
+    int     position;
+
+    com_run = 0;
+	position = 0;
+    while (com_run < mnshll->command_amount) //the amount of the commands from parser
+    {
+		if (pipe(pipefd) == -1)
+		{
+			//free_error
+		}
+		pid = fork();
+		if (pid < 0)
+			//free_error
+		if (pid == 0)
+			position = 0;
+			//child
+		else
+			position = 0;
+            //parent
+		position = find_com_pos(mnshll->com_array, position);
+    }
+}
+
 
 int main(int arc, char **arv, char **env) 
 {
     t_lexer	*lexer;
+    t_mnshll    *mnshll;
 	
 	lexer->input = NULL;
 	arv = NULL;
 	env = NULL;
 	if (arc > 1)
 		return (1);
+	if (!env || env[0][0] == '\0')
+		//error handle
     while (1) 
 	{
         lexer->input = readline("Minishell <3 : ");
@@ -53,12 +70,13 @@ int main(int arc, char **arv, char **env)
             printf("Invalid syntax\n");
             break ;
         }
-        else
+        else //init and syntax)
         {
-            printf("%s\n", lexer->input);
+            start_procces(mnshll);
             free(lexer->input);
         }
     }
 	free(lexer->input);
     return (0);
 }
+
