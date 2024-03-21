@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/03/21 18:00:55 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/03/21 20:48:19 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # include <sys/wait.h>
 # include <stddef.h>
 
+extern int	g_global;
+
 typedef struct s_lexer
 {
 	char	*input;
@@ -35,6 +37,7 @@ typedef	struct mnshll
 {
 	int	command_amount;
 	char	**com_array;
+	int		exit;
 	
 } t_mnshll;
 
