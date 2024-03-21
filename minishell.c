@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 16:03:20 by otolmach          #+#    #+#             */
-/*   Updated: 2024/03/21 21:09:21 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/03/21 21:58:24 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,47 @@ int	find_com_pos(char **com_array, int	pos)
 	//find position untill "|"
 }
 
+void exit_status(t_mnshll *mnshll, pid_t pid, int com_run) 
+{
+    int status;
+    int last_status = 0;
+    int any_command_failed = 0;
+
+    if (mnshll->command_amount == 1) // and is builtin 
+	{
+        wait(&status);
+		//reset file descriptors
+        return;
+    }
+    while (com_run > 0) 
+	{
+        wait(&status);
+        if (pid != -1 && WIFEXITED(status))  //if child evaluate properly
+		{
+            last_status = WEXITSTATUS(status); // gets exit status and updates last_status
+            if (last_status == 127) 
+                any_command_failed = 1;
+        } 
+		else if (pid != -1 && WIFSIGNALED(status)) //checking if process term with signal 
+		{
+            g_global = WTERMSIG(status); // gets exit status of the signal
+            any_command_failed = 1; //command failed due to a signal not sure about this one
+        }
+        com_run--;
+    }
+    if (any_command_failed == 1)
+        mnshll->exit = 127;
+    else
+        mnshll->exit = last_status;
+	//reset file descriptors
+}
+
 void	exit_status(t_mnshll *ms, pid_t pid, int com_run) 
 {
     int status;
     int last_status = 0; 
     
-    if (ms->command_amount == 1 )//&& and its a builtin
+    if (mnshll->command_amount == 1 )//and its a builtin
 	{
         wait(&status);
     //reset file desrp;
@@ -31,15 +66,15 @@ void	exit_status(t_mnshll *ms, pid_t pid, int com_run)
     while (com_run > 0) 
 	{
         wait(&status);
-        if (pid != -1 && WIFEXITED(status))
-            last_status = WEXITSTATUS(status); // update last_status
-        if (pid != -1 && WIFSIGNALED(status))
-            g_global = WTERMSIG(status);
+        if (pid != -1 && WIFEXITED(status)) //if child evaluate properly
+            last_status = WEXITSTATUS(status); // gets exit status and updates last_status
+        if (pid != -1 && WIFSIGNALED(status))  //checking if process term with signal 
+            g_global = WTERMSIG(status); // gets exit status of the signal
         else
             g_global = 0;
         com_run--;
     }    
-    ms->exit = last_status; 
+    mnshll->exit = last_status; 
     //reset file desrp;
 }
 
