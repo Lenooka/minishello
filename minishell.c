@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 16:03:20 by otolmach          #+#    #+#             */
-/*   Updated: 2024/03/21 18:08:47 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/03/21 19:14:28 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	find_com_pos(char **com_array, int	pos)
 {
 	//find position untill "|"
 }
-
+//test
 void    start_procces(t_mnshll *mnshll)
 {
     int     com_run;
