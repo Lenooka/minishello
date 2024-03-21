@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 16:03:20 by otolmach          #+#    #+#             */
-/*   Updated: 2024/03/21 19:23:43 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/03/21 20:57:40 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,34 @@ int	find_com_pos(char **com_array, int	pos)
 {
 	//find position untill "|"
 }
-//AAAAA
+
+void	exit_status(t_mnshll *ms, pid_t pid, int cmds_run) 
+{
+    int status;
+    int last_status = 0; 
+    
+    if (ms->command_amount == 1 && isbuiltin(ms->cmdlist->cmds[0]) == 1) 
+	{ //comandlist needed
+        wait(&status);
+        reset_fds(ms);
+        return;
+    }
+    while (cmds_run > 0) 
+	{
+        wait(&status);
+        if (pid != -1 && WIFEXITED(status))
+            last_status = WEXITSTATUS(status); // Update last_status
+        if (pid != -1 && WIFSIGNALED(status))
+            g_global = WTERMSIG(status);
+        else
+            g_global = 0;
+        cmds_run--;
+    }    
+    ms->exit = last_status; 
+    reset_fds(ms);
+}
+
+
 void    start_procces(t_mnshll *mnshll)
 {
     int     com_run;
@@ -43,6 +70,7 @@ void    start_procces(t_mnshll *mnshll)
             //parent
 		position = find_com_pos(mnshll->com_array, position);
     }
+	exit_status(mnshll, pid, com_run);
 }
 
 
