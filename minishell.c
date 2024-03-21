@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 16:03:20 by otolmach          #+#    #+#             */
-/*   Updated: 2024/03/21 20:57:40 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/03/21 21:09:21 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,30 +17,30 @@ int	find_com_pos(char **com_array, int	pos)
 	//find position untill "|"
 }
 
-void	exit_status(t_mnshll *ms, pid_t pid, int cmds_run) 
+void	exit_status(t_mnshll *ms, pid_t pid, int com_run) 
 {
     int status;
     int last_status = 0; 
     
-    if (ms->command_amount == 1 && isbuiltin(ms->cmdlist->cmds[0]) == 1) 
-	{ //comandlist needed
+    if (ms->command_amount == 1 )//&& and its a builtin
+	{
         wait(&status);
-        reset_fds(ms);
-        return;
+    //reset file desrp;
+        return ;
     }
-    while (cmds_run > 0) 
+    while (com_run > 0) 
 	{
         wait(&status);
         if (pid != -1 && WIFEXITED(status))
-            last_status = WEXITSTATUS(status); // Update last_status
+            last_status = WEXITSTATUS(status); // update last_status
         if (pid != -1 && WIFSIGNALED(status))
             g_global = WTERMSIG(status);
         else
             g_global = 0;
-        cmds_run--;
+        com_run--;
     }    
     ms->exit = last_status; 
-    reset_fds(ms);
+    //reset file desrp;
 }
 
 
