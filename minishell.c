@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 16:03:20 by otolmach          #+#    #+#             */
-/*   Updated: 2024/03/25 15:04:44 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/03/25 22:59:41 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,42 +82,129 @@ void    start_procces(t_mnshll *mnshll)
 	exit_status(mnshll, pid, com_run);
 }
 
+t_envl	**env_list_init(char **env, int i)
+{
+	t_envl	**envl;
+	char	*str;
+	t_envl	*node;
+
+	envl = malloc(sizeof(t_envl *));
+	if (!envl)
+		return (NULL);
+	*envl = NULL;
+	while (env[i] != NULL)
+	{
+		str = ft_strdup(env[i]);
+		if (!str)
+			return (free_env(env), NULL);
+		//node = ft_createnewnode(str);
+        if (node == NULL) 
+		{
+            free(str);
+			return (free_env(env), NULL);
+        }
+        node->node_flag = 1;
+        //add new node at the end of the envl list (libft bonus);
+		i++;
+    }
+	return (envl);
+}
+
+void free_env(t_envl **env) 
+{
+	t_envl *current;
+	t_envl *next;
+ 
+    if (env == NULL || *env == NULL) 
+	{
+        return ; 
+    }
+    current = *env;
+    while (current != NULL) 
+	{
+        next = current->next;
+        free(current->str);
+        free(current->content);
+        free(current);
+        current = next;
+    }
+    free(env);
+}
+
+t_mnshll	*mnshll_init(t_mnshll *mnshll, char **env)
+{
+	int	i;
+
+	i = 0;
+	if (!env || env[0][0] == '\0')
+		return (NULL); //error handle????;
+	mnshll = malloc(sizeof(t_mnshll));
+ 	if (!mnshll)
+  		return (NULL);
+ 	mnshll->envl = env_list_init(env, i);
+	if (!mnshll->envl)
+		return (NULL);
+ 	mnshll->exit = 0;
+	return (mnshll);
+}
+
+
+
+//we need to print a specific msg depending on the syntax error exmpl "Minishell : syntax error: unclosed quote marks"
+				//unclosed " ' is syntax error
 
 int main(int arc, char **arv, char **env) 
 {
-    t_lexer	*lexer;
     t_mnshll    *mnshll;
 	
-	lexer->input = NULL;
+	if (arc > 1)
+	{
+		mnshll = mnshll_init(mnshll, env);
+		if (mnshll == NULL)
+			return (NULL);
+		while (1) 
+		{
+			mnshll->input = readline("Minishell <3 : ");
+			if (mnshll->input == NULL)
+				break;
+			if (ft_strlen(mnshll->input) != 0)
+				add_history(mnshll->input);
+			if (lexer_syntax(mnshll, mnshll->input) == 1) //we should parse minishell whole struct, because we need to initialize stuff there 
+				continue ; //bcs we dont want to quit programm if its a syntax error we want to iterate through(wait for next input)
+			else //init and syntax
+			{
+				start_procces(mnshll);
+				//free command list
+			}
+		}
+		//free stuff;
+	}
+    return (0);
+}
+
+/*
+int main(int arc, char **arv, char **env) 
+{
+    t_lexer	*lexer;
+	
+	lexer.input = NULL;
 	arv = NULL;
 	env = NULL;
 	if (arc > 1)
 		return (1);
-	if (!env || env[0][0] == '\0')
-		//error handle
     while (1) 
 	{
-        lexer->input = readline("Minishell <3 : ");
-        if (lexer->input == NULL)
+        lexer.input = readline("Minishell <3 : ");
+        if (lexer.input == NULL)
             break;
-		if (ft_strlen(lexer->input) != 0)
-        	add_history(lexer->input);
-		else
-			printf("%s", lexer->input); //because we want to show promt but I guees if nothing there syntax can return 1 and then just continue the loop 
-        if (check_syntax(lexer->input) == 1) //we should parse minishell whole struct, because we need to initialize stuff there 
-        {
-            printf("Invalid syntax\n"); //we need to print a specific msg depending on the syntax error exmpl "Minishell : syntax error: unclosed quote marks"
-			//unclosed " ' is syntax error
-            continue ; //bcs we dont want to quit programm if its a syntax error we want to iterate through(wait for next input)
-        }
-        else //init and syntax)
-        {
-            start_procces(mnshll);
-			//free command list
-            free(lexer->input);
-        }
+		if (ft_strlen(lexer.input) != 0)
+        	add_history(lexer.input);
+        lexer.tokens = initiate_lexer(lexer.input);
+        if (lexer.tokens == NULL)
+            continue ;
+        printf("%s\n", lexer.input);
     }
-	free(lexer->input);
+	free(lexer.input);
     return (0);
-}
+}*/
 
