@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 16:03:20 by otolmach          #+#    #+#             */
-/*   Updated: 2024/03/21 22:15:32 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/03/25 15:04:44 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,12 @@ void    start_procces(t_mnshll *mnshll)
 		pid = fork();
 		if (pid < 0)
 			//free_error
-		if (pid == 0)
+		if (pid != 0)
 			position = 0;
-			//child
+			//parrent
 		else
 			position = 0;
-            //parent
+            //child
 		position = find_com_pos(mnshll->com_array, position);
     }
 	exit_status(mnshll, pid, com_run);
@@ -102,14 +102,18 @@ int main(int arc, char **arv, char **env)
             break;
 		if (ft_strlen(lexer->input) != 0)
         	add_history(lexer->input);
-        if (check_syntax(lexer->input) == 1)
+		else
+			printf("%s", lexer->input); //because we want to show promt but I guees if nothing there syntax can return 1 and then just continue the loop 
+        if (check_syntax(lexer->input) == 1) //we should parse minishell whole struct, because we need to initialize stuff there 
         {
-            printf("Invalid syntax\n");
-            break ;
+            printf("Invalid syntax\n"); //we need to print a specific msg depending on the syntax error exmpl "Minishell : syntax error: unclosed quote marks"
+			//unclosed " ' is syntax error
+            continue ; //bcs we dont want to quit programm if its a syntax error we want to iterate through(wait for next input)
         }
         else //init and syntax)
         {
             start_procces(mnshll);
+			//free command list
             free(lexer->input);
         }
     }
