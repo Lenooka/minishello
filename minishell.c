@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 16:03:20 by otolmach          #+#    #+#             */
-/*   Updated: 2024/03/26 18:29:20 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/03/26 18:43:14 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int main(int arc, char **arv, char **env)
 			return (NULL);
 		while (1) 
 		{
+			make_sigaction();
 			mnshll->input = readline("Minishell <3 : ");
 			if (mnshll->input == NULL)
 				break;
@@ -43,3 +44,4 @@ int main(int arc, char **arv, char **env)
 	}
     return (0);
 }
+

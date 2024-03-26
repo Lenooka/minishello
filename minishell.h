@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/03/26 17:46:05 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/03/26 18:44:29 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,6 @@
 
 extern int	g_global;
 
-
-extern int	g_global;
-
 typedef struct s_envl
 {
 	int				equal_flag;
@@ -62,6 +59,9 @@ typedef	struct mnshll
 	t_lexer	*lexer;
 	
 } t_mnshll;
+
+//Signals
+
 
 char	*identify_env(const char *str, int c);
 
