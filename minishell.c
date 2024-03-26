@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 16:03:20 by otolmach          #+#    #+#             */
-/*   Updated: 2024/03/25 22:59:41 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:11:19 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,34 @@ void    start_procces(t_mnshll *mnshll)
 	exit_status(mnshll, pid, com_run);
 }
 
+
+
+void free_env(t_envl **env) 
+{
+	t_envl *current;
+	t_envl *next;
+ 
+	if (env == NULL || *env == NULL) 
+	{
+        return ; 
+    }
+    current = *env;
+    while (current != NULL) 
+	{
+        next = current->next;
+        free(current->identificator);
+        free(current->content);
+        free(current);
+        current = next;
+    }
+    free(env);
+}
+
+
 t_envl	**env_list_init(char **env, int i)
 {
 	t_envl	**envl;
-	char	*str;
+	char	*envlcontent;
 	t_envl	*node;
 
 	envl = malloc(sizeof(t_envl *));
@@ -94,15 +118,14 @@ t_envl	**env_list_init(char **env, int i)
 	*envl = NULL;
 	while (env[i] != NULL)
 	{
-		str = ft_strdup(env[i]);
-		if (!str)
-			return (free_env(env), NULL);
-		//node = ft_createnewnode(str);
+		envlcontent = ft_strdup(env[i]);
+		if (!envlcontent)
+			return (free_env(envl), NULL);
+		//node = ft_createnewnode(envlcontent);
         if (node == NULL) 
-		{
-            free(str);
-			return (free_env(env), NULL);
-        }
+			return (free_env(envl), NULL);
+		if (envlcontent != NULL)
+			free(envlcontent);
         node->node_flag = 1;
         //add new node at the end of the envl list (libft bonus);
 		i++;
@@ -110,26 +133,24 @@ t_envl	**env_list_init(char **env, int i)
 	return (envl);
 }
 
-void free_env(t_envl **env) 
+t_envl *ft_envnew(void *content) 
 {
-	t_envl *current;
-	t_envl *next;
- 
-    if (env == NULL || *env == NULL) 
-	{
-        return ; 
-    }
-    current = *env;
-    while (current != NULL) 
-	{
-        next = current->next;
-        free(current->str);
-        free(current->content);
-        free(current);
-        current = next;
-    }
-    free(env);
+	t_envl	*new_node;
+    if (!content)
+        return NULL;
+  	new_node = malloc(sizeof(t_envl));
+    if (!new_node) 
+        return NULL;
+    new_node->next = NULL;
+	if (ft_strchr(content, '=') == 0)
+    	new_node->equal_flag = 0;
+	else
+		new_node->equal_flag = 1;
+   	new_node->identificator = identify(content, '=');
+    new_node->content = envl_content_fill(content, '=');
+    return (new_node);
 }
+
 
 t_mnshll	*mnshll_init(t_mnshll *mnshll, char **env)
 {
@@ -147,7 +168,6 @@ t_mnshll	*mnshll_init(t_mnshll *mnshll, char **env)
  	mnshll->exit = 0;
 	return (mnshll);
 }
-
 
 
 //we need to print a specific msg depending on the syntax error exmpl "Minishell : syntax error: unclosed quote marks"

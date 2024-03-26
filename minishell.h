@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/03/25 23:15:06 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/03/26 14:45:42 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ extern int	g_global;
 
 typedef struct s_envl
 {
+	int				equal_flag;
 	int				node_flag;
 	void 			*content;
-	char			*str;
+	char			*identificator;
 	struct s_list 	*next;
 } 	t_envl;
 
