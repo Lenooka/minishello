@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 16:03:20 by otolmach          #+#    #+#             */
-/*   Updated: 2024/03/26 18:43:14 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/03/26 23:00:28 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 //we need to print a specific msg depending on the syntax error exmpl "Minishell : syntax error: unclosed quote marks"
 				//unclosed " ' is syntax error
 
-int main(int arc, char **arv, char **env) 
+int main(int arc, char **arv, char **env)
 {
     t_mnshll    *mnshll;
 	
@@ -32,7 +32,7 @@ int main(int arc, char **arv, char **env)
 				break;
 			if (ft_strlen(mnshll->input) != 0)
 				add_history(mnshll->input);
-			if (lexer_syntax(mnshll, mnshll->input) == 1) //we should parse minishell whole struct, because we need to initialize stuff there 
+			if (syntax_error(mnshll) == 1) //we should parse minishell whole struct, because we need to initialize stuff there 
 				continue ; //bcs we dont want to quit programm if its a syntax error we want to iterate through(wait for next input)
 			else //init and syntax
 			{
