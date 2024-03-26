@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/03/26 14:45:42 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/03/26 18:35:44 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,6 @@
 
 extern int	g_global;
 
-
-extern int	g_global;
-
 typedef struct s_envl
 {
 	int				equal_flag;
@@ -62,6 +59,9 @@ typedef	struct mnshll
 	t_lexer	*lexer;
 	
 } t_mnshll;
+
+//Signals
+
 
 
 #endif

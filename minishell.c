@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 16:03:20 by otolmach          #+#    #+#             */
-/*   Updated: 2024/03/26 15:11:19 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/03/26 17:50:43 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,7 @@ int main(int arc, char **arv, char **env)
 			return (NULL);
 		while (1) 
 		{
+			make_sigaction();
 			mnshll->input = readline("Minishell <3 : ");
 			if (mnshll->input == NULL)
 				break;
@@ -201,30 +202,4 @@ int main(int arc, char **arv, char **env)
 	}
     return (0);
 }
-
-/*
-int main(int arc, char **arv, char **env) 
-{
-    t_lexer	*lexer;
-	
-	lexer.input = NULL;
-	arv = NULL;
-	env = NULL;
-	if (arc > 1)
-		return (1);
-    while (1) 
-	{
-        lexer.input = readline("Minishell <3 : ");
-        if (lexer.input == NULL)
-            break;
-		if (ft_strlen(lexer.input) != 0)
-        	add_history(lexer.input);
-        lexer.tokens = initiate_lexer(lexer.input);
-        if (lexer.tokens == NULL)
-            continue ;
-        printf("%s\n", lexer.input);
-    }
-	free(lexer.input);
-    return (0);
-}*/
 
