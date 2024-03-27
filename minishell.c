@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 16:03:20 by otolmach          #+#    #+#             */
-/*   Updated: 2024/03/26 23:00:28 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/03/27 16:54:37 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 //we need to print a specific msg depending on the syntax error exmpl "Minishell : syntax error: unclosed quote marks"
 				//unclosed " ' is syntax error
 
-int main(int arc, char **arv, char **env)
+int	main(int arc, char **arv, char **env)
 {
     t_mnshll    *mnshll;
 	

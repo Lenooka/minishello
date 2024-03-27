@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/03/26 18:44:29 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/03/27 19:22:44 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,35 @@ typedef	struct mnshll
 	
 } t_mnshll;
 
+//main function
+int			main(int arc, char **arv, char **env);
+
+//minishell struct initiation
+t_mnshll	*mnshll_init(t_mnshll *mnshll, char **env);
+
+//environment struct initiation
+t_envl		**env_list_init(char **env, int i);
+t_envl		*create_newnode(void *content);
+char		*identify_env(const char *str, int c);
+char		*envl_content_fill(const char *str, int c);
+void		free_env(t_envl **env);
+
 //Signals
+void		make_sigaction(void);
+void		handler_cd(t_mnshll *mnshll);
+void		check_global_end(void);
+void		signal_global(int signum);
+void		handle_sigint(int signum);
 
+//Syntax Errors
+int			syntax_error(t_mnshll *mnshll);
+int			has_syntax_error(const char *input);
+int			report_syntax_error(const char *error_message);
 
-char	*identify_env(const char *str, int c);
+//Exececution
+void		start_procces(t_mnshll *mnshll);
 
+//Utilities
+int			find_com_pos(char **com_array, int	pos);
 
 #endif
