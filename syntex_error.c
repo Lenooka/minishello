@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 22:14:57 by otolmach          #+#    #+#             */
-/*   Updated: 2024/03/26 23:21:33 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/03/27 16:45:11 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	has_syntax_error(const char *input)
 		return (report_syntax_error("near unexpected token '|'"));
 	else if (end_syntax(input) == 1)
 		return (report_syntax_error("near unexpected token `newline'"));
-	else if (quote_syntax(input) == 1)
+	else if (unclosed_quote(input) == 1)
 		return (report_syntax_error("unclosed quote marks"));
 	else if (pipe_syntax(input) == 1)
 		return (report_syntax_error("near unexpected token '|'"));
