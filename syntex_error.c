@@ -6,11 +6,24 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 22:14:57 by otolmach          #+#    #+#             */
-/*   Updated: 2024/03/27 19:41:21 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/03/27 22:01:01 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	parser_codes(char c)
+{
+	if (c == '\'' || c == '\"')
+		return (1);
+	if (c == '<' || c == '>' || c == '|')
+		return (2);
+	if (c == ' ' || c == '\t')
+		return (3);
+	if (c == '$')
+		return (4);
+	return (0);
+}
 
 int	report_syntax_error(const char *error_message)
 {
@@ -20,7 +33,7 @@ int	report_syntax_error(const char *error_message)
 	return (1);
 }
 
-int	has_syntax_error(const char *input) //Same name as the other function
+int	redir_unexpect_errors(const char *input) 
 {
 	if (redir_syntax(input) == 1) //function call to a non function? has to be made
 		return (1);
