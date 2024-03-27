@@ -6,7 +6,7 @@
 /*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:41:46 by jhuber            #+#    #+#             */
-/*   Updated: 2024/03/26 18:33:54 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/03/27 16:49:01 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	make_sigaction(void) //This makes sigaction, catching signals and redirecti
 	signal(SIGQUIT, SIG_IGN);
 }
 
-void	handler_cd(t_minishell *ms) //This is about Control+D
+void	handler_cd(t_mnshll *mnshll) //This is about Control+D
 {
-	if (!(ms->input))
+	if (!(mnshll->input))
 	{
 		write(1, "Exit!\n", 6);
 		free_ms(ms);

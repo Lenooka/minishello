@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   envlist_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:37:16 by otolmach          #+#    #+#             */
-/*   Updated: 2024/03/26 18:16:39 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/03/27 17:07:55 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void free_env(t_envl **env) 
+void free_env(t_envl **env)
 {
 	t_envl *current;
 	t_envl *next;
@@ -82,7 +82,7 @@ char	*identify_env(const char *str, int c)
 	return (result);
 }
 
-t_envl *create_newnode(void *content) 
+t_envl *create_newnode(void *content)
 {
 	t_envl	*new_node;
     if (!content)
