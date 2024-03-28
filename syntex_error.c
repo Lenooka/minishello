@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 22:14:57 by otolmach          #+#    #+#             */
-/*   Updated: 2024/03/27 22:01:01 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/03/28 13:35:28 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	redir_unexpect_errors(const char *input)
 	return (0);
 }
 
-int	has_syntax_error(const char *input) //Same name as the other function
+int	has_syntax_error(const char *input)
 {
     if (start_syntax(input) == 1) //function call to a non function? has to be made
 		return (report_syntax_error("near unexpected token '|'"));
