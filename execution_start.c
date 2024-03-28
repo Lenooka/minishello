@@ -6,11 +6,17 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:27:56 by otolmach          #+#    #+#             */
-/*   Updated: 2024/03/26 18:28:22 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/03/28 16:03:54 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	minishell(t_mnshll *mnshll)
+{
+	start_procces(mnshll);
+	//free command list	
+}
 
 void    start_procces(t_mnshll *mnshll)
 {

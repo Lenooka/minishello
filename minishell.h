@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/03/28 15:28:37 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/03/28 16:04:09 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int			report_syntax_error(const char *error_message);
 int			unclosed_quote(char *inp);
 
 //Exececution
+void		minishell(t_mnshll *mnshll);
 void		start_procces(t_mnshll *mnshll);
 
 //Parser
