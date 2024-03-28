@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/03/27 19:22:44 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/03/28 15:28:37 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,13 @@ void		handle_sigint(int signum);
 int			syntax_error(t_mnshll *mnshll);
 int			has_syntax_error(const char *input);
 int			report_syntax_error(const char *error_message);
+int			unclosed_quote(char *inp);
 
 //Exececution
 void		start_procces(t_mnshll *mnshll);
+
+//Parser
+int			parser_codes(char c);
 
 //Utilities
 int			find_com_pos(char **com_array, int	pos);
