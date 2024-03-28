@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:54:23 by otolmach          #+#    #+#             */
-/*   Updated: 2024/03/28 15:55:39 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/03/28 16:43:47 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	redir_syntax(char *input)
 {
-	
+
 }
 
 int	double_redir_syntax(char *input)
