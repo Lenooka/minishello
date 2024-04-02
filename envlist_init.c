@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   envlist_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:37:16 by otolmach          #+#    #+#             */
-/*   Updated: 2024/03/27 17:07:55 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/04/02 18:49:40 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void free_env(t_envl **env)
 	t_envl *next;
  
 	if (env == NULL || *env == NULL) 
-        return ; 
+        return ;
     current = *env;
     while (current != NULL) 
 	{
@@ -28,7 +28,8 @@ void free_env(t_envl **env)
         free(current);
         current = next;
     }
-    free(env);
+    free(*env);
+	*env = NULL;
 }
 
 char	*envl_content_fill(const char *str, int c)
