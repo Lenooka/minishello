@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/03/28 16:04:09 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/02 15:41:25 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,12 @@ typedef struct s_lexer
 
 typedef	struct mnshll
 {
-	int	command_amount;
+	int		command_amount;
 	char	**com_array;
 	int		exit;
 	char	*input;
+	int		fdin;
+	int		fdout;
 	t_envl 	**envl;
 	t_lexer	*lexer;
 	
