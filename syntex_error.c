@@ -6,24 +6,11 @@
 /*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 22:14:57 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/02 14:18:17 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/04/02 19:12:06 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	parser_codes(char c)
-{
-	if (c == '\'' || c == '\"')
-		return (1);
-	if (c == '<' || c == '>' || c == '|')
-		return (2);
-	if (c == ' ' || c == '\t')
-		return (3);
-	if (c == '$')
-		return (4);
-	return (0);
-}
 
 int	report_syntax_error(const char *error_message)
 {
