@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 16:03:20 by otolmach          #+#    #+#             */
-/*   Updated: 2024/03/28 16:03:45 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/02 14:32:41 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(int arc, char **arv, char **env)
 				add_history(mnshll->input);
 			if (syntax_error(mnshll) == 1) //we should parse minishell whole struct, because we need to initialize stuff there 
 				continue ; //bcs we dont want to quit programm if its a syntax error we want to iterate through(wait for next input)
-			else if //parser
+			else if (parser_start(mnshll) != 1)
 				minishell(mnshll);
 		}
 		//free stuff;
