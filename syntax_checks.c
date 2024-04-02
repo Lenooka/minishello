@@ -6,7 +6,7 @@
 /*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 23:27:16 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/02 14:32:53 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/04/02 19:26:59 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	unclosed_quote(char *inp)
 	char	c;
 
 	i = 0;
-	while (inp[i] != '\0' && inp != NULL)
+	while (inp[i] != '\0')
 	{
 		if (parser_codes(inp[i]) == 1)
 		{
@@ -34,47 +34,94 @@ int	unclosed_quote(char *inp)
 	}
 	return (0);
 }
-
-int	quote_syntax(char *str)
+/*
+int	parser_op(char c)
 {
-	int		i;
-	char	c;
-
-	i = 0;
-	while (str && str[i])
-	{
-		if (parser_op(str[i]) == 3)
-		{
-			c = str[i++];
-			while (str[i] && str[i] != c)
-				i++;
-			if (!str[i])
-			{
-				write(2, "MiniShell: syntax error: unclosed quote marks\n", 46);
-				return (1);
-			}
-		}
-		if (str[i])
-			i++;
-	}
+	if (c == ' ' || c == '\t')
+		return (1);
+	if (c == '<' || c == '>' || c == '|')
+		return (2);
+	if (c == '\'' || c == '\"')
+		return (3);
+	if (c == '$')
+		return (4);
 	return (0);
 }
+*/
 
-int	start_syntax(char *inp)
+int	start_syntax(char *input)
 {
-	
+	int	x;
+
+	x = 0;
+	while (input[x] && parser_codes(input[x]) == 3)
+		x++;
+	if (str[x] == '|')
+		return (1);
+	return (0);
 }
 
 int	end_syntax(char *input)
 {
+	int	x;
 
-}
+	x = 0;
+	while (input[x])
+		x++;
+	while (x >= 0)
+	{
+		if (input[x] == '|' || input[x] == '<' || input[x] == '>')
+			return (1);
+		else if (parser_codes(input[x]) == 3)
+			x--;
+		else
+			break ;
+	}
+}	
 
 int	pipe_syntax(char *input)
 {
-	
+	int	x;
+
+	x = 0;
+	while (str[x])
+	{
+		if (str[x] && parser_codes(str[x]) == 1)
+			x = skipping_quotes(str, str[x], x); //need to make this and other functions in the utils.c don't forget to link everytthing in the h file and the makefile today, dumbass.
+		else if (str[x] && str[x] == '|')
+		{
+			x++;
+			while (str[x] && parser_codes(str[x]) == 3)
+				x++;
+			if (str[i] && str[i] == '|')
+				return (1);
+		}
+		else
+			x++;
+	}
+	return (0);
 }
-int	dollar_syntax(char *input)
+
+int	dollar_syntax(char *input) //still need to look into this
 {
-	
+	int	x;
+
+	x = 0;
+	while (str[x])
+	{
+		if (str[x] == '\'')
+		{
+			x++;
+			while (str[x] && str[x] != '\'')
+				x++;
+			if (!str[x])
+				break ;
+			x++;
+		}
+		else if (str[x] == '$' && str[x + 1] == '$')
+			return (1);
+		else
+			x++;
+	}
+	return (0);
 }

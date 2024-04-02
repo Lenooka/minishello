@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 16:03:20 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/02 14:32:41 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/02 16:01:47 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int arc, char **arv, char **env)
 	{
 		mnshll = mnshll_init(mnshll, env);
 		if (mnshll == NULL)
-			return (NULL);
+			return (NULL); //if envl fails I free it inside the init
 		while (1) 
 		{
 			make_sigaction();
@@ -32,10 +32,10 @@ int	main(int arc, char **arv, char **env)
 				break;
 			if (ft_strlen(mnshll->input) != 0)
 				add_history(mnshll->input);
-			if (syntax_error(mnshll) == 1) //we should parse minishell whole struct, because we need to initialize stuff there 
-				continue ; //bcs we dont want to quit programm if its a syntax error we want to iterate through(wait for next input)
+			if (syntax_error(mnshll) == 1)
+				continue ; //(wait for next input)
 			else if (parser_start(mnshll) != 1)
-				minishell(mnshll);
+				minishell(mnshll);	
 		}
 		//free stuff;
 	}
