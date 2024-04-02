@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:33:06 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/02 19:53:15 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/02 20:27:07 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@ int	parser_start(t_mnshll *minsh)
 		printf("Tokenizing fail!") //should exit free here?
 		return (1);
 	}
+	if (init_heredoc(minsh, minsh->com_array) == 1)
+		return (1);
 	
 }
