@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/02 15:41:25 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/03 18:05:02 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,15 +87,23 @@ int			syntax_error(t_mnshll *mnshll);
 int			has_syntax_error(const char *input);
 int			report_syntax_error(const char *error_message);
 int			unclosed_quote(char *inp);
+int			start_syntax(char *input);
+int			end_syntax(char *input);
+int			pipe_syntax(char *input);
+int			dollar_syntax(char *input);
 
 //Exececution
 void		minishell(t_mnshll *mnshll);
 void		start_procces(t_mnshll *mnshll);
 
 //Parser
-int			parser_codes(char c);
 
 //Utilities
+int			parser_codes(char c);
 int			find_com_pos(char **com_array, int	pos);
+int			skipping_quotes(char *str, char c, int x);
+int			skipping_quotes(char *str, char c, int x);
+int			space_tab(char *str, int x);
+int			envar(char *str, int x);
 
 #endif

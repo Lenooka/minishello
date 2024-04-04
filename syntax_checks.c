@@ -6,7 +6,7 @@
 /*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 23:27:16 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/02 19:26:59 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/04/04 16:30:22 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,13 @@ int	pipe_syntax(char *input)
 	while (str[x])
 	{
 		if (str[x] && parser_codes(str[x]) == 1)
-			x = skipping_quotes(str, str[x], x); //need to make this and other functions in the utils.c don't forget to link everytthing in the h file and the makefile today, dumbass.
+			x = skipping_quotes(str, str[x], x);
 		else if (str[x] && str[x] == '|')
 		{
 			x++;
 			while (str[x] && parser_codes(str[x]) == 3)
 				x++;
-			if (str[i] && str[i] == '|')
+			if (str[x] && str[x] == '|')
 				return (1);
 		}
 		else
@@ -102,7 +102,7 @@ int	pipe_syntax(char *input)
 	return (0);
 }
 
-int	dollar_syntax(char *input) //still need to look into this
+int	dollar_syntax(char *input)
 {
 	int	x;
 
@@ -114,7 +114,7 @@ int	dollar_syntax(char *input) //still need to look into this
 			x++;
 			while (str[x] && str[x] != '\'')
 				x++;
-			if (!str[x])
+			if (str[x] == '\0')
 				break ;
 			x++;
 		}
