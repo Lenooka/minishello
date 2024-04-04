@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   exit_status.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:25:46 by otolmach          #+#    #+#             */
-/*   Updated: 2024/03/27 19:22:58 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/04/04 13:32:56 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void exit_status(t_mnshll *mnshll, pid_t pid, int com_run) 
+void exit_status(t_mnshll *mnshll, pid_t pid, int com_run)
 {
     int status;
     int last_status = 0;
-    int any_command_failed = 0;
 
+	last_status = 0;
     if (mnshll->command_amount == 1) // and is builtin 
 	{
         wait(&status);

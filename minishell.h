@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/02 15:41:25 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/04 13:33:07 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_envl
 	int				node_flag;
 	void 			*content;
 	char			*identificator;
-	struct s_list 	*next;
+	struct s_envl 	*next;
 } 	t_envl;
 
 typedef struct s_lexer
@@ -91,9 +91,16 @@ int			unclosed_quote(char *inp);
 //Exececution
 void		minishell(t_mnshll *mnshll);
 void		start_procces(t_mnshll *mnshll);
+void 		exit_status(t_mnshll *mnshll, pid_t pid, int com_run);
 
 //Parser
 int			parser_codes(char c);
+int			parser_start(t_mnshll *minsh);
+int			init_fds(t_mnshll *minsh);
+char		**split_tokenize(t_mnshll *minsh, char *str);
+char		*ft_strncpy(char *dest, char *s, int n);
+char		*ft_strndup(t_mnshll *mnshll, char *s, int n);
+void		free_arrays(char **str_tab, int i);
 
 //Utilities
 int			find_com_pos(char **com_array, int	pos);

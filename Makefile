@@ -1,6 +1,6 @@
 NAME = minishell
 CC = cc
-SRCS = minishell.c envlist_init.c exit_status.c minisell_var_init.c execution_start.c signal.c syntax_checks.c syntex_error.c unsort.c syntax_redir_unexp_checks.c utils.c
+SRCS = envlist_init.c exit_status.c minisell_var_init.c execution_start.c  signals.c syntax_checks.c syntex_error.c unsort.c syntax_redir_unexp_checks.c utils.c minishell.c
 OBJS = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRCS))
 CFLAGS = -Werror -Wall -Wextra -g
 RM = rm -rf

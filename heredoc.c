@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 20:10:00 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/02 20:30:59 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/04 14:42:27 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,17 @@
 int	init_heredoc(t_mnshll *minsh, char **str)
 {
 	int		i;
-	char	*buf;
+	char	*towr;
 
 	i = 0;
 	if (!str[0][0] || !str || !str[0])
 		return (1);
 	while (str[i])
 	{
-		
+		if (ft_strncmp(str[i], "<<", ft_strlen(str[i])) == 0)
+		{
+			towr = endofile(minsh, str[i], )
+		}
 	}
 	
 }
