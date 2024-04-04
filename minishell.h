@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/04 13:33:07 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/04 22:20:31 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int			unclosed_quote(char *inp);
 void		minishell(t_mnshll *mnshll);
 void		start_procces(t_mnshll *mnshll);
 void 		exit_status(t_mnshll *mnshll, pid_t pid, int com_run);
-
+int			if_there_heredoc(t_mnshll *minsh, char **str);
 //Parser
 int			parser_codes(char c);
 int			parser_start(t_mnshll *minsh);
@@ -104,5 +104,6 @@ void		free_arrays(char **str_tab, int i);
 
 //Utilities
 int			find_com_pos(char **com_array, int	pos);
+int			ft_strcmp(char *s1, char *s2)
 
 #endif
