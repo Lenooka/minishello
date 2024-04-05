@@ -6,7 +6,7 @@
 /*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 19:10:26 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/04 22:16:48 by olena            ###   ########.fr       */
+/*   Updated: 2024/04/05 22:09:23 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,49 @@ int	ft_strcmp(char *s1, char *s2)
 	return (a - b);
 }
 
-int skipping_quotes(?)
+int	skipping_quotes(char *str, char c, int x)
+{
+	if (str[x] && str[x] == c)
+	{
+		x++;
+		while (str[x] && str[x] != c)
+			x++;
+		if (str[x] == '\0')
+			return (x);
+		x++;
+		if (str[x] && !parser_codes(str[x]))
+			return (space_tab(str, x))
+		else if (str[x] && str[x] == '$')
+			return (envar(str, x));
+		else if (str[x] && parser_codes(str[x]) == 1)
+			return (skipping_quotes(str, str[x], x))
+	}
+	return (x);
+}
+
+int	space_tab(char *str, int x)
+{
+	if (str[x] && !parser_codes(str[x]))
+	{
+		while (str[x] && !parser_codes(str[x]))
+			x++;
+		if (str[x] && str[x] == '$')
+			return (envar(str, x));
+		else if (str[x] && parser_codes(str[x]) == 1)
+			return (skipping_quotes(str, str[x], x))
+	}
+	return (x);
+}
+
+int	envar(char *str, int x)
+{
+	if (str[x] == '$')
+	{
+		x++;
+		if (str[x] && parser_codes(str[x]) == 1)
+			return (quoted(str, str[x], x));
+		else if (str[x] && !parser_codes(str[x]))
+			return (space_tab(str, x))
+	}
+	return (x);
+}
