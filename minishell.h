@@ -6,7 +6,7 @@
 /*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/04 22:20:31 by olena            ###   ########.fr       */
+/*   Updated: 2024/04/05 21:02:56 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef	struct mnshll
 	char	**com_array;
 	int		exit;
 	char	*input;
+	char	*heredoc_buf:
 	int		fdin;
 	int		fdout;
 	t_envl 	**envl;
