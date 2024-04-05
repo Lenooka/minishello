@@ -3,18 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 20:10:00 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/05 13:05:51 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:50:06 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*init_heredoc(t_mnshll *minsh, char *str, int indx)
+char	*init_heredoc(t_mnshll *minsh, char *del, int num_indx)
 {
-	
+	char	*file;
+	pid_t	pid;
+	int		status;
+
+	signal(SIGINT, SIG_IGN);
+	file = create_file(num_indx);
+	pid = fork();
+	if (pid == 0)
+	{
+		siganl(SIGINT, heredoc_signal_handle);
+		heredoc_child(minsh, file, del);
+	}
+	else if (pid < 0)
+	{
+		//forkerror
+	}
+	else
+	{
+		waitpid(pid, &status, 0);
+		if (pid != -1 && WIFEXITED(status) && WEXITSTATUS(status) == (128 + \
+			SIGINT))
+		{
+			g_global = SIGINT;
+			unlink(file);
+		}
+	}
+	return (file);
 }
 
 int	if_there_heredoc(t_mnshll *minsh, char **str)
