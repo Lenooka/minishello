@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/05 15:14:00 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/05 15:18:04 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,6 @@ int			skipping_quotes(char *str, char c, int x);
 int			skipping_quotes(char *str, char c, int x);
 int			space_tab(char *str, int x);
 int			envar(char *str, int x);
-int			ft_strcmp(char *s1, char *s2)
+int			ft_strcmp(char *s1, char *s2);
 
 #endif
