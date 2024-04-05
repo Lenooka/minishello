@@ -1,22 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   proccesing_piping.c                                :+:      :+:    :+:   */
+/*   execution_start.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:27:56 by otolmach          #+#    #+#             */
-/*   Updated: 2024/03/28 16:03:54 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/04 16:11:59 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	minishell(t_mnshll *mnshll)
-{
-	start_procces(mnshll);
-	//free command list	
-}
 
 void    start_procces(t_mnshll *mnshll)
 {
@@ -35,14 +29,24 @@ void    start_procces(t_mnshll *mnshll)
 		}
 		pid = fork();
 		if (pid < 0)
+		{
 			//free_error
+		}
 		if (pid != 0)
-			position = 0;
-			//parrent
-		else
-			position = 0;
-            //child
+		{
+			position = 0; //parent
+		}
+		else if (position == 0)
+		{
+			position = 0; //child
+		}
 		position = find_com_pos(mnshll->com_array, position);
+		com_run++;
     }
 	exit_status(mnshll, pid, com_run);
+}
+void	minishell(t_mnshll *mnshll)
+{
+	start_procces(mnshll);
+	//free command list	
 }

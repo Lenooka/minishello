@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:37:16 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/02 18:49:40 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/04 13:18:08 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,12 @@ char	*identify_env(const char *str, int c)
 t_envl *create_newnode(void *content)
 {
 	t_envl	*new_node;
+
     if (!content)
+	{
         return (NULL);
-  	new_node = malloc(sizeof(t_envl));
+	}
+	new_node = malloc(sizeof(t_envl));
     if (!new_node) 
         return (NULL);
     new_node->next = NULL;

@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 16:03:20 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/02 16:01:47 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/04 13:16:18 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@ int	main(int arc, char **arv, char **env)
 {
     t_mnshll    *mnshll;
 	
-	if (arc > 1)
+	if (arc == 1 && arv[1] == NULL)
 	{
+		mnshll = NULL;
 		mnshll = mnshll_init(mnshll, env);
 		if (mnshll == NULL)
-			return (NULL); //if envl fails I free it inside the init
+			return (0); //if envl fails I free it inside the init
 		while (1) 
 		{
 			make_sigaction();

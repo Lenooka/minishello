@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/03 18:05:02 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/04/05 15:14:00 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_envl
 	int				node_flag;
 	void 			*content;
 	char			*identificator;
-	struct s_list 	*next;
+	struct s_envl 	*next;
 } 	t_envl;
 
 typedef struct s_lexer
@@ -95,8 +95,16 @@ int			dollar_syntax(char *input);
 //Exececution
 void		minishell(t_mnshll *mnshll);
 void		start_procces(t_mnshll *mnshll);
-
+void 		exit_status(t_mnshll *mnshll, pid_t pid, int com_run);
+int			if_there_heredoc(t_mnshll *minsh, char **str);
 //Parser
+int			parser_codes(char c);
+int			parser_start(t_mnshll *minsh);
+int			init_fds(t_mnshll *minsh);
+char		**split_tokenize(t_mnshll *minsh, char *str);
+char		*ft_strncpy(char *dest, char *s, int n);
+char		*ft_strndup(t_mnshll *mnshll, char *s, int n);
+void		free_arrays(char **str_tab, int i);
 
 //Utilities
 int			parser_codes(char c);
@@ -105,5 +113,6 @@ int			skipping_quotes(char *str, char c, int x);
 int			skipping_quotes(char *str, char c, int x);
 int			space_tab(char *str, int x);
 int			envar(char *str, int x);
+int			ft_strcmp(char *s1, char *s2)
 
 #endif

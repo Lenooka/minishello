@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 19:10:26 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/03 17:53:07 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/04/05 15:14:51 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,20 @@ int	parser_codes(char c)
 	if (c == '$')
 		return (4);
 	return (0);
+}
+
+int	ft_strcmp(char *s1, char *s2)
+{
+	int		i;
+	char	a;
+	char	b;
+
+	i = 0;
+	while (s1[i] && s2[i] && (s1[i] == s2[i]))
+		i++;
+	a = s1[i];
+	b = s2[i];
+	return (a - b);
 }
 
 int	skipping_quotes(char *str, char c, int x)
