@@ -3,14 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 20:10:00 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/04 23:23:21 by olena            ###   ########.fr       */
+/*   Updated: 2024/04/05 13:05:51 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	*init_heredoc(t_mnshll *minsh, char *str, int indx)
+{
+	
+}
 
 int	if_there_heredoc(t_mnshll *minsh, char **str)
 {
