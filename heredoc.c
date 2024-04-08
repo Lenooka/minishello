@@ -6,11 +6,19 @@
 /*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 20:10:00 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/05 22:02:35 by olena            ###   ########.fr       */
+/*   Updated: 2024/04/08 11:26:42 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	heredoc_warn(char *del)
+{
+	ft_putstr_fd("Minishell: warning: here-document delimited ", STDERR_FILENO);
+	ft_putstr_fd("by end-of-file (wanted `", STDERR_FILENO);
+	ft_putstr_fd(limiter, STDERR_FILENO);
+	ft_putstr_fd("')\n", STDERR_FILENO);
+}
 
 void	disable_quit_signals(void)
 {
@@ -39,8 +47,8 @@ void	heredoc_child(t_minishell *ms, int fd, char *del)
 		line = readline("> ");
 		if (g_global == SIGINT)
 			ms->exit = 128 + SIGINT;
-		else if (!line)
-			heredoc_eof(limiter);
+		else if (line == NULL)
+			heredoc_warn(del);
 		output = heredoc_output(ms, limiter, line);
 		if (!output)
 			break ;
