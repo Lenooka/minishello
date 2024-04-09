@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/05 15:18:04 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/09 11:34:43 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef	struct mnshll
 	char	**com_array;
 	int		exit;
 	char	*input;
+	char	*heredoc_buf:
 	int		fdin;
 	int		fdout;
 	t_envl 	**envl;
