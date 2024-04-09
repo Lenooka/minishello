@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 20:10:00 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/09 13:05:06 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:14:13 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ void	heredoc_warn(char *del)
 	ft_putstr_fd("')\n", STDERR_FILENO);
 }
 
-void	disable_quit_signals(void)
+void    disable_quit_signals(void)
 {
-	struct termios	term;
+    struct termios    term;
 
 	tcgetattr(STDIN_FILENO, &term);
 	term.c_cc[VQUIT] = _POSIX_VDISABLE;

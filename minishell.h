@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/09 16:57:56 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/09 19:03:27 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,18 @@ int			start_syntax(char *input);
 int			end_syntax(char *input);
 int			pipe_syntax(char *input);
 int			dollar_syntax(char *input);
+int			redir_syntax(char *input);
+int			double_redir_syntax(char *input);
+int			sucession_syntax(char *input);
+int			token_syntax(char *input);
+//Names need to be changed, logic of the syntax checks needs to be overworked, but for now, this works. (Should)
 
 //Exececution
 void		minishell(t_mnshll *mnshll);
 void		start_procces(t_mnshll *mnshll);
 void 		exit_status(t_mnshll *mnshll, pid_t pid, int com_run);
 int			if_there_heredoc(t_mnshll *minsh, char **str);
+
 //Parser
 int			parser_codes(char c);
 int			parser_start(t_mnshll *minsh);
@@ -112,8 +118,8 @@ void		free_arrays(char **str_tab, int i);
 //Utilities
 int			parser_codes(char c);
 int			find_com_pos(char **com_array, int	pos);
-int			skipping_quotes(char *str, char c, int x);
-int			skipping_quotes(char *str, char c, int x);
+int			big_skip_quotes(char *str, char c, int x);
+int			little_skip_quotes(char *str, int x, int len);
 int			space_tab(char *str, int x);
 int			envar(char *str, int x);
 int			ft_strcmp(char *s1, char *s2);

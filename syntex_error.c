@@ -6,7 +6,7 @@
 /*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 22:14:57 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/02 19:12:06 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/04/09 18:03:50 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	has_syntax_error(const char *input)
 		return (report_syntax_error("near unexpected token '|'"));
     else if (dollar_syntax(input) == 1) //function call to a non function? has to be made
 		return (report_syntax_error("near unexpected token '$'"));      
-	else if (redir_unexpect_errors(input) == 1) //function call to a non function? has to be made
+	else if (redir_unexpect_errors(input) == 1) //function call to a non function? has to be made ☝️🤓
 		return (1);		   
 	return (0);
 }
