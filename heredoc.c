@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 20:10:00 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/09 11:58:44 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:54:52 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,6 @@ void	heredoc_warn(char *del)
 	ft_putstr_fd(del, STDERR_FILENO);
 	ft_putstr_fd("')\n", STDERR_FILENO);
 }
-
-void	disable_quit_signals(void)
-{
-	struct termios	term;
-
 	tcgetattr(STDIN_FILENO, &term);
 	term.c_cc[VQUIT] = _POSIX_VDISABLE;
 	tcsetattr(STDIN_FILENO, TCSANOW, &term);
