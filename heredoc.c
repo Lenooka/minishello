@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 20:10:00 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/09 14:55:55 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:56:41 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,20 @@ char	*hrdc_out(t_mnshll *minsh, char	*del, char *line)
 {
 	char	*out;
 
-	if (g_global )
+	if (g_global == SIGINT  || !line)
+		return (NULL);
+	out = remove_quotes(del);
+	if (strcmp(out, line, '\n') == 0)//write a special strcmp
+	{
+		free(out);
+		return (NULL);
+	}
+	free(out);
+	if (!ft_strchr(del, '\'') && !ft_strchr(del, '\"'))
+		out = replace_str(minsh, line);
+	else
+		out = ft_strdup(line);
+	return (out);
 }
 
 void	heredoc_warn(char *del)
