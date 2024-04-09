@@ -3,14 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 20:10:00 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/05 22:02:35 by olena            ###   ########.fr       */
+/*   Updated: 2024/04/09 11:58:44 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	*hrdc_out(t_mnshll *minsh, char	*del, char *line)
+{
+	char	*out;
+
+	if (g_global )
+}
+
+void	heredoc_warn(char *del)
+{
+	ft_putstr_fd("Minishell: warning: here-document delimited ", STDERR_FILENO);
+	ft_putstr_fd("by end-of-file (wanted `", STDERR_FILENO);
+	ft_putstr_fd(del, STDERR_FILENO);
+	ft_putstr_fd("')\n", STDERR_FILENO);
+}
 
 void	disable_quit_signals(void)
 {
@@ -27,7 +42,7 @@ void	free_and_null(void **ptr)
 	*ptr = NULL;
 }
 
-void	heredoc_child(t_minishell *ms, int fd, char *del)
+void	heredoc_child(t_mnshll *minsh, int fd, char *del)
 {
 	char	*output;
 	char	*line;
@@ -39,9 +54,9 @@ void	heredoc_child(t_minishell *ms, int fd, char *del)
 		line = readline("> ");
 		if (g_global == SIGINT)
 			ms->exit = 128 + SIGINT;
-		else if (!line)
-			heredoc_eof(limiter);
-		output = heredoc_output(ms, limiter, line);
+		else if (line == NULL)
+			heredoc_warn(del);
+		output = hrdc_out(minsh, del, line);
 		if (!output)
 			break ;
 		free_and_null((void **)&line);
@@ -50,7 +65,7 @@ void	heredoc_child(t_minishell *ms, int fd, char *del)
 	}
 	free_and_null((void **)&line);
 	close(fd);
-	free_hdoc(ms);
+	free_hdoc(minsh);
 }
 
 int	create_file(t_minishell *ms, char *filename)
