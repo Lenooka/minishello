@@ -3,14 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 20:10:00 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/09 16:14:13 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/04/09 20:13:07 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	len_un_chr(char *str, char c)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && str[i] != c)
+		i++;
+	return (i);
+}
+
+int	spec_strcmp(char *s1, char *s2, char c)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] && s2[i] && (s1[i] == s2[i]) && i < len_un_chr(s2, c) - 1)
+		i++;
+	if (i < (int)ft_strlen(s1) - 1)
+		return (1);
+	return (s1[i] - s2[i]);
+}
 
 char	*hrdc_out(t_mnshll *minsh, char	*del, char *line)
 {
@@ -19,14 +41,14 @@ char	*hrdc_out(t_mnshll *minsh, char	*del, char *line)
 	if (g_global == SIGINT  || !line)
 		return (NULL);
 	out = remove_quotes(del);
-	if (strcmp(out, line, '\n') == 0)//write a special strcmp
+	if (spec_strcmp(out, line, '\n') == 0)//write a special strcmp
 	{
 		free(out);
 		return (NULL);
 	}
 	free(out);
 	if (!ft_strchr(del, '\'') && !ft_strchr(del, '\"'))
-		out = replace_str(minsh, line);
+		out = replace_var_in_str(minsh, line);
 	else
 		out = ft_strdup(line);
 	return (out);
@@ -107,7 +129,7 @@ int	file_des_create(t_mnshll *minsh, int here_num)
 		free(minsh->heredoc_buf);
 		if (buf == NULL)
 			return (-1);
-		minsh->heredoc_buf = ft_strjoin(buf, "l");
+		minsh->heredoc_buf = ft_strjoin(tmp, "l");
 		free(tmp);
 		if (minsh->heredoc_buf == NULL)
 			return (-1);
@@ -140,7 +162,7 @@ void	init_heredoc(t_mnshll *minsh, char *del, int num_indx)
 			SIGINT))
 		{
 			g_global = SIGINT;
-			unlink(file);
+			unlink(minsh->heredoc_buf);
 		}
 	}
 }

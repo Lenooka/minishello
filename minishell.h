@@ -6,7 +6,7 @@
 /*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/09 19:03:27 by olena            ###   ########.fr       */
+/*   Updated: 2024/04/09 20:19:30 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef	struct mnshll
 	int		fdin;
 	int		fdout;
 	int		fd_cmd;
+	int		lenvar;
 	int		rep_var_i;
 	t_envl 	**envl;
 	t_lexer	*lexer;
@@ -114,6 +115,21 @@ char		**split_tokenize(t_mnshll *minsh, char *str);
 char		*ft_strncpy(char *dest, char *s, int n);
 char		*ft_strndup(t_mnshll *mnshll, char *s, int n);
 void		free_arrays(char **str_tab, int i);
+char		*replace_var_in_str(t_mnshll *minsh, char *str);
+char		**replace_var(t_mnshll *minsh);
+//Herdoc
+
+int		if_there_heredoc(t_mnshll *minsh, char **str);
+void	init_heredoc(t_mnshll *minsh, char *del, int num_indx);
+int		file_des_create(t_mnshll *minsh, int here_num);
+void	heredoc_child(t_mnshll *minsh, int fd, char *del);
+int		create_file(t_minishell *ms, char *filename);
+void	free_and_null(void **ptr);
+void    disable_quit_signals(void);
+void	heredoc_warn(char *del);
+char	*hrdc_out(t_mnshll *minsh, char	*del, char *line);
+int		spec_strcmp(char *s1, char *s2, char c);
+int		len_un_chr(char *str, char c);
 
 //Utilities
 int			parser_codes(char c);

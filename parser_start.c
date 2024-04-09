@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_start.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:33:06 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/09 17:06:54 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/09 20:02:40 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	init_fds(t_mnshll *minsh)
 {
 	minsh->rep_var_i = 0;
 	minsh->fd_cmd = 0;
+	minsh->lenvar = 0;
 	minsh->fdin = dup(STDIN_FILENO);
 	if (minsh->fdin == -1)
 		return (1);
@@ -25,7 +26,6 @@ int	init_fds(t_mnshll *minsh)
 		return (1);
 	return (0);
 }
-
 
 int	parser_start(t_mnshll *minsh)
 {

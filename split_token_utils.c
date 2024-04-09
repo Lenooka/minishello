@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_token_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 19:02:11 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/02 19:02:40 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/09 19:33:30 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char	*ft_strndup(t_mnshll *mnshll, char *s, int n)
 	cs = (char *)malloc(sizeof(char) * (n + 1));
 	if (!cs)
 	{
+		printf("Minishell: Malloc error!\n");
 		return (NULL);
 	}
 	cs = ft_strncpy(cs, s, n);
