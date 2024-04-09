@@ -3,36 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 20:10:00 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/09 20:13:07 by olena            ###   ########.fr       */
+/*   Updated: 2024/04/09 19:30:30 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	len_un_chr(char *str, char c)
-{
-	int	i;
 
-	i = 0;
-	while (str[i] && str[i] != c)
-		i++;
-	return (i);
-}
-
-int	spec_strcmp(char *s1, char *s2, char c)
-{
-	int	i;
-
-	i = 0;
-	while (s1[i] && s2[i] && (s1[i] == s2[i]) && i < len_un_chr(s2, c) - 1)
-		i++;
-	if (i < (int)ft_strlen(s1) - 1)
-		return (1);
-	return (s1[i] - s2[i]);
-}
 
 char	*hrdc_out(t_mnshll *minsh, char	*del, char *line)
 {
@@ -41,7 +21,9 @@ char	*hrdc_out(t_mnshll *minsh, char	*del, char *line)
 	if (g_global == SIGINT  || !line)
 		return (NULL);
 	out = remove_quotes(del);
-	if (spec_strcmp(out, line, '\n') == 0)//write a special strcmp
+	if (!out)
+		return (NULL);
+	if (spec_strcmp(out, line, '\n') == 0 )//write a special strcmp
 	{
 		free(out);
 		return (NULL);
@@ -88,7 +70,7 @@ void	heredoc_child(t_mnshll *minsh, int fd, char *del)
 		disable_quit_signals();
 		line = readline("> ");
 		if (g_global == SIGINT)
-			ms->exit = 128 + SIGINT;
+			minsh->exit = 128 + SIGINT;
 		else if (line == NULL)
 			heredoc_warn(del);
 		output = hrdc_out(minsh, del, line);
@@ -103,7 +85,7 @@ void	heredoc_child(t_mnshll *minsh, int fd, char *del)
 	free_hdoc(minsh);
 }
 
-int	create_file(t_minishell *ms, char *filename)
+int	create_file(t_mnshll *minsh, char *filename)
 {
 	int	fd;
 
@@ -114,30 +96,32 @@ int	create_file(t_minishell *ms, char *filename)
 	return (fd);
 }
 
-int	file_des_create(t_mnshll *minsh, int here_num)
+int file_des_create(t_mnshll *minsh, int here_num)
 {
-	int		i;
-	char	*tmp;
-	int		fd:
+    int i;
+    char *tmp;
+    int fd;
 
-	i = 0;
-	tmp = NULL;
-	minsh->heredoc_buf = ft_strdup("/tmp/minshl");
-	while (i < here_num)
-	{
-		tmp = ft_strdup(minsh->heredoc_buf);
-		free(minsh->heredoc_buf);
-		if (buf == NULL)
-			return (-1);
-		minsh->heredoc_buf = ft_strjoin(tmp, "l");
-		free(tmp);
-		if (minsh->heredoc_buf == NULL)
-			return (-1);
-		i++;
-	}
-	fd = create_file(minsh, minsh->heredoc_buf);
-	return (fd);
+    i = 0;
+    tmp = NULL;
+    minsh->heredoc_buf = ft_strdup("/tmp/minshl");
+    while (i < here_num)
+    {
+        tmp = ft_strdup(minsh->heredoc_buf);
+        free(minsh->heredoc_buf);
+        if (tmp == NULL) // Fixed variable name 'buf' to 'tmp'
+            return (-1);
+        minsh->heredoc_buf = ft_strjoin(tmp, "l");
+        free(tmp);
+        if (minsh->heredoc_buf == NULL)
+            return (-1);
+        i++;
+    }
+    fd = create_file(minsh, minsh->heredoc_buf);
+    return (fd);
 }
+
+
 
 void	init_heredoc(t_mnshll *minsh, char *del, int num_indx)
 {
@@ -150,11 +134,11 @@ void	init_heredoc(t_mnshll *minsh, char *del, int num_indx)
 	pid = fork();
 	if (pid == 0 && fd != 0)
 	{
-		siganl(SIGINT, heredoc_signal_handle); //signal fucntion for U JOEL <;
+		signal(SIGINT, heredoc_signal_handle); //signal fucntion for U JOEL <;
 		heredoc_child(minsh, fd, del);
 	}
 	else if (pid < 0 || fd < 0)
-		//forkerror not check fd for null closing fd
+		fd = 1;//forkerror not check fd for null closing fd
 	else
 	{
 		waitpid(pid, &status, 0);

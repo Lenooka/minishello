@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   parser_start.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:33:06 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/09 20:02:40 by olena            ###   ########.fr       */
+/*   Updated: 2024/04/09 20:17:06 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	count_commands(char **str_tab)
+{
+	int	i;
+	int	n;
+
+	i = 0;
+	n = 0;
+	while (str_tab[i])
+	{
+		n++;
+		while (str_tab[i] && ft_strcmp(str_tab[i], "|") != 0)
+			i++;
+		if (str_tab[i])
+			i++;
+	}
+	return (n);
+}
 
 
 int	init_fds(t_mnshll *minsh)
@@ -46,5 +64,12 @@ int	parser_start(t_mnshll *minsh)
 		printf("Replacing of variabls failed!\n"); //should exit free here??
 		return (1);
 	}
-	
+	free_all_arrays(minsh->com_array);
+	minsh->com_array = duplicate_string_array(minsh, repl_var_array);
+	free_all_arrays(repl_var_array);
+	minsh->command_amount = count_commands(minsh->com_array);
+	minsh->list_com = init_list_of_comands(minsh);
+	if (minsh->list_com == NULL)
+		return (1);
+	return (0);	
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/09 20:23:13 by olena            ###   ########.fr       */
+/*   Updated: 2024/04/09 20:22:01 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ typedef struct s_envl
 
 typedef struct s_lexer
 {
-	char	**tokens;
+	char			**tokens;
+	struct s_lexer	*next;
+	
 } t_lexer;
 
 typedef	struct mnshll
@@ -55,14 +57,14 @@ typedef	struct mnshll
 	char	**com_array;
 	int		exit;
 	char	*input;
-	char	*heredoc_buf:
+	char	*heredoc_buf;
 	int		fdin;
 	int		fdout;
 	int		fd_cmd;
 	int		lenvar;
 	int		rep_var_i;
 	t_envl 	**envl;
-	t_lexer	*lexer;
+	t_lexer	*list_com;
 	
 } t_mnshll;
 
@@ -120,13 +122,17 @@ char		**replace_var(t_mnshll *minsh);
 size_t		indx_from(t_mnshll *minsh, char *rep_res, char q, int indx);
 int			get_var_len(char *str);
 char		*iterati(t_mnshll *minsh, char *var);
+char		**duplicate_string_array(t_mnshll *minsh, char **old_arr);
+int			count_commands(char **str_tab);
+t_lexer		*init_list_of_comands(t_mnshll *minsh);
+
 //Herdoc
 
 int		if_there_heredoc(t_mnshll *minsh, char **str);
 void	init_heredoc(t_mnshll *minsh, char *del, int num_indx);
 int		file_des_create(t_mnshll *minsh, int here_num);
 void	heredoc_child(t_mnshll *minsh, int fd, char *del);
-int		create_file(t_minishell *ms, char *filename);
+int		create_file(t_mnshll *minsh, char *filename);
 void	free_and_null(void **ptr);
 void    disable_quit_signals(void);
 void	heredoc_warn(char *del);
@@ -142,6 +148,8 @@ int			little_skip_quotes(char *str, int x, int len);
 int			space_tab(char *str, int x);
 int			envar(char *str, int x);
 int			ft_strcmp(char *s1, char *s2);
-int			size_of_2d(char **arr);
-
+int			e_2d(char **arr);
+char		*remove_quotes(char *str);
+int			quote_amm(char *str);
+void		free_all_arrays(char **str_tab);
 #endif

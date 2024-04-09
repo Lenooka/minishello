@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_token_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 19:02:11 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/09 19:33:30 by olena            ###   ########.fr       */
+/*   Updated: 2024/04/09 19:08:12 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,4 @@ void	free_arrays(char **str_tab, int i)
 		j++;
 	}
 	free(str_tab);
-	return (NULL);
 }

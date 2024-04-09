@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace_var.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 13:22:02 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/09 20:00:10 by olena            ###   ########.fr       */
+/*   Updated: 2024/04/09 19:27:02 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,6 @@
   $ = 4
 */
 
-int	size_of_2d(char **arr)
-{
-	int	i;
-	int	count;
-
-	if (!arr)
-		return (0);
-	i = 0;
-	count = 0;
-	while (arr[i])
-	{
-		if (arr[i][0])
-			count++;
-		i++;
-	}
-	return (count);
-}
 
 char	*iterati(t_mnshll *minsh, char *var)
 {
