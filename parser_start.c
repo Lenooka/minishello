@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:33:06 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/09 13:21:43 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/09 17:06:54 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 int	init_fds(t_mnshll *minsh)
 {
+	minsh->rep_var_i = 0;
 	minsh->fd_cmd = 0;
 	minsh->fdin = dup(STDIN_FILENO);
 	if (minsh->fdin == -1)
@@ -34,12 +35,16 @@ int	parser_start(t_mnshll *minsh)
 	minsh->com_array = split_tokenize(minsh, minsh->input);
 	if (minsh->com_array == NULL)
 	{
-		printf("Tokenizing fail!") //should exit free here?
+		printf("Tokenizing fail!\n"); //should exit free here?
 		return (1);
 	}
-	if (init_heredoc(minsh, minsh->com_array) == 1)
+	if (if_there_heredoc(minsh, minsh->com_array) == 1)
 		return (1);
 	repl_var_array = replace_var(minsh);
-	
+	if (repl_var_array == NULL)
+	{
+		printf("Replacing of variabls failed!\n"); //should exit free here??
+		return (1);
+	}
 	
 }

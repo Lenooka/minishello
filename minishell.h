@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/09 13:16:21 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:57:56 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef	struct mnshll
 	int		fdin;
 	int		fdout;
 	int		fd_cmd;
+	int		rep_var_i;
 	t_envl 	**envl;
 	t_lexer	*lexer;
 	
