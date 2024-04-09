@@ -6,7 +6,7 @@
 /*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 23:27:16 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/04 16:30:22 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/04/09 15:00:04 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	pipe_syntax(char *input)
 	while (str[x])
 	{
 		if (str[x] && parser_codes(str[x]) == 1)
-			x = skipping_quotes(str, str[x], x);
+			x = big_skip_quotes(str, str[x], x);
 		else if (str[x] && str[x] == '|')
 		{
 			x++;

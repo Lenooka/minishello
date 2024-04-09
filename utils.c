@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 19:10:26 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/05 22:10:59 by olena            ###   ########.fr       */
+/*   Updated: 2024/04/09 14:59:10 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_strcmp(char *s1, char *s2)
 	return (a - b);
 }
 
-int	skipping_quotes(char *str, char c, int x)
+int	big_skip_quotes(char *str, char c, int x)
 {
 	if (str[x] && str[x] == c)
 	{
