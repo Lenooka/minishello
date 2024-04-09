@@ -6,7 +6,7 @@
 /*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/09 20:19:30 by olena            ###   ########.fr       */
+/*   Updated: 2024/04/09 20:23:13 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,9 @@ char		*ft_strndup(t_mnshll *mnshll, char *s, int n);
 void		free_arrays(char **str_tab, int i);
 char		*replace_var_in_str(t_mnshll *minsh, char *str);
 char		**replace_var(t_mnshll *minsh);
+size_t		indx_from(t_mnshll *minsh, char *rep_res, char q, int indx);
+int			get_var_len(char *str);
+char		*iterati(t_mnshll *minsh, char *var);
 //Herdoc
 
 int		if_there_heredoc(t_mnshll *minsh, char **str);
@@ -139,5 +142,6 @@ int			little_skip_quotes(char *str, int x, int len);
 int			space_tab(char *str, int x);
 int			envar(char *str, int x);
 int			ft_strcmp(char *s1, char *s2);
+int			size_of_2d(char **arr);
 
 #endif
