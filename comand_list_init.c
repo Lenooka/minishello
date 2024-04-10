@@ -6,34 +6,95 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:57:54 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/10 13:26:25 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/10 14:57:46 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_lexer	*
+t_lexer	*tokenize_commands(t_mnshll *minsh, char **arr, int pos, int argc)
+{
+	int		i;
+	char	**res;
+
+	res = malloc(sizeof(char *) * (argc + 1));
+	if (!res)
+		//error exit malloc fail
+	while (arr[pos] && i < argc)
+	{
+		if (arr[pos][0] == '\0')
+		{
+			pos++;
+			continue;
+		}
+		if ()
+	}
+	
+}
+
+int	count_argument_f_cmnd(char **array, int indx)
+{
+	int	pos;
+	int	count;
+
+	pos = indx;
+	count = 0;
+	while (array[pos] != '\0' && ft_strchr(array[pos], "|") != 0)
+	{
+		if (array[pos][0] == '\0')
+		{
+			pos++;
+			continue;
+		}
+		if ((ft_strcmp(arr[i], ">") == 0 || ft_strcmp(arr[i], ">>") == 0 ||
+            ft_strcmp(arr[i], "<") == 0 || ft_strcmp(arr[i], "<<") == 0))
+		{
+			pos += 2;
+		}
+		else
+		{
+			count++;
+			pos++;
+		}
+	}
+	return (count);
+}
+
+t_lexer	*new_node_cmdlist(t_mnshll *m, int indx)
+{
+	t_lexer	*list_com;
+	int		arg_count;
+
+	
+	list_com = malloc((t_lexer));
+	if (!list_com)
+		//error exit malloc error
+	arg_count = count_argument_f_cmnd(m->com_array, indx);
+	list_com->tokens = tokenize_commands(m, m->com_array, indx, arg_count);
+	list_com->next = NULL;
+	return (list_com);
+}
 
 t_lexer	*init_list_of_comands(t_mnshll *minsh)
 {
-	t_lexer	*node;
-    t_lexer	*list_com;
-	int		i;
+	t_lexer		*node;
+	t_lexer		*list_com;
+	int			i;
 
 	i = 0;
 	list_com = NULL;
 	if (ms->cmd_count <= 0 || ms->main_arr == NULL)
-		return NULL;
+		return (NULL);
 	while (i < minsh->command_amount && minsh->com_array[i])
 	{
 		node = new_node_cmdlist(minsh, i);
 		if (!node)
-			return NULL;
-        while (minsh->com_array[i] && ft_strcmp(minsh->com_array[i], "|") != 0)
-            i++;
-        if (minsh->com_array && ft_strcmp(minsh->com_array[i], "|") == 0)
-            i++;
-        cmdlist_add_back(&cmdlist, node);
+			return (NULL);
+		while (minsh->com_array[i] && ft_strcmp(minsh->com_array[i], "|") != 0)
+			i++;
+		if (minsh->com_array && ft_strcmp(minsh->com_array[i], "|") == 0)
+			i++;
+		cmdlist_add_back(&cmdlist, node);
 	}
-    return (list_com);
+	return (list_com);
 }

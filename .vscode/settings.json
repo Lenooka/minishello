@@ -2,6 +2,7 @@
 	"C_Cpp.errorSquiggles": "disabled",
 	"files.associations": {
 		"functional": "c",
-		"minishell.h": "c"
+		"minishell.h": "c",
+		"array": "c"
 	}
 }
