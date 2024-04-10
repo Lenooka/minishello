@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   comand_list_init.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:57:54 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/09 20:23:14 by codespace        ###   ########.fr       */
+/*   Updated: 2024/04/10 13:26:25 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+t_lexer	*
 
 t_lexer	*init_list_of_comands(t_mnshll *minsh)
 {
@@ -33,5 +35,5 @@ t_lexer	*init_list_of_comands(t_mnshll *minsh)
             i++;
         cmdlist_add_back(&cmdlist, node);
 	}
-    return cmdlist;
+    return (list_com);
 }
