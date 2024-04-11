@@ -6,7 +6,7 @@
 /*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 23:27:16 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/09 15:00:04 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/04/11 15:12:24 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,6 @@ int	unclosed_quote(char *inp)
 	}
 	return (0);
 }
-/*
-int	parser_op(char c)
-{
-	if (c == ' ' || c == '\t')
-		return (1);
-	if (c == '<' || c == '>' || c == '|')
-		return (2);
-	if (c == '\'' || c == '\"')
-		return (3);
-	if (c == '$')
-		return (4);
-	return (0);
-}
-*/
 
 int	start_syntax(char *input)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_token.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:53:11 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/02 19:21:29 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/11 15:31:46 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,22 @@ int	count_words(char *str)
 	i = 0;
 	
 	
+}
+
+int	ft_toklen(char *str)
+{
+	int	x;
+
+	x = 0;
+	if (str[i] && parser_codes(str[i]) == 1)
+		return (big_skip_quotes(str, str[i], i));
+	if (str[i] && parser_codes(str[i]) == 2)
+		return (others(str, i)); 		//unfinished
+	if (str[i] && parser_codes(str[i]) == 4)
+		return (envar(str, i));
+	if (str[i] && !parser_codes(str[i]))
+		return (space_tab(str, i));
+	return (i);
 }
 
 char	**split_tokenize(t_mnshll *minsh, char *str)

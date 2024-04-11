@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_token_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 19:02:11 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/09 19:08:12 by codespace        ###   ########.fr       */
+/*   Updated: 2024/04/11 15:15:22 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ char	*ft_strndup(t_mnshll *mnshll, char *s, int n)
 	cs = ft_strncpy(cs, s, n);
 	return (cs);
 }
+
 void	free_arrays(char **str_tab, int i)
 {
 	int	j;
