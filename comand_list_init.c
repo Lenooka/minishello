@@ -3,20 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   comand_list_init.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:57:54 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/10 14:57:46 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/11 12:30:29 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_lexer	*tokenize_commands(t_mnshll *minsh, char **arr, int pos, int argc)
+void	add_new_back(t_lexer **lst, t_lexer*new)
+{
+	t_lexer *last;
+
+	last = *lst;
+    if (!*lst)
+    {
+        *lst = new;
+        return;
+    }
+    while (last->next)
+    {
+        last = last->next;
+    }
+    last->next = new;
+}
+
+char	**tokenize_commands(t_mnshll *minsh, char **arr, int pos, int argc)
 {
 	int		i;
 	char	**res;
 
+	int = 0;
 	res = malloc(sizeof(char *) * (argc + 1));
 	if (!res)
 		//error exit malloc fail
@@ -27,9 +45,17 @@ t_lexer	*tokenize_commands(t_mnshll *minsh, char **arr, int pos, int argc)
 			pos++;
 			continue;
 		}
-		if ()
+		if (arr[pos] && (ft_strcmp(arr[pos], ">") == 0 \
+			|| ft_strcmp(arr[pos], ">>") == 0 || ft_strcmp(arr[pos], "<") == 0 \
+			|| ft_strcmp(arr[pos], "<<") == 0))
+			pos += 2;
+		else if (ft_strcmp(arr[pos], "|") == 0)
+			break ;
+		else
+			res[i++] = arr[pos++];
 	}
-	
+	res[i] = NULL;
+	return (res);
 }
 
 int	count_argument_f_cmnd(char **array, int indx)
@@ -94,7 +120,7 @@ t_lexer	*init_list_of_comands(t_mnshll *minsh)
 			i++;
 		if (minsh->com_array && ft_strcmp(minsh->com_array[i], "|") == 0)
 			i++;
-		cmdlist_add_back(&cmdlist, node);
+		add_new_back(&list_com, node);
 	}
 	return (list_com);
 }
