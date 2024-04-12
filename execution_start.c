@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:27:56 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/04 16:11:59 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:44:41 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void    start_procces(t_mnshll *mnshll)
 }
 void	minishell(t_mnshll *mnshll)
 {
-	start_procces(mnshll);
+	printf("WELLDONE\n");
+	printf("%s\n", mnshll->input);
+	//start_procces(mnshll);
 	//free command list	
 }

@@ -6,17 +6,37 @@
 /*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:53:11 by otolmach          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/04/12 16:52:08 by jhuber           ###   ########.fr       */
+=======
+/*   Updated: 2024/04/12 17:13:34 by otolmach         ###   ########.fr       */
+>>>>>>> test
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/*
+  quote == 1m / 3n
+  redir&&pip == 2
+  tab space == 3m / 1n
+  $ = 4
+*/
+
+
 int	count_words(char *str)
 {
+<<<<<<< HEAD
 	int	x;
 
 	x = 0;
+=======
+	int	i;
+	int	amm_words;
+
+	i = 0;
+	amm_words = 0;
+>>>>>>> test
 	
 	
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 19:10:26 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/09 19:30:59 by codespace        ###   ########.fr       */
+/*   Updated: 2024/04/12 16:39:33 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	big_skip_quotes(char *str, char c, int x)
 		else if (str[x] && str[x] == '$')
 			return (envar(str, x));
 		else if (str[x] && parser_codes(str[x]) == 1)
-			return (skipping_quotes(str, str[x], x))
+			return (big_skip_quotes(str, str[x], x))
 	}
 	return (x);
 }
@@ -55,7 +55,7 @@ int	space_tab(char *str, int x)
 		if (str[x] && str[x] == '$')
 			return (envar(str, x));
 		else if (str[x] && parser_codes(str[x]) == 1)
-			return (skipping_quotes(str, str[x], x))
+			return (big_skip_quotes(str, str[x], x))
 	}
 	return (x);
 }
@@ -66,7 +66,7 @@ int	envar(char *str, int x)
 	{
 		x++;
 		if (str[x] && parser_codes(str[x]) == 1)
-			return (quoted(str, str[x], x));
+			return (big_skip_quotes(str, str[x], x));
 		else if (str[x] && !parser_codes(str[x]))
 			return (space_tab(str, x))
 	}
