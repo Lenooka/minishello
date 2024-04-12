@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/09 20:22:01 by codespace        ###   ########.fr       */
+/*   Updated: 2024/04/12 18:26:49 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ t_lexer		*init_list_of_comands(t_mnshll *minsh);
 
 int		if_there_heredoc(t_mnshll *minsh, char **str);
 void	init_heredoc(t_mnshll *minsh, char *del, int num_indx);
+void	heredoc_signal_handle(int signal);
 int		file_des_create(t_mnshll *minsh, int here_num);
 void	heredoc_child(t_mnshll *minsh, int fd, char *del);
 int		create_file(t_mnshll *minsh, char *filename);

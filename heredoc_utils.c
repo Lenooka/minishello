@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:20:11 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/10 13:24:39 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/12 18:25:58 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minishell.h"
 
 int	create_file(t_mnshll *minsh, char *filename)
 {
@@ -62,4 +63,14 @@ void    disable_quit_signals(void)
 	tcgetattr(STDIN_FILENO, &term);
 	term.c_cc[VQUIT] = _POSIX_VDISABLE;
 	tcsetattr(STDIN_FILENO, TCSANOW, &term);
+}
+
+void	heredoc_signal_handle(int signal)
+{
+	if (signal == SIGINT)
+	{
+		g_global = SIGINT;
+		printf("\n");
+		close(STDIN_FILENO);
+	}
 }
