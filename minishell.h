@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/12 20:47:49 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/12 21:46:41 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ int			init_fds(t_mnshll *minsh);
 char		**split_tokenize(t_mnshll *minsh, char *str);
 char		*ft_strncpy(char *dest, char *s, int n);
 char		*ft_strndup(t_mnshll *mnshll, char *s, int n);
-void		free_arrays(char **str_tab, int i);
+char	**free_arrays(char **str_tab, int i);
 char		*replace_var_in_str(t_mnshll *minsh, char *str);
 char		**replace_var(t_mnshll *minsh);
 size_t		indx_from(t_mnshll *minsh, char *rep_res, char q, int indx);

@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:57:54 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/12 21:08:44 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/12 21:52:56 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,7 @@ t_lexer	*init_list_of_comands(t_mnshll *minsh)
 	list_com = NULL;
 	n = 0;
 	if (minsh->command_amount <= 0)
-	{
-		printf("ahah\n");
 		return (NULL);
-	}
 	while (n < minsh->command_amount)
 	{
 		node = new_node_cmdlist(minsh, i);

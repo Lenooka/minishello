@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:53:11 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/12 21:28:06 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/12 21:45:43 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,26 +82,31 @@ int	ft_toklen(char *str)
 	return (i);
 }
 
-char	**split_tokenize(t_mnshll  *ms, char *str)
+char	**split_tokenize(t_mnshll *minsh, char *str)
 {
+	char	**result;
+	int		token_ammount;
 	int		i;
-	int		word_len;
-	char	**buff;
-	int		ms_words;
+	int		toklen;
 
 	i = 0;
-	ms_words = count_words(str);
-	buff = malloc(sizeof(char *) * (ms_words + 1));
-	if (!buff)
-		ft_exit(ms);
-	while (i < ms_words)
+	token_ammount = count_words(str) + 1;
+	result = (char **)malloc(sizeof(char *) * (token_ammount));
+	if (!result)
+		return (NULL);
+	while (i < token_ammount - 1)
 	{
-		while (*str && parser_codes(*str) == 3)
+		if (*str && parser_codes(*str) == 3)
 			str++;
-		word_len = ft_toklen(str);
-		buff[i++] = split_tmp(ms, str, word_len);
-		str = str + word_len;
+		else
+		{
+			toklen = ft_toklen(str);
+			result[i++] = ft_strndup(minsh, str, toklen);
+			if (!result[i - 1])
+				return (free_arrays(result, i));
+			str = str + toklen;
+		}
 	}
-	buff[i] = 0;
-	return (buff);
+	result[i] = NULL;
+	return (result);
 }

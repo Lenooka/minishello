@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 20:10:00 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/12 21:03:44 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/12 21:36:49 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,9 +118,7 @@ int	if_there_heredoc(t_mnshll *minsh, char **str)
 			i += 2;
 		}
 		else
-		{
 			i++;
-		}
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:20:11 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/12 18:30:00 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/12 21:39:58 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	create_file(t_mnshll *minsh, char *filename)
 	fd = open(filename, O_CREAT | O_WRONLY | O_TRUNC, 0666);
 	if (fd < 0)
 		 ft_exit(minsh);//error handle open errors
-	free(filename);
 	return (fd);
 }
 

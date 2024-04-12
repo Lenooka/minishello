@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 19:02:11 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/12 18:17:42 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/12 21:54:26 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*ft_strndup(t_mnshll *mnshll, char *s, int n)
 	return (cs);
 }
 
-void	free_arrays(char **str_tab, int i)
+char	**free_arrays(char **str_tab, int i)
 {
 	int	j;
 
@@ -52,4 +52,5 @@ void	free_arrays(char **str_tab, int i)
 		j++;
 	}
 	free(str_tab);
+	return (NULL);
 }
