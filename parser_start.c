@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_start.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:33:06 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/09 20:17:06 by codespace        ###   ########.fr       */
+/*   Updated: 2024/04/12 16:41:17 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,12 @@ int	init_fds(t_mnshll *minsh)
 int	parser_start(t_mnshll *minsh)
 {
 	char	**repl_var_array;
+
 	if (init_fds(minsh) == 1)
 		return (1);
 	minsh->com_array = split_tokenize(minsh, minsh->input);
 	if (minsh->com_array == NULL)
-	{
-		printf("Tokenizing fail!\n"); //should exit free here?
+	{	 //should exit free here? 		printf("Tokenizing fail!\n");
 		return (1);
 	}
 	if (if_there_heredoc(minsh, minsh->com_array) == 1)

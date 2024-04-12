@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 16:03:20 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/04 13:16:18 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:43:09 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int arc, char **arv, char **env)
 			if (syntax_error(mnshll) == 1)
 				continue ; //(wait for next input)
 			else if (parser_start(mnshll) != 1)
-				minishell(mnshll);	
+				minishell(mnshll);
 		}
 		//free stuff;
 	}

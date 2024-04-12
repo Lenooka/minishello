@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 20:10:00 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/10 13:23:36 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:42:22 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	init_heredoc(t_mnshll *minsh, char *del, int num_indx)
 		heredoc_child(minsh, fd, del);
 	}
 	else if (pid < 0 || fd < 0)
-		fd = 1;//forkerror not check fd for null closing fd
+		exit(1);//forkerror not check fd for null closing fd
 	else
 	{
 		waitpid(pid, &status, 0);
