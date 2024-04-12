@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 19:10:26 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/09 19:30:59 by codespace        ###   ########.fr       */
+/*   Updated: 2024/04/12 17:39:23 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,25 @@ int	envar(char *str, int x)
 			return (quoted(str, str[x], x));
 		else if (str[x] && !parser_codes(str[x]))
 			return (space_tab(str, x))
+	}
+	return (x);
+}
+
+int others(char *str, int x)
+{
+	if (str[x] && str[x] == '|')
+		x++;
+	else if (str[x] == '>')
+	{
+		x++;
+		if (str[x] && (str[x] == '>' || str[x] == '|'))
+			x++;
+	}
+	else if (str[x] == '<')
+	{
+		x++;
+		if (str[x] && (str[x] == '<' || str[x] == '>'))
+			x++;
 	}
 	return (x);
 }
