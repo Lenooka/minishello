@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/12 18:19:36 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/12 18:30:09 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ char	*replace_vari(t_mnshll *ms, char *result, char quotes, int str_index);
 
 int		if_there_heredoc(t_mnshll *minsh, char **str);
 void	init_heredoc(t_mnshll *minsh, char *del, int num_indx);
+void	heredoc_signal_handle(int signal);
 int		file_des_create(t_mnshll *minsh, int here_num);
 void	heredoc_child(t_mnshll *minsh, int fd, char *del);
 int		create_file(t_mnshll *minsh, char *filename);

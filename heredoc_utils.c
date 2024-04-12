@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:20:11 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/12 18:02:14 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/12 18:30:00 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,14 @@ void    disable_quit_signals(void)
 	tcgetattr(STDIN_FILENO, &term);
 	term.c_cc[VQUIT] = _POSIX_VDISABLE;
 	tcsetattr(STDIN_FILENO, TCSANOW, &term);
+}
+
+void	heredoc_signal_handle(int signal)
+{
+	if (signal == SIGINT)
+	{
+		g_global = SIGINT;
+		printf("\n");
+		close(STDIN_FILENO);
+	}
 }
