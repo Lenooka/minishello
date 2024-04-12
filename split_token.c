@@ -26,17 +26,11 @@
 
 int	count_words(char *str)
 {
-<<<<<<< HEAD
-	int	x;
-
-	x = 0;
-=======
 	int	i;
 	int	amm_words;
 
 	i = 0;
 	amm_words = 0;
->>>>>>> test
 	
 	
 }
