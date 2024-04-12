@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/02 19:10:26 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/12 16:39:33 by otolmach         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2024/04/12 17:44:33 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "minishell.h"
 
@@ -69,6 +70,25 @@ int	envar(char *str, int x)
 			return (big_skip_quotes(str, str[x], x));
 		else if (str[x] && !parser_codes(str[x]))
 			return (space_tab(str, x))
+	}
+	return (x);
+}
+
+int others(char *str, int x)
+{
+	if (str[x] && str[x] == '|')
+		x++;
+	else if (str[x] == '>')
+	{
+		x++;
+		if (str[x] && (str[x] == '>' || str[x] == '|'))
+			x++;
+	}
+	else if (str[x] == '<')
+	{
+		x++;
+		if (str[x] && (str[x] == '<' || str[x] == '>'))
+			x++;
 	}
 	return (x);
 }
