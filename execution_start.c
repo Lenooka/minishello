@@ -6,13 +6,13 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:27:56 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/12 16:44:41 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/12 19:38:42 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    start_procces(t_mnshll *mnshll)
+/*void    start_procces(t_mnshll *mnshll)
 {
     int     com_run;
     int     pipefd[2];
@@ -44,11 +44,29 @@ void    start_procces(t_mnshll *mnshll)
 		com_run++;
     }
 	exit_status(mnshll, pid, com_run);
+}*/
+
+void	free_cmd_list(t_lexer *cmdlist)
+{
+	t_lexer	*tmp;
+	t_lexer	*head;
+
+	head = cmdlist;
+	while (head)
+	{
+		tmp = head;
+		head = head->next;
+		if (tmp->tokens)
+			free(tmp->tokens);
+		free(tmp);
+	}
 }
+
 void	minishell(t_mnshll *mnshll)
 {
 	printf("WELLDONE\n");
 	printf("%s\n", mnshll->input);
+	free_cmd_list(mnshll->list_com);
 	//start_procces(mnshll);
 	//free command list	
 }

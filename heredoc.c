@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 20:10:00 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/12 17:45:37 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/12 21:03:44 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	heredoc_child(t_mnshll *minsh, int fd, char *del)
 	}
 	free_and_null((void **)&line);
 	close(fd);
-	//free_hdoc(minsh);
+	ft_exit(minsh);//free_hdoc(minsh);
 }
 
 void	init_heredoc(t_mnshll *minsh, char *del, int num_indx)
@@ -100,8 +100,8 @@ int	if_there_heredoc(t_mnshll *minsh, char **str)
 	int		i;
 
 	i = 0;
-	if (!str || !str[0] || !str[0][0])
-		return (1);
+	if (!str || !str[0] || !str[0][0]) //WHy?? IS IT SPLIT??
+		return (0);
 	while (str[i])
 	{
 		if (ft_strcmp(str[i], "<<") == 0)
@@ -118,7 +118,9 @@ int	if_there_heredoc(t_mnshll *minsh, char **str)
 			i += 2;
 		}
 		else
+		{
 			i++;
+		}
 	}
 	return (0);
 }

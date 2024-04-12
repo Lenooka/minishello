@@ -3,6 +3,7 @@
 	"files.associations": {
 		"functional": "c",
 		"minishell.h": "c",
-		"array": "c"
+		"array": "c",
+		"*.tcc": "c"
 	}
 }

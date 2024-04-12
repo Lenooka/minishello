@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:53:11 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/12 17:44:07 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/12 21:28:06 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,23 @@
 */
 
 
+char	*split_tmp(t_mnshll *ms, char *str, int word_len)
+{
+	int		i;
+	char	*tmp;
+
+	i = 0;
+	tmp = NULL;
+	tmp = malloc(sizeof(char) * (word_len + 1));
+	if (!tmp)
+		ft_exit(ms);
+	while (*str && i < word_len)
+		tmp[i++] = *str++;
+	tmp[i] = '\0';
+	return (tmp);
+}
+
+
 int	count_words(char *str)
 {
 	int	i;
@@ -27,30 +44,33 @@ int	count_words(char *str)
 
 	i = 0;
 	amm_words = 0;
-	while (str && str[i] != '\0')
+	while (str && str[i])
 	{
-		while (str[i] && parser_codes(str[i] == 3))
+		while (str[i] && parser_codes(str[i]) == 3)
+		{
 			i++;
-		if (str[i] && parser_codes(str[i] != 3))
+		}
+		if (str[i] && parser_codes(str[i]) != 3)
+		{
 			amm_words++;
-		if (str[i] && parser_codes (str[i] == 2))
+		}	
+		if (str[i] && parser_codes(str[i]) == 2)
 			i = others(str, i);
-		else if (str[i] && parser_codes(str[i] == 1))
+		else if (str[i] && parser_codes(str[i]) == 1)
 			i = big_skip_quotes(str, str[i], i);
 		else if (str[i] && str[i] == '$')
 			i = envar(str, i);
-		else if (str[i] && !parser_codes(str[i] == 1))
+		else if (str[i] && !parser_codes(str[i]))
 			i = space_tab(str, i);
 	}
 	return (amm_words);
-	
 }
 
 int	ft_toklen(char *str)
 {
-	int	x;
+	int	i;
 
-	x = 0;
+	i = 0;
 	if (str[i] && parser_codes(str[i]) == 1)
 		return (big_skip_quotes(str, str[i], i));
 	if (str[i] && parser_codes(str[i]) == 2)
@@ -62,31 +82,26 @@ int	ft_toklen(char *str)
 	return (i);
 }
 
-char	**split_tokenize(t_mnshll *minsh, char *str)
+char	**split_tokenize(t_mnshll  *ms, char *str)
 {
-	char	**result;
-	int		token_ammount;
 	int		i;
-	int		toklen;
+	int		word_len;
+	char	**buff;
+	int		ms_words;
 
 	i = 0;
-	token_ammount = count_words(str) + 1;
-	result = (char **)malloc(sizeof(char *) * (token_ammount));
-	if (!result)
-		return (NULL);
-	while (i < token_ammount - 1)
+	ms_words = count_words(str);
+	buff = malloc(sizeof(char *) * (ms_words + 1));
+	if (!buff)
+		ft_exit(ms);
+	while (i < ms_words)
 	{
-		if (*str && parser_codes(*str) == 3)
+		while (*str && parser_codes(*str) == 3)
 			str++;
-		else
-		{
-			toklen = ft_toklen(str);
-			result[i++] = ft_strndup(str, toklen);
-			if (!result[i - 1])
-				return (free_arrays(result, i));
-			str = str + toklen;
-		}
+		word_len = ft_toklen(str);
+		buff[i++] = split_tmp(ms, str, word_len);
+		str = str + word_len;
 	}
-	result[i] = NULL;
-	return (result);
+	buff[i] = 0;
+	return (buff);
 }

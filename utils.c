@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/04/12 17:44:33 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/12 18:48:40 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ int	big_skip_quotes(char *str, char c, int x)
 			return (x);
 		x++;
 		if (str[x] && !parser_codes(str[x]))
-			return (space_tab(str, x))
+			return (space_tab(str, x));
 		else if (str[x] && str[x] == '$')
 			return (envar(str, x));
 		else if (str[x] && parser_codes(str[x]) == 1)
-			return (big_skip_quotes(str, str[x], x))
+			return (big_skip_quotes(str, str[x], x));
 	}
 	return (x);
 }
@@ -56,7 +56,7 @@ int	space_tab(char *str, int x)
 		if (str[x] && str[x] == '$')
 			return (envar(str, x));
 		else if (str[x] && parser_codes(str[x]) == 1)
-			return (big_skip_quotes(str, str[x], x))
+			return (big_skip_quotes(str, str[x], x));
 	}
 	return (x);
 }
@@ -69,7 +69,7 @@ int	envar(char *str, int x)
 		if (str[x] && parser_codes(str[x]) == 1)
 			return (big_skip_quotes(str, str[x], x));
 		else if (str[x] && !parser_codes(str[x]))
-			return (space_tab(str, x))
+			return (space_tab(str, x));
 	}
 	return (x);
 }

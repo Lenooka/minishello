@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_checks.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 23:27:16 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/11 15:12:24 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/04/12 18:43:09 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	start_syntax(char *input)
 	x = 0;
 	while (input[x] && parser_codes(input[x]) == 3)
 		x++;
-	if (str[x] == '|')
+	if (input[x] == '|')
 		return (1);
 	return (0);
 }
@@ -63,9 +63,10 @@ int	end_syntax(char *input)
 		else
 			break ;
 	}
+	return (0);
 }	
 
-int	pipe_syntax(char *input)
+int	pipe_syntax(char *str)
 {
 	int	x;
 
@@ -88,7 +89,7 @@ int	pipe_syntax(char *input)
 	return (0);
 }
 
-int	dollar_syntax(char *input)
+int	dollar_syntax(char *str)
 {
 	int	x;
 

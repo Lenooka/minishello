@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 16:03:20 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/12 16:43:09 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/12 20:36:20 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 //we need to print a specific msg depending on the syntax error exmpl "Minishell : syntax error: unclosed quote marks"
 				//unclosed " ' is syntax error
+int	g_global = 0;
 
 int	main(int arc, char **arv, char **env)
 {

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   syntex_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 22:14:57 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/09 18:03:50 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/04/12 18:45:17 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	report_syntax_error(const char *error_message)
+int	report_syntax_error(char *error_message)
 {
     write(2, "MiniShell: syntax error: ", 25);
     write(2, error_message, ft_strlen(error_message));
@@ -20,7 +20,7 @@ int	report_syntax_error(const char *error_message)
 	return (1);
 }
 
-int	redir_unexpect_errors(const char *input) 
+int	redir_unexpect_errors(char *input) 
 {
 	if (redir_syntax(input) == 1) //function call to a non function? has to be made
 		return (1);
@@ -33,7 +33,7 @@ int	redir_unexpect_errors(const char *input)
 	return (0);
 }
 
-int	has_syntax_error(const char *input)
+int	has_syntax_error(char *input)
 {
     if (start_syntax(input) == 1) //function call to a non function? has to be made
 		return (report_syntax_error("near unexpected token '|'"));
@@ -52,7 +52,7 @@ int	has_syntax_error(const char *input)
 
 int	syntax_error(t_mnshll *mnshll)
 {
-	if (has_syntax_error == 1)
+	if (has_syntax_error(mnshll->input) == 1)
 	{
 		free(mnshll->input);
 		mnshll->exit = 2;

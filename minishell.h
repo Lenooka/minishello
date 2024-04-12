@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/12 18:30:09 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/12 20:47:49 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,12 @@ void		make_sigaction(void);
 void		handler_cd(t_mnshll *mnshll);
 void		check_global_end(void);
 void		signal_global(int signum);
-void		handle_sigint(int signum);
+void 		handle_sigint(int signum, siginfo_t *info, void *context);
 
 //Syntax Errors
 int			syntax_error(t_mnshll *mnshll);
-int			has_syntax_error(const char *input);
-int			report_syntax_error(const char *error_message);
+int			has_syntax_error(char *input);
+int			report_syntax_error(char *error_message);
 int			unclosed_quote(char *inp);
 int			start_syntax(char *input);
 int			end_syntax(char *input);
@@ -127,6 +127,7 @@ int			count_commands(char **str_tab);
 t_lexer		*init_list_of_comands(t_mnshll *minsh);
 char	*replace_vari(t_mnshll *ms, char *result, char quotes, int str_index);
 
+
 //Herdoc
 
 int		if_there_heredoc(t_mnshll *minsh, char **str);
@@ -154,4 +155,8 @@ int			size_of_2d(char **arr);
 char		*remove_quotes(char *str);
 int			quote_amm(char *str);
 void		free_all_arrays(char **str_tab);
+int 		others(char *str, int x);
+void		free_cmd_list(t_lexer *cmdlist);
+char		*split_tmp(t_mnshll *ms, char *str, int word_len);
+
 #endif
