@@ -6,10 +6,17 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:20:11 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/10 13:24:39 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/12 18:02:14 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minishell.h"
+
+void	ft_exit(t_mnshll *m)
+{
+	m->exit = 1;
+	exit(1);
+}
 
 int	create_file(t_mnshll *minsh, char *filename)
 {
@@ -17,7 +24,7 @@ int	create_file(t_mnshll *minsh, char *filename)
 
 	fd = open(filename, O_CREAT | O_WRONLY | O_TRUNC, 0666);
 	if (fd < 0)
-		 //error handle open errors
+		 ft_exit(minsh);//error handle open errors
 	free(filename);
 	return (fd);
 }

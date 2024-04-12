@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 13:22:02 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/12 16:48:44 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/12 18:24:32 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ char	*iterati(t_mnshll *minsh, char *var)
 		buf = ft_itoa(minsh->exit);
 		return (buf);
 	}
-	tmp = *minsh->env;
+	tmp = *minsh->envl;
 	while (tmp)
 	{
-		if (ft_strcmp((tmp)->ident, var) == 0)
+		if (ft_strcmp((tmp)->identificator, var) == 0)
 		{
 			buf = ft_strdup((tmp)->content);
 			return (buf);
@@ -45,20 +45,7 @@ char	*iterati(t_mnshll *minsh, char *var)
 	return (NULL);
 }
 
-int	get_var_len(char *str)
-{
-    int	i;
 
-    i = 0;
-    if (str[i] != '$')
-        return (0);
-    i++;
-    if (str[i] && (str[i] == '?' || ft_isdigit(str[i])))
-        return (2);
-    while (str[i] && (ft_isalnum(str[i]) || str[i] == '_'))
-        i++;
-    return (i);
-}
 
 size_t	indx_from(t_mnshll *minsh, char *rep_res, char q, int indx)
 {
@@ -70,10 +57,10 @@ size_t	indx_from(t_mnshll *minsh, char *rep_res, char q, int indx)
 	vari = NULL;
 	tmp = NULL;
 	indx_from = 0;
-	if (!(parser_codes(rep_res[indx + 1]) == 1 && 3 !q))
+	if (!(parser_codes(rep_res[indx + 1]) == 1 && !q))
 	{
 		varlena = get_var_len(rep_res + indx);
-		tmp = ft_strndup(rep_res + indx, varlena);
+		tmp = ft_strndup(minsh, rep_res + indx, varlena);
 	}
 	if (tmp && ft_strcmp(tmp, "$") == 0)
 		vari = iterati(minsh, tmp + 1);
@@ -83,6 +70,34 @@ size_t	indx_from(t_mnshll *minsh, char *rep_res, char q, int indx)
 	return (indx_from);
 }
 
+char	*replace_vari(t_mnshll *ms, char *result, char quotes, int str_index)//rewrite
+{
+	char	*var;
+	char	*fix;
+	char	*buffer;
+
+	var = NULL;
+	fix = NULL;
+	buffer = NULL;
+	fix = ft_strndup(ms, result, str_index);
+	if (!(parser_codes(result[str_index + 1]) == 3 && !quotes))
+		buffer = ft_strndup(ms, result + str_index, get_var_len(result + str_index));
+	if (buffer && ft_strcmp(buffer, "$") == 0)
+		var = ft_strdup(buffer);
+	else if (buffer)
+		var = iterati(ms, buffer + 1);
+	free(buffer);
+	buffer = ft_strjoin(fix, var);
+	free(fix);
+	fix = ft_strdup(result + str_index + get_var_len(result + str_index));
+	free(var);
+	free(result);
+	result = ft_strjoin(buffer, fix);
+	free(buffer);
+	free(fix);
+	return (result);
+}
+
 char	*replace_var_in_str(t_mnshll *minsh, char *str)
 {
 	int		indx;
@@ -90,7 +105,7 @@ char	*replace_var_in_str(t_mnshll *minsh, char *str)
 	char	*rep_res;
 
 	indx = 0;
-	quote = '\0'
+	quote = '\0';
 	rep_res = ft_strdup(str);
 	if (!rep_res)
 		return (NULL);
@@ -103,7 +118,8 @@ char	*replace_var_in_str(t_mnshll *minsh, char *str)
 		if (rep_res[indx] == '$' && quote != '\'')
 		{
 			minsh->lenvar = indx_from(minsh, rep_res, quote, indx);
-			indx += minsh - 1;
+			rep_res = replace_vari(minsh, rep_res, quote, indx);
+			indx += minsh->lenvar - 1;
 		}
 		indx++;
 	}
@@ -118,14 +134,14 @@ char	**replace_var(t_mnshll *minsh)
 
 	i = 0;
 	rep_res = NULL;
-	rep_arr = ft_calloc((sizeof(char *), size_of_2d(minsh->com_array)));
+	rep_arr = ft_calloc(sizeof(char *), size_of_2d(minsh->com_array) + 1);
 	if (!rep_arr)
 		return (NULL);
 	while (minsh->com_array[i])
 	{
 		if (!ft_strchr(minsh->com_array[i], '$'))
 		{
-			rep_arr[minsh->rep_var_i] = ft_strchr(minsh->com_array[i]);
+			rep_arr[minsh->rep_var_i] = ft_strdup(minsh->com_array[i]);
 			minsh->rep_var_i++;
 			i++;
 			continue ;

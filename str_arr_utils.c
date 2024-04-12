@@ -3,14 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   str_arr_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 19:10:26 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/09 20:06:26 by codespace        ###   ########.fr       */
+/*   Updated: 2024/04/12 18:25:03 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	get_var_len(char *str)
+{
+    int	i;
+
+    i = 0;
+    if (str[i] != '$')
+        return (0);
+    i++;
+    if (str[i] && (str[i] == '?' || ft_isdigit(str[i])))
+        return (2);
+    while (str[i] && (ft_isalnum(str[i]) || str[i] == '_'))
+        i++;
+    return (i);
+}
 
 char	**duplicate_string_array(t_mnshll *minsh, char **old_arr)
 {
@@ -22,13 +37,13 @@ char	**duplicate_string_array(t_mnshll *minsh, char **old_arr)
 	size = size_of_2d(old_arr) + 1;
 	result = malloc(sizeof(char *) * (size));
 	if (!result)
-		//should we free exit after every malloc/open/fork fail???
+		ft_exit(minsh);
 	while (old_arr && old_arr[i])
 	{
 		result[i] = ft_strdup(old_arr[i]);
 		i++;	
 	}
-	result[i] == NULL;
+	result[i] = NULL;
 	return (result);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   comand_list_init.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:57:54 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/11 12:30:29 by codespace        ###   ########.fr       */
+/*   Updated: 2024/04/12 18:25:59 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ char	**tokenize_commands(t_mnshll *minsh, char **arr, int pos, int argc)
 	int		i;
 	char	**res;
 
-	int = 0;
+	i = 0;
 	res = malloc(sizeof(char *) * (argc + 1));
 	if (!res)
-		//error exit malloc fail
+		ft_exit(minsh);
 	while (arr[pos] && i < argc)
 	{
 		if (arr[pos][0] == '\0')

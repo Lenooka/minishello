@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/09 20:22:01 by codespace        ###   ########.fr       */
+/*   Updated: 2024/04/12 18:19:36 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void		minishell(t_mnshll *mnshll);
 void		start_procces(t_mnshll *mnshll);
 void 		exit_status(t_mnshll *mnshll, pid_t pid, int com_run);
 int			if_there_heredoc(t_mnshll *minsh, char **str);
-
+void		ft_exit(t_mnshll *m);
 //Parser
 int			parser_codes(char c);
 int			parser_start(t_mnshll *minsh);
@@ -125,6 +125,7 @@ char		*iterati(t_mnshll *minsh, char *var);
 char		**duplicate_string_array(t_mnshll *minsh, char **old_arr);
 int			count_commands(char **str_tab);
 t_lexer		*init_list_of_comands(t_mnshll *minsh);
+char	*replace_vari(t_mnshll *ms, char *result, char quotes, int str_index);
 
 //Herdoc
 
@@ -148,7 +149,7 @@ int			little_skip_quotes(char *str, int x, int len);
 int			space_tab(char *str, int x);
 int			envar(char *str, int x);
 int			ft_strcmp(char *s1, char *s2);
-int			e_2d(char **arr);
+int			size_of_2d(char **arr);
 char		*remove_quotes(char *str);
 int			quote_amm(char *str);
 void		free_all_arrays(char **str_tab);

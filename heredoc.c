@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 20:10:00 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/12 16:42:22 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/12 17:45:37 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	heredoc_child(t_mnshll *minsh, int fd, char *del)
 	}
 	free_and_null((void **)&line);
 	close(fd);
-	free_hdoc(minsh);
+	//free_hdoc(minsh);
 }
 
 void	init_heredoc(t_mnshll *minsh, char *del, int num_indx)

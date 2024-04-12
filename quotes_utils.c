@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:57:54 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/09 19:32:45 by codespace        ###   ########.fr       */
+/*   Updated: 2024/04/12 18:25:16 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	quote_amm(char *str)
 	{
 		if (parser_codes(str[i]) == 1)
 		{
-			i = little_skip_quotes(str, str[x], ft_strlen(str));
+			i = little_skip_quotes(str, str[i], ft_strlen(str));
 			n = n + 2;
 		}
 		else
