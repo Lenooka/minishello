@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:53:11 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/12 17:15:52 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/12 17:43:29 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,22 @@ int	count_words(char *str)
 
 	i = 0;
 	amm_words = 0;
-	
+	while (str && str[i] != '\0')
+	{
+		while (str[i] && parser_codes(str[i] == 3))
+			i++;
+		if (str[i] && parser_codes(str[i] != 3))
+			amm_words++;
+		if (str[i] && parser_codes (str[i] == 2))
+			i = others(str, i);
+		else if (str[i] && parser_codes(str[i] == 1))
+			i = big_skip_quotes(str, str[i], i);
+		else if (str[i] && str[i] == '$')
+			i = envar(str, i);
+		else if (str[i] && !parser_codes(str[i] == 1))
+			i = space_tab(str, i);
+	}
+	return (amm_words);
 	
 }
 
