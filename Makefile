@@ -1,6 +1,6 @@
 NAME = minishell
 CC = cc
-SRCS = minishell.c heredoc_utils.c  strcompr.c replace_var.c str_arr_utils.c quotes_utils.c comand_list_init.c envlist_init.c exit_status.c minishell_var_init.c execution_start.c syntax_checks.c syntex_error.c syntax_redir_unexp_checks.c utils.c  parser_start.c split_token_utils.c split_token.c  heredoc.c signals.c
+SRCS = minishell.c heredoc_utils.c  strcompr.c replace_var.c str_arr_utils.c quotes_utils.c comand_list_init.c envlist_init.c exit_status.c minishell_var_init.c execution_start.c syntax_checks.c syntex_error.c syntax_redir_unexp_checks.c utils.c  parser_start.c split_token_utils.c split_token.c  heredoc.c signals.c frees.c
 OBJS = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRCS))
 CFLAGS = -Werror -Wall -Wextra -g
 RM = rm -rf

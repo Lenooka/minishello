@@ -6,29 +6,29 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:37:16 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/10 14:01:44 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/13 14:23:26 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void free_env(t_envl **env)
+void	free_env(t_envl **env)
 {
-	t_envl *current;
-	t_envl *next;
- 
-	if (env == NULL || *env == NULL) 
-        return ;
-    current = *env;
-    while (current != NULL) 
+	t_envl	*current;
+	t_envl	*next;
+
+	if (env == NULL || *env == NULL)
+		return ;
+	current = *env;
+	while (current != NULL)
 	{
-        next = current->next;
-        free(current->identificator);
-        free(current->content);
-        free(current);
-        current = next;
-    }
-    free(*env);
+		next = current->next;
+		free(current->identificator);
+		free(current->content);
+		free(current);
+		current = next;
+	}
+	free(*env);
 	*env = NULL;
 }
 
@@ -42,7 +42,7 @@ char	*envl_content_fill(const char *str, int c)
 	i = 0;
 	x = 0;
 	len = 0;
-	while(str[i] != '\0' && str[i] != (char)c)
+	while (str[i] != '\0' && str[i] != (char)c)
 		i++;
 	if (str[i] == '\0' || str[i + 1] == '\0')
 		return (ft_strdup("  "));
@@ -59,11 +59,10 @@ char	*envl_content_fill(const char *str, int c)
 	result[x] = '\0';
 	return (result);
 }
-		
-	
+
 char	*identify_env(const char *str, int c)
 {
-	int	i;
+	int		i;
 	int		len;
 	char	*result;
 
@@ -83,25 +82,25 @@ char	*identify_env(const char *str, int c)
 	return (result);
 }
 
-t_envl *create_newnode(void *content)
+t_envl	*create_newnode(void *content)
 {
 	t_envl	*new_node;
 
-    if (!content)
+	if (!content)
 	{
-        return (NULL);
+		return (NULL);
 	}
 	new_node = malloc(sizeof(t_envl));
-    if (!new_node) 
-        return (NULL);
-    new_node->next = NULL;
+	if (!new_node)
+		return (NULL);
+	new_node->next = NULL;
 	if (ft_strchr(content, '=') == 0)
-    	new_node->equal_flag = 0;
+		new_node->equal_flag = 0;
 	else
 		new_node->equal_flag = 1;
-   	new_node->identificator = identify_env(content, '=');
-    new_node->content = envl_content_fill(content, '=');
-    return (new_node);
+	new_node->identificator = identify_env(content, '=');
+	new_node->content = envl_content_fill(content, '=');
+	return (new_node);
 }
 
 t_envl	**env_list_init(char **env, int i)
@@ -120,13 +119,13 @@ t_envl	**env_list_init(char **env, int i)
 		if (!envlcontent)
 			return (free_env(envl), NULL);
 		node = create_newnode(envlcontent);
-        if (node == NULL) 
+		if (node == NULL)
 			return (free_env(envl), NULL);
 		if (envlcontent != NULL)
 			free(envlcontent);
-        node->node_flag = 1;
+		node->node_flag = 1;
         //add new node at the end of the envl list (libft bonus); ft_lstadd_back
 		i++;
-    }
+	}
 	return (envl);
 }

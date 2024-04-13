@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:53:11 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/12 21:45:43 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/13 14:37:39 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
   tab space == 3m / 1n
   $ = 4
 */
-
 
 char	*split_tmp(t_mnshll *ms, char *str, int word_len)
 {
@@ -36,7 +35,6 @@ char	*split_tmp(t_mnshll *ms, char *str, int word_len)
 	return (tmp);
 }
 
-
 int	count_words(char *str)
 {
 	int	i;
@@ -53,7 +51,7 @@ int	count_words(char *str)
 		if (str[i] && parser_codes(str[i]) != 3)
 		{
 			amm_words++;
-		}	
+		}
 		if (str[i] && parser_codes(str[i]) == 2)
 			i = others(str, i);
 		else if (str[i] && parser_codes(str[i]) == 1)
@@ -74,7 +72,7 @@ int	ft_toklen(char *str)
 	if (str[i] && parser_codes(str[i]) == 1)
 		return (big_skip_quotes(str, str[i], i));
 	if (str[i] && parser_codes(str[i]) == 2)
-		return (others(str, i)); 		//unfinished
+		return (others(str, i));//unfinished
 	if (str[i] && parser_codes(str[i]) == 4)
 		return (envar(str, i));
 	if (str[i] && !parser_codes(str[i]))

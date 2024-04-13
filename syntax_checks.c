@@ -6,10 +6,9 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 23:27:16 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/12 18:43:09 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/13 14:39:24 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "minishell.h"
 
@@ -64,7 +63,7 @@ int	end_syntax(char *input)
 			break ;
 	}
 	return (0);
-}	
+}
 
 int	pipe_syntax(char *str)
 {

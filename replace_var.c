@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 13:22:02 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/12 18:24:32 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/13 14:33:21 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
   tab space == 3m / 1n
   $ = 4
 */
-
 
 char	*iterati(t_mnshll *minsh, char *var)
 {

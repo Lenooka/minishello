@@ -6,15 +6,15 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:57:54 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/12 18:25:16 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/13 14:32:54 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int little_skip_quotes(char *str, int x, int len)
+int	little_skip_quotes(char *str, int x, int len)
 {
-	char    c;
+	char	c;
 
 	c = str[x];
 	x++;
@@ -49,8 +49,8 @@ char	*remove_quotes(char *str)
 {
 	int		i;
 	int		x;
-    char	*temp;
-    char	q;
+	char	*temp;
+	char	q;
 
 	i = 0;
 	x = 0;

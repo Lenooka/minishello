@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:57:54 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/12 21:52:56 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/13 14:16:52 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 void	add_new_back(t_lexer **lst, t_lexer*new)
 {
-	t_lexer *last;
+	t_lexer	*last;
 
 	last = *lst;
-    if (!*lst)
-    {
-        *lst = new;
-        return;
-    }
-    while (last->next)
-    {
-        last = last->next;
-    }
-    last->next = new;
+	if (!*lst)
+	{
+		*lst = new;
+		return ;
+	}
+	while (last->next)
+	{
+		last = last->next;
+	}
+	last->next = new;
 }
 
-char	**tokenize_commands(t_mnshll *minsh, char **arr, int pos, int argc)
+char	**tokenize_commands(t_mnshll *minsh, char **arr, int p, int argc)
 {
 	int		i;
 	char	**res;
@@ -38,21 +38,21 @@ char	**tokenize_commands(t_mnshll *minsh, char **arr, int pos, int argc)
 	res = malloc(sizeof(char *) * (argc + 1));
 	if (!res)
 		ft_exit(minsh);
-	while (arr[pos] && i < argc)
+	while (arr[p] && i < argc)
 	{
-		if (arr[pos][0] == '\0')
+		if (arr[p][0] == '\0')
 		{
-			pos++;
-			continue;
+			p++;
+			continue ;
 		}
-		if (arr[pos] && (ft_strcmp(arr[pos], ">") == 0 \
-			|| ft_strcmp(arr[pos], ">>") == 0 || ft_strcmp(arr[pos], "<") == 0 \
-			|| ft_strcmp(arr[pos], "<<") == 0))
-			pos += 2;
-		else if (ft_strcmp(arr[pos], "|") == 0)
+		if (arr[p] && (ft_strcmp(arr[p], ">") == 0 \
+			|| ft_strcmp(arr[p], ">>") == 0 || ft_strcmp(arr[p], "<") == 0 \
+			|| ft_strcmp(arr[p], "<<") == 0))
+			p += 2;
+		else if (ft_strcmp(arr[p], "|") == 0)
 			break ;
 		else
-			res[i++] = arr[pos++];
+			res[i++] = arr[p++];
 	}
 	res[i] = NULL;
 	return (res);
@@ -60,27 +60,27 @@ char	**tokenize_commands(t_mnshll *minsh, char **arr, int pos, int argc)
 
 int	count_argument_f_cmnd(char **array, int indx)
 {
-	int	pos;
+	int	p;
 	int	count;
 
-	pos = indx;
+	p = indx;
 	count = 0;
-	while (array[pos] !=  NULL && ft_strchr(array[pos], '|') != 0)
+	while (array[p] != NULL && ft_strchr(array[p], '|') != 0)
 	{
-		if (array[pos][0] == '\0')
+		if (array[p][0] == '\0')
 		{
-			pos++;
-			continue;
+			p++;
+			continue ;
 		}
-		if ((ft_strcmp(array[pos], ">") == 0 || ft_strcmp(array[pos], ">>") == 0 ||
-            ft_strcmp(array[pos], "<") == 0 || ft_strcmp(array[pos], "<<") == 0))
+		if ((ft_strcmp(array[p], ">") == 0 || ft_strcmp(array[p], ">>") == 0 || \
+			ft_strcmp(array[p], "<") == 0 || ft_strcmp(array[p], "<<") == 0))
 		{
-			pos += 2;
+			p += 2;
 		}
 		else
 		{
 			count++;
-			pos++;
+			p++;
 		}
 	}
 	return (count);
@@ -91,7 +91,6 @@ t_lexer	*new_node_cmdlist(t_mnshll *m, int indx)
 	t_lexer	*list_com;
 	int		arg_count;
 
-	
 	list_com = malloc(sizeof(t_lexer));
 	if (!list_com)
 		ft_exit(m);

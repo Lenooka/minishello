@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:33:06 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/12 21:44:34 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/13 14:31:59 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	count_commands(char **str_tab)
 	return (n);
 }
 
-
 int	init_fds(t_mnshll *minsh)
 {
 	minsh->rep_var_i = 0;
@@ -51,10 +50,10 @@ int	parser_start(t_mnshll *minsh)
 
 	if (init_fds(minsh) == 1)
 		return (1);
-	minsh->com_array = split_tokenize(minsh, minsh->input);	
+	minsh->com_array = split_tokenize(minsh, minsh->input);
 	if (minsh->com_array == NULL)
-	{	 //should exit free here? 		printf("Tokenizing fail!\n");
-		return (1);
+	{
+		return (1); //should exit free here? 		printf("Tokenizing fail!\n");
 	}
 	if (if_there_heredoc(minsh, minsh->com_array) == 1)
 		return (1);
@@ -71,5 +70,5 @@ int	parser_start(t_mnshll *minsh)
 	minsh->list_com = init_list_of_comands(minsh);
 	if (minsh->list_com == NULL)
 		return (1);
-	return (0);	
+	return (0);
 }

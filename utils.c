@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/04/12 18:48:40 by otolmach         ###   ########.fr       */
+/*   Created: 2024/03/26 22:14:57 by otolmach          #+#    #+#             */
+/*   Updated: 2024/04/13 15:03:13 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "minishell.h"
 
@@ -25,7 +24,6 @@ int	parser_codes(char c)
 		return (4);
 	return (0);
 }
-
 
 int	big_skip_quotes(char *str, char c, int x)
 {
@@ -74,7 +72,7 @@ int	envar(char *str, int x)
 	return (x);
 }
 
-int others(char *str, int x)
+int	others(char *str, int x)
 {
 	if (str[x] && str[x] == '|')
 		x++;
