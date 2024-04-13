@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:20:11 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/13 14:27:14 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/13 16:25:54 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,12 @@ int	file_des_create(t_mnshll *minsh, int here_num)
 
 void	heredoc_warn(char *del)
 {
+	//t_mnshll *m = NULL;
 	ft_putstr_fd("Minishell: warning: here-document delimited ", STDERR_FILENO);
 	ft_putstr_fd("by end-of-file (wanted `", STDERR_FILENO);
 	ft_putstr_fd(del, STDERR_FILENO);
 	ft_putstr_fd("')\n", STDERR_FILENO);
+	//ft_exit(m);
 }
 
 void	disable_quit_signals(void)
