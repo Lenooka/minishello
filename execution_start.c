@@ -6,13 +6,23 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:27:56 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/13 14:24:05 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/13 17:36:06 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*void    start_procces(t_mnshll *mnshll)
+void	parent(t_mnshll *minsh, int *pipe_fd, int cmrun, int pos)
+{
+	t_lexer *cmnds;
+	int		compos;
+
+	compos = 0;
+	cmnds = minsh->list_com;
+	compos = cmrun;
+}
+
+void    start_procces(t_mnshll *minsh)
 {
     int     com_run;
     int     pipefd[2];
@@ -21,7 +31,9 @@
 
     com_run = 0;
 	position = 0;
-    while (com_run < mnshll->command_amount) //the amount of the commands from parser
+	if (!minsh->list_com)
+		return ;
+    while (com_run < minsh->command_amount) //the amount of the commands from parser
     {
 		if (pipe(pipefd) == -1)
 		{
@@ -44,7 +56,7 @@
 		com_run++;
     }
 	exit_status(mnshll, pid, com_run);
-}*/
+}
 
 void	minishell(t_mnshll *mnshll)
 {
