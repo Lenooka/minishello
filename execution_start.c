@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:27:56 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/13 17:06:43 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/13 17:36:06 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	parent(t_mnshll *minsh, int *pipe_fd, int cmrun, int pos)
 {
 	t_lexer *cmnds;
-	int		i;
+	int		compos;
 
-	i = 0;
+	compos = 0;
 	cmnds = minsh->list_com;
-	w
+	compos = cmrun;
 }
 
 void    start_procces(t_mnshll *minsh)
