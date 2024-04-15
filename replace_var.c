@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace_var.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 13:22:02 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/13 14:33:21 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/15 18:48:54 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ char	*iterati(t_mnshll *minsh, char *var)
 }
 
 
-
 size_t	indx_from(t_mnshll *minsh, char *rep_res, char q, int indx)
 {
 	char	*vari;
@@ -69,7 +68,14 @@ size_t	indx_from(t_mnshll *minsh, char *rep_res, char q, int indx)
 	return (indx_from);
 }
 
-char	*replace_vari(t_mnshll *ms, char *result, char quotes, int str_index)//rewrite
+/*
+rep env var with value
+it works OMG
+is it????????
+yes?
+yes...
+*/
+char	*rep_var_w_val(t_mnshll *ms, char *result, char quotes, int str_index)
 {
 	char	*var;
 	char	*fix;

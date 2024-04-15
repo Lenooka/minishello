@@ -3,23 +3,76 @@
 /*                                                        :::      ::::::::   */
 /*   execution_start.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:27:56 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/13 17:36:06 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/15 18:49:31 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	parent(t_mnshll *minsh, int *pipe_fd, int cmrun, int pos)
+void	child(t_mnshll *ms, int *pipe_fd, int cmds_run, int pos)
+{
+	t_lexer		*cmd;
+	char		**new_cmds;
+	int			i;
+
+	new_cmds = NULL;
+	cmd = ms->cmdlist;
+	i = cmds_run;
+	signal(SIGPIPE, signal_global);
+	while (i > 0)
+	{
+		cmd = cmd->next;
+		i--;
+	}
+	if (cmds_run != 0)
+	{
+		dup2(ms->cmd_fd, STDIN_FILENO);
+		close(ms->cmd_fd);
+	}
+	if (cmds_run < ms->cmd_count - 1)
+		dup2(pipe_fd[1], STDOUT_FILENO);
+	close_fd(pipe_fd);
+	if (ms->cmd_count == 1 && isbuiltin(cmd->cmds[0]))
+		free_ms(ms);
+	redirect(ms, ms->main_arr, pos, 1);
+	exec(ms, cmd->cmds, new_cmds);
+}
+
+ /*if one command and is a built,check redir succs if yes close the pipe fd!!
+ and call builtin
+ if there more than one close the fd for prev command
+ if not last command close change fd
+ close pipe fd and set signal to SIGINT
+ */
+void	parent(t_mnshll *m, int *pipe_fd, int cmrun, int pos)
 {
 	t_lexer *cmnds;
-	int		compos;
+	int		shred;
+	int		fd_flag;
 
-	compos = 0;
-	cmnds = minsh->list_com;
-	compos = cmrun;
+	cmnds = m->list_com + cmrun;
+	shred = isbuilt(cmnds->tokens[0]) && redir(m, m->com_array, pos, 0) == 0;
+	if (m->command_amount == 1)
+	{
+		if(shred == 1)
+		{
+			fd_flag = 1;
+			built_ex(m, cmnds->tokens);  //non function yet
+		}
+	}
+	if (cmrun > 0)
+		close(m->fd_cmd);
+	if (cmrun < m->command_amount - 1)
+		m->fd_cmd = pipe_fd[0];
+	else
+		close(pipe_fd[0]);
+	if (fd_flag == 1)
+		close_fd(pipe_fd);  //non function yet
+	close(pipe_fd[1]);
+	signal(SIGINT, signal_global);
 }
 
 void    start_procces(t_mnshll *minsh)
