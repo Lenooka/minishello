@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:57:54 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/13 14:32:54 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/17 15:26:48 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ char	*remove_quotes(char *str)
 	i = 0;
 	x = 0;
 	temp = ft_calloc(sizeof(char), (ft_strlen(str) - quote_amm(str) + 1));
+	if (!temp)
+		reuturn(NULL);
 	while (str[i])
 	{
 		if (parser_codes(str[i]) == 1)

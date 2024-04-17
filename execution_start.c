@@ -6,12 +6,30 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:27:56 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/17 12:59:58 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/17 15:55:43 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+void	redirect_and_close(t_mnshll *m, int fd, int op, int *pipefd)
+{
+	if (op == 1)
+	{
+		if (dup2(fd, STDIN_FILENO) == -1)
+		//error_free_handle(fd, pipefd, "Dup2 fail");
+		close(fd);
+	}
+	else if (op == 2)
+	{
+		if (dup2(fd, STDOUT_FILENO) == -1)
+		//error_free_handle(fd, pipefd, "Dup2 fail");
+	}
+}
+/* setup fd for inp and outp 
+if one command and its a built in free/execute in a parent
+else
+function for execution (simmilar to pipex???)*/
 void	child(t_mnshll *ms, int *pipe_fd, int cmds_run, int pos)
 {
 	t_lexer		*cmd;
@@ -28,17 +46,14 @@ void	child(t_mnshll *ms, int *pipe_fd, int cmds_run, int pos)
 		i--;
 	}
 	if (cmds_run != 0)
-	{
-		dup2(ms->cmd_fd, STDIN_FILENO);
-		close(ms->cmd_fd);
-	}
-	if (cmds_run < ms->cmd_count - 1)
-		dup2(pipe_fd[1], STDOUT_FILENO);
+		redirect_and_close(ms, ms->fd_cmd, 1, pipe_fd);
+	if (cmds_run < ms->command_amount - 1)
+		redirect_and_close(ms, pipe_fd[1], 2, pipe_fd);
 	close_fd(pipe_fd);
-	if (ms->cmd_count == 1 && isbuilt(cmd->cmds[0]))
+	if (ms->command_amount == 1 && isbuilt(cmd->tokens[0]))
 		free_ms(ms);
-	redir(ms, ms->main_arr, pos, 1);
-	exec(ms, cmd->cmds, new_cmds);
+	redir(ms, ms->com_array, pos, 1);
+	exec(ms, cmd->tokens, new_cmds);
 }
 /*if one command and is a built,check redir succs if yes close the pipe fd!!
 and call builtin
@@ -100,7 +115,7 @@ void    start_procces(t_mnshll *minsh)
 		position = find_com_pos(mnshll->com_array, position);
 		com_run++;
     }
-	exit_status(mnshll, pid, com_run);
+	exit_status(minsh, pid, com_run);
 }
 
 void	minishell(t_mnshll *mnshll)

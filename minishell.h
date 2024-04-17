@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/17 13:45:42 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/17 16:00:00 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,11 @@ void		ft_exit(t_mnshll *m);
 void		parent(t_mnshll *m, int *pipe_fd, int cmrun, int pos);
 void		child(t_mnshll *ms, int *pipe_fd, int cmds_run, int pos);
 int			isbuilt(char *com);
+void		redirect_and_close(t_mnshll *m, int fd, int op, int *pipefd);
+
+//Redirections
+int	redir(t_mnshll *minsh, char **array, int pos, int process);
+
 //Parser
 int			parser_codes(char c);
 int			parser_start(t_mnshll *minsh);
@@ -130,9 +135,7 @@ int			count_commands(char **str_tab);
 t_lexer		*init_list_of_comands(t_mnshll *minsh);
 char		*rep_var_w_val(t_mnshll *ms, char *result, char quotes, int str_index);
 
-
 //Herdoc
-
 int		if_there_heredoc(t_mnshll *minsh, char **str);
 void	init_heredoc(t_mnshll *minsh, char *del, int num_indx);
 void	heredoc_signal_handle(int signal);
