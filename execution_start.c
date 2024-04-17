@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:27:56 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/17 15:55:43 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/17 18:37:09 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,10 @@ void	child(t_mnshll *ms, int *pipe_fd, int cmds_run, int pos)
 {
 	t_lexer		*cmd;
 	char		**new_cmds;
-	int			i;
 
 	new_cmds = NULL;
-	cmd = ms->cmdlist;
-	i = cmds_run;
+	cmd = ms->cmdlist + cmds_run;
 	signal(SIGPIPE, signal_global);
-	while (i > 0)
-	{
-		cmd = cmd->next;
-		i--;
-	}
 	if (cmds_run != 0)
 		redirect_and_close(ms, ms->fd_cmd, 1, pipe_fd);
 	if (cmds_run < ms->command_amount - 1)
@@ -53,7 +46,7 @@ void	child(t_mnshll *ms, int *pipe_fd, int cmds_run, int pos)
 	if (ms->command_amount == 1 && isbuilt(cmd->tokens[0]))
 		free_ms(ms);
 	redir(ms, ms->com_array, pos, 1);
-	exec(ms, cmd->tokens, new_cmds);
+	exe_cutie(ms, cmd->tokens, new_cmds);
 }
 /*if one command and is a built,check redir succs if yes close the pipe fd!!
 and call builtin
