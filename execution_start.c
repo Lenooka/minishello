@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_start.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:27:56 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/15 18:49:31 by codespace        ###   ########.fr       */
+/*   Updated: 2024/04/17 12:59:58 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,21 @@ void	child(t_mnshll *ms, int *pipe_fd, int cmds_run, int pos)
 	if (cmds_run < ms->cmd_count - 1)
 		dup2(pipe_fd[1], STDOUT_FILENO);
 	close_fd(pipe_fd);
-	if (ms->cmd_count == 1 && isbuiltin(cmd->cmds[0]))
+	if (ms->cmd_count == 1 && isbuilt(cmd->cmds[0]))
 		free_ms(ms);
-	redirect(ms, ms->main_arr, pos, 1);
+	redir(ms, ms->main_arr, pos, 1);
 	exec(ms, cmd->cmds, new_cmds);
 }
-
- /*if one command and is a built,check redir succs if yes close the pipe fd!!
- and call builtin
- if there more than one close the fd for prev command
+/*if one command and is a built,check redir succs if yes close the pipe fd!!
+and call builtin
+if there more than one close the fd for prev command
  if not last command close change fd
  close pipe fd and set signal to SIGINT
- */
+*/
+
 void	parent(t_mnshll *m, int *pipe_fd, int cmrun, int pos)
 {
-	t_lexer *cmnds;
+	t_lexer	*cmnds;
 	int		shred;
 	int		fd_flag;
 
@@ -89,22 +89,14 @@ void    start_procces(t_mnshll *minsh)
     while (com_run < minsh->command_amount) //the amount of the commands from parser
     {
 		if (pipe(pipefd) == -1)
-		{
 			//free_error
-		}
 		pid = fork();
 		if (pid < 0)
-		{
 			//free_error
-		}
 		if (pid != 0)
-		{
-			position = 0; //parent
-		}
-		else if (position == 0)
-		{
-			position = 0; //child
-		}
+			parent(minsh, pipefd, com_run, position);
+		else if (pid == 0)
+			child(minsh, pipefd, com_run, position);
 		position = find_com_pos(mnshll->com_array, position);
 		com_run++;
     }
@@ -115,6 +107,6 @@ void	minishell(t_mnshll *mnshll)
 {
 	printf("WELLDONE\n");
 	printf("%s\n", mnshll->input);
-	//start_procces(mnshll);
+	start_procces(mnshll);
 	free_cmd_list(mnshll->list_com);
 }

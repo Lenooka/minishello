@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/15 18:49:09 by codespace        ###   ########.fr       */
+/*   Updated: 2024/04/17 13:45:42 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,9 @@ void		start_procces(t_mnshll *mnshll);
 void 		exit_status(t_mnshll *mnshll, pid_t pid, int com_run);
 int			if_there_heredoc(t_mnshll *minsh, char **str);
 void		ft_exit(t_mnshll *m);
+void		parent(t_mnshll *m, int *pipe_fd, int cmrun, int pos);
+void		child(t_mnshll *ms, int *pipe_fd, int cmds_run, int pos);
+int			isbuilt(char *com);
 //Parser
 int			parser_codes(char c);
 int			parser_start(t_mnshll *minsh);
