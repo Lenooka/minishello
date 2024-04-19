@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:33:06 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/13 14:31:59 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/19 20:46:07 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,40 @@ int	init_fds(t_mnshll *minsh)
 	if (minsh->fdout == -1)
 		return (1);
 	return (0);
+}
+
+void	print_arr(char *str, char **arr)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	if (!arr || arr[i])
+		return ;
+	j = size_of_2d(arr);
+	printf("	%s:\n", str);
+	while (arr[i] && i < j)
+		printf("			%s\n", arr[i++]);
+}
+
+void	print_cmdlist(t_lexer *cmdlist)
+{
+	int			i;
+	t_lexer	*tmp;
+
+	i = 1;
+	tmp = cmdlist;
+	printf("LIST:\n");
+	while (tmp)
+	{
+		printf("	NODE_%i:\n", i);
+		print_arr("	Command with flags", tmp->tokens);
+		i++;
+		if (tmp->next)
+			tmp = tmp->next;
+		else
+			break ;
+	}
 }
 
 int	parser_start(t_mnshll *minsh)

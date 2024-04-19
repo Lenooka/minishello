@@ -6,11 +6,31 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:37:16 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/13 14:23:26 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/19 20:09:32 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+t_envl	*ft_lstlast(t_envl *lst)
+{
+	while (lst)
+	{
+		if (lst->next == NULL)
+			return (lst);
+		else
+			lst = lst->next;
+	}
+	return (0);
+}
+
+void	ft_lstadd_back(t_envl **lst, t_envl *new)
+{
+	if (ft_lstlast(*lst))
+		ft_lstlast(*lst)->next = new;
+	else
+		*lst = new;
+}
 
 void	free_env(t_envl **env)
 {
@@ -103,6 +123,35 @@ t_envl	*create_newnode(void *content)
 	return (new_node);
 }
 
+void	print_lst(t_envl **lst, int flag)
+{
+	t_envl	*tmp;
+	char	*exp;
+
+	exp = "declare -x";
+	tmp = *lst;
+	if (!tmp)
+		return ;
+	if (flag == 2)
+		exp = "declare -x";
+	while (tmp)
+	{
+		if ((tmp)->node_flag == 1 && flag == 1)
+			ft_printf("%s=%s\n", (tmp)->identificator, (tmp)->content);
+		else if (flag == 2)
+		{
+			if ((tmp)->equal_flag == 0 && ft_strcmp((tmp)->content, "  ") == 0)
+				ft_printf("%s%s%s %s\n", exp, (tmp)->identificator);
+			else if (ft_strcmp((tmp)->content, "  ") == 0)
+				ft_printf("%s%s%s %s=\"\"\n", exp, (tmp)->identificator);
+			else
+				ft_printf("%s%s%s %s=\"%s\"\n", exp, \
+					(tmp)->identificator, (tmp)->content);
+		}
+		tmp = (tmp)->next;
+	}
+}
+
 t_envl	**env_list_init(char **env, int i)
 {
 	t_envl	**envl;
@@ -124,8 +173,9 @@ t_envl	**env_list_init(char **env, int i)
 		if (envlcontent != NULL)
 			free(envlcontent);
 		node->node_flag = 1;
-        //add new node at the end of the envl list (libft bonus); ft_lstadd_back
+		ft_lstadd_back(envl, node);
 		i++;
 	}
+	//print_lst(envl, 1);
 	return (envl);
 }

@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/19 17:37:25 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/19 19:52:35 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,9 @@ t_envl		*create_newnode(void *content);
 char		*identify_env(const char *str, int c);
 char		*envl_content_fill(const char *str, int c);
 void		free_env(t_envl **env);
+void		ft_lstadd_back(t_envl **lst, t_envl *new);
+void		print_lst(t_envl **lst, int flag);
+t_envl		*ft_lstlast(t_envl *lst);
 
 //Signals
 void		make_sigaction(void);
@@ -86,6 +89,7 @@ void		handler_cd(t_mnshll *mnshll);
 void		check_global_end(void);
 void		signal_global(int signum);
 void 		handle_sigint(int signum, siginfo_t *info, void *context);
+
 
 //Syntax Errors
 int			syntax_error(t_mnshll *mnshll);
