@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:37:59 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/19 18:24:58 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/19 21:02:57 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	exe_cutie(t_mnshll *minsh, char **array, char **new_cmd)
 	if (!path)
 	 //free maybe should do it in find expath
 	env = //get array from env list if its works :(
-	new_cmd = rem
+	new_cmd = 
 	
 	
 	
