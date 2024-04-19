@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:37:59 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/19 18:14:33 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/19 18:24:58 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,14 @@ void	exe_cutie(t_mnshll *minsh, char **array, char **new_cmd)
 	split_pathvar = retrive_path_dir(minsh->env, array[0]); //god please tell me env is finee
 	if (check_executie(minsh, split_pathvar, array[0]))
 		//free exit process
-	free_all_arrays()
+	path = find_ex_path(minsh, split_pathvar, array[0]); //simmilar to pipex??
+	free_all_arrays(split_pathvar); //this in functuin find ex path
+	if (!path)
+	 //free maybe should do it in find expath
+	env = //get array from env list if its works :(
+	new_cmd = rem
+	
+	
 	
 }
 
