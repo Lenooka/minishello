@@ -6,13 +6,13 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:27:56 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/13 17:36:06 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/19 15:29:04 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	parent(t_mnshll *minsh, int *pipe_fd, int cmrun, int pos)
+/*void	parent(t_mnshll *minsh, int *pipe_fd, int cmrun, int pos)
 {
 	t_lexer *cmnds;
 	int		compos;
@@ -56,7 +56,7 @@ void    start_procces(t_mnshll *minsh)
 		com_run++;
     }
 	exit_status(mnshll, pid, com_run);
-}
+}*/
 
 void	minishell(t_mnshll *mnshll)
 {
