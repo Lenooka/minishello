@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_redir_unexp_checks.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:54:23 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/13 14:56:55 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/19 05:19:10 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ int	redir_syntax(char *input)
 		if (x < len && parser_codes(input[x]) == 1)
 			x = little_skip_quotes(input, x, len);
 		if (x < len && (input[x] == '>' && input[x + 1] == '<'))
-			return (1);
+			return (3);
 		if (x < len && (input[x] == '<' && input[x + 1] == '>'))
-			return (1);
+			return (2);
 		if (x < len && (input[x] == '<' && input[x + 1] == '|'))
 			return (1);
 		if (x < len && (input[x] == '>' && input[x + 1] == '|'))
-			return (1);
+			return (2);
 		x++;
 	}
 	return (0);

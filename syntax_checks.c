@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_checks.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 23:27:16 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/13 14:39:24 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/19 05:06:15 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	dollar_syntax(char *str)
 	x = 0;
 	while (str[x])
 	{
-		if (str[x] == '\'')
+		if (str[x] == '\'') //Why are we skipping quotes here? And only one kind? Do we need this, what? It's 5 AM am I stupid?
 		{
 			x++;
 			while (str[x] && str[x] != '\'')

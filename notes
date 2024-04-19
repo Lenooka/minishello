@@ -1,0 +1,51 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    notes                                              :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/04/17 14:42:11 by jhuber            #+#    #+#              #
+#    Updated: 2024/04/17 14:42:11 by jhuber           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+✔️
+
+Hello and welcome to my notes
+
+First and forward we will have to fix our syntax checks, these have to be split and worked on just like bash handles them, especially we have to look into what
+kind of Error message they give.
+
+First we have the catgory of:
+bash: syntax error near unexpected token `newline'
+
+This applies to:
+>
+<
+>>
+<<
+>|
+hi >|
+hi <>
+hi|<
+hi|>
+hi>
+hi|
+hi>>
+hi<
+hi<<
+hi <<
+
+Then we have the category of:
+bash: syntax error near unexpected token `|'
+
+This applies to:
+|                   //anything after also applies
+hi <|
+hi > |
+hi < |
+hi >>|
+hi <<|
+hi >> |
+hi << |
+
