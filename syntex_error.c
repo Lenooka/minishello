@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntex_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 22:14:57 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/13 15:01:51 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/19 05:19:52 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	report_syntax_error(char *error_message)
 {
-	write(2, "MiniShell: syntax error: ", 25);
+	write(2, "MiniShell: syntax error ", 25);
 	write(2, error_message, ft_strlen(error_message));
 	write(2, "\n", 1);
 	return (1);
@@ -22,30 +22,37 @@ int	report_syntax_error(char *error_message)
 
 int	redir_unexpect_errors(char *input)
 {
-	if (redir_syntax(input) == 1) //function call to a non function? has to be made
-		return (1);
-	else if (double_redir_syntax(input) == 1) //function call to a non function? has to be made
-		return (1);
-	else if (sucession_syntax(input) == 1) //function call to a non function? has to be made 
-		return (1);
-	else if (token_syntax(input) == 1) //function call to a non function? has to be made
-		return (1);
+	int x;
+
+	x = redir_syntax(input);
+	if (x == 1)
+		return (report_syntax_error("near unexpected token `|'"));
+	if (x == 2)
+		return (report_syntax_error("near unexpected token `newline'"));
+	if (x == 3)
+		return (report_syntax_error("near unexpected token `<'"));
+	else if (double_redir_syntax(input) == 1)
+		return (report_syntax_error("near unexpected token `|'"));
+	else if (sucession_syntax(input) == 1)
+		return (report_syntax_error("near unexpected token `|'"));
+	else if (token_syntax(input) == 1)
+		return (report_syntax_error("near unexpected token `|'"));
 	return (0);
 }
 
 int	has_syntax_error(char *input)
 {
-	if (start_syntax(input) == 1) //function call to a non function? has to be made
-		return (report_syntax_error("near unexpected token '|'"));
-	else if (end_syntax(input) == 1) //function call to a non function? has to be made
+	if (start_syntax(input) == 1)
+		return (report_syntax_error("near unexpected token `|'"));
+	else if (end_syntax(input) == 1)
 		return (report_syntax_error("near unexpected token `newline'"));
 	else if (unclosed_quote(input) == 1)
 		return (report_syntax_error("unclosed quote marks"));
-	else if (pipe_syntax(input) == 1) //function call to a non function? has to be made
+	else if (pipe_syntax(input) == 1)
 		return (report_syntax_error("near unexpected token '|'"));
-	else if (dollar_syntax(input) == 1) //function call to a non function? has to be made
+	else if (dollar_syntax(input) == 1)
 		return (report_syntax_error("near unexpected token '$'"));
-	else if (redir_unexpect_errors(input) == 1) //function call to a non function? has to be made ☝️🤓
+	else if (redir_unexpect_errors(input) == 1)
 		return (1);
 	return (0);
 }
