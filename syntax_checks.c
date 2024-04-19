@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_checks.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 23:27:16 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/19 15:23:22 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/19 18:40:35 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	end_syntax(char *input)
 	x = 0;
 	while (input[x])
 		x++;
+	x--;
 	while (x >= 0)
 	{
 		if (input[x] == '|' || input[x] == '<' || input[x] == '>')
