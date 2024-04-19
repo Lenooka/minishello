@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace_var.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 13:22:02 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/15 18:48:54 by codespace        ###   ########.fr       */
+/*   Updated: 2024/04/19 21:01:43 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ size_t	indx_from(t_mnshll *minsh, char *rep_res, char q, int indx)
 	}
 	if (tmp && ft_strcmp(tmp, "$") == 0)
 		vari = iterati(minsh, tmp + 1);
-	indx_from = ft_strlen(vari);
+	if (vari)
+		indx_from = ft_strlen(vari);
 	free(tmp);
 	free(vari);
 	return (indx_from);

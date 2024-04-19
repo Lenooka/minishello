@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:57:54 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/13 14:16:52 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/19 20:44:50 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,10 @@ char	**tokenize_commands(t_mnshll *minsh, char **arr, int p, int argc)
 	res = malloc(sizeof(char *) * (argc + 1));
 	if (!res)
 		ft_exit(minsh);
-	while (arr[p] && i < argc)
+	while (arr[p] && !arr[p][0])
+		p++;
+	while (i < argc)
 	{
-		if (arr[p][0] == '\0')
-		{
-			p++;
-			continue ;
-		}
 		if (arr[p] && (ft_strcmp(arr[p], ">") == 0 \
 			|| ft_strcmp(arr[p], ">>") == 0 || ft_strcmp(arr[p], "<") == 0 \
 			|| ft_strcmp(arr[p], "<<") == 0))
@@ -58,32 +55,29 @@ char	**tokenize_commands(t_mnshll *minsh, char **arr, int p, int argc)
 	return (res);
 }
 
-int	count_argument_f_cmnd(char **array, int indx)
+int	count_argument_f_cmnd(char **arr, int pos)
 {
-	int	p;
-	int	count;
+	int	i;
+	int	counter;
 
-	p = indx;
-	count = 0;
-	while (array[p] != NULL && ft_strchr(array[p], '|') != 0)
+	i = pos;
+	counter = 0;
+	while (arr[i] && !arr[i][0])
+		i++;
+	while (arr[i])
 	{
-		if (array[p][0] == '\0')
-		{
-			p++;
-			continue ;
-		}
-		if ((ft_strcmp(array[p], ">") == 0 || ft_strcmp(array[p], ">>") == 0 || \
-			ft_strcmp(array[p], "<") == 0 || ft_strcmp(array[p], "<<") == 0))
-		{
-			p += 2;
-		}
+		if (ft_strcmp(arr[i], ">") == 0 || ft_strcmp(arr[i], ">>") == 0 \
+			|| ft_strcmp(arr[i], "<") == 0 || ft_strcmp(arr[i], "<<") == 0)
+			i += 2;
+		else if (ft_strcmp(arr[i], "|") == 0)
+			break ;
 		else
 		{
-			count++;
-			p++;
+			counter++;
+			i++;
 		}
 	}
-	return (count);
+	return (counter);
 }
 
 t_lexer	*new_node_cmdlist(t_mnshll *m, int indx)
