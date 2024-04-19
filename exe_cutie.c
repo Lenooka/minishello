@@ -6,10 +6,13 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:37:59 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/17 18:39:52 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/19 16:00:04 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 void	exe_cutie(t_mnshll *minsh, char **array, char **new_cmd)
+{
+	char	**pa	
+}
