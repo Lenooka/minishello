@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/12 21:46:41 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/19 17:37:25 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <string.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-# include <linux/limits.h>
 # include <limits.h> 
 # include <signal.h>
 # include <sys/wait.h>
