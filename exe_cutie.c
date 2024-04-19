@@ -6,11 +6,19 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:37:59 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/19 21:02:57 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/19 21:18:08 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	executie_ve(char *path, char **new_cmnd, char **env)
+{
+	if (execve(path, new_cmd, env) == -1)
+		//error handle
+	//exit status??
+	//free exit process
+}
 
 void	exe_cutie(t_mnshll *minsh, char **array, char **new_cmd)
 {
@@ -35,11 +43,9 @@ void	exe_cutie(t_mnshll *minsh, char **array, char **new_cmd)
 	free_all_arrays(split_pathvar); //this in functuin find ex path
 	if (!path)
 	 //free maybe should do it in find expath
-	env = //get array from env list if its works :(
+	env = //get array from env list if its works :( it doess!!! just need to write a function for it
 	new_cmd = 
-	
-	
-	
+	executie_ve(path, new_cmd, env);
 }
 
 

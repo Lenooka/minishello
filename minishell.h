@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/19 21:02:22 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/19 21:18:26 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ void		parent(t_mnshll *m, int *pipe_fd, int cmrun, int pos);
 void		child(t_mnshll *ms, int *pipe_fd, int cmds_run, int pos);
 int			isbuilt(char *com);
 void		redirect_and_close(t_mnshll *m, int fd, int op, int *pipefd);
+void		executie_ve(char *path, char **new_cmnd, char **env);
 
 //Redirections
 int	redir(t_mnshll *minsh, char **array, int pos, int process);
