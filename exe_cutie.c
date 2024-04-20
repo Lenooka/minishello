@@ -3,14 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   exe_cutie.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:37:59 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/19 21:18:08 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/20 00:43:59 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char    **retrive_path_dir(char **env, char *str)
+{
+    
+}
 
 void	executie_ve(char *path, char **new_cmnd, char **env)
 {
