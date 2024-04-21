@@ -6,15 +6,38 @@
 /*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:37:59 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/20 00:43:59 by olena            ###   ########.fr       */
+/*   Updated: 2024/04/20 17:26:52 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char    **retrive_path_dir(char **env, char *str)
+char    **retrive_path_dir(char **env, char *s)
 {
-    
+    int		indx;
+	char	**result;
+	char	**direc;
+	t_envl 	*tmp;
+
+	indx = 0;
+	if (ft_strnstr(s. "../", 3) || ft_strnstr(s, "./", 2) == 0 || s[0] == '/')
+		return (retriveindir(str));
+	tmp = *env;
+	while (tmp && ft_strnstr(tmp->identificator, "PATH", 4) != 0)
+		tmp = tmp->next;
+	if (!tmp)
+		return (NULL);
+	result = ft_split(tmp->content + 5, ':');
+	direc = malloc(sizeof(char *) * (size_of_2d(result) + 1))
+	while (indx < size_of_2d(result))
+	{
+		direc[indx] = ft_strjoin(result[indx], "/");
+		indx++;
+	}
+	direc[indx] == NULL;
+	free_all_arrays(result);
+	return (direc);	
+	
 }
 
 void	executie_ve(char *path, char **new_cmnd, char **env)
