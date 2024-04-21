@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/19 19:52:35 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/21 18:49:25 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,5 +161,8 @@ void		free_all_arrays(char **str_tab);
 int 		others(char *str, int x);
 void		free_cmd_list(t_lexer *cmdlist);
 char		*split_tmp(t_mnshll *ms, char *str, int word_len);
+
+//builtins
+void		cd(t_mnshll mini, char **env);
 
 #endif
