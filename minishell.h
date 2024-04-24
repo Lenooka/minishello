@@ -6,7 +6,7 @@
 /*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/21 18:49:25 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/04/24 18:40:31 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,5 +164,10 @@ char		*split_tmp(t_mnshll *ms, char *str, int word_len);
 
 //builtins
 void		cd(t_mnshll mini, char **env);
+void		cd_default(t_mnshll mini);
+char		*find_default(t_envl **envl);
+void		enter_dir(t_mnshll mini, char *env);
+void		change_path(t_envl **envl, char *oldpath);
+void		change_oldpath(t_envl **envl, char *oldpath);
 
 #endif
