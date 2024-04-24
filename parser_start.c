@@ -6,7 +6,7 @@
 /*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:33:06 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/24 13:56:11 by olena            ###   ########.fr       */
+/*   Updated: 2024/04/24 14:00:11 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	parser_start(t_mnshll *minsh)
 	char	**repl_var_array;
 
 	if (init_fds(minsh) == 1)
-		return (1);
+		return (printf("Init fds fail!\n"), 1);
 	minsh->com_array = split_tokenize(minsh, minsh->input);
 	if (minsh->com_array == NULL)
 	{

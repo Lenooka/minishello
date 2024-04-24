@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:20:11 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/13 16:25:54 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:00:16 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	create_file(t_mnshll *minsh, char *filename)
 
 	fd = open(filename, O_CREAT | O_WRONLY | O_TRUNC, 0666);
 	if (fd < 0)
-		ft_exit(minsh);//error handle open errors
+		open_error(minsh, filename);
 	return (fd);
 }
 
@@ -49,12 +49,12 @@ int	file_des_create(t_mnshll *minsh, int here_num)
 
 void	heredoc_warn(char *del)
 {
-	//t_mnshll *m = NULL;
+
 	ft_putstr_fd("Minishell: warning: here-document delimited ", STDERR_FILENO);
 	ft_putstr_fd("by end-of-file (wanted `", STDERR_FILENO);
 	ft_putstr_fd(del, STDERR_FILENO);
 	ft_putstr_fd("')\n", STDERR_FILENO);
-	//ft_exit(m);
+
 }
 
 void	disable_quit_signals(void)

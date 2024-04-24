@@ -6,7 +6,7 @@
 /*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:37:59 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/24 13:05:46 by olena            ###   ########.fr       */
+/*   Updated: 2024/04/24 17:08:14 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,10 +190,10 @@ void	executie_ve(t_mnshll *minsh, char *path, char **cm_rem, char **env)
 		//error exit process //get array from env list if its works :< it doess!!! just need to write a function for it
 	cm_rem = rem_q_from_2d(minsh->list_com->tokens);
 	if (cm_rem == NULL)
-		//error exit process
+		//free exit process messege Malloc in rem_q_from_2d failed
 	if (execve(path, cm_rem, env) == -1)
-		//error handle
-	//exit status??
+		//free exit process messege execve failed
+	minsh->exit = errno;
 	//free exit process
 }
 
@@ -204,22 +204,20 @@ void	exe_cutie(t_mnshll *minsh, char **array, char **new_cmd)
 	char	**env;
 
 	if (!array || !array[0] || !array[0][0])
-		//error command not found NULL exit process here?? 		//no exit in next check
+		write(STDERR_FILENO, "Minishell: command not found\n", 29);
 	if (isbuilt(array[0]) == 1)
-		//function where we ft_cmpr string and execute built ins //do we exit the procces here??		//no exit in next check
+		built_exe(minsh, array);
 	if (g_global == SIGPIPE)
 		//free exit process
 	if (!array || !array[0] || !array[0][0] || isbuilt(array[0]) == 1)
 		//free exit process
 	split_pathvar = retrive_path_dir(minsh->env, array[0]); //done
 	if (split_pathvar == NULL)
-		 //god please tell me env is finee
+		//free exit process messege Malloc in retrive path dir failed
 	if (check_executie(minsh, split_pathvar, array[0]) == 0) //done
-		//free exit process
+		//free exit process 
 	path = find_ex_path(minsh, split_pathvar, array[0]); //simmilar to pipex?? DONE
 	free_all_arrays(split_pathvar); //this in functuin find ex path
-	if (!path)
-	 //free maybe should do it in find expath
 	executie_ve(minsh, path, new_cmd, env);
 }
 
