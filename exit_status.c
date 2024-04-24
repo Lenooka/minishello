@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   exit_status.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:25:46 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/24 17:48:52 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:21:25 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	reset_fd(t_mnshll *minsh)
+{
+	if (dup2(minsh->fdin, STDIN_FILENO) == -1)
+		//error
+	if (dup2(minsh->fdout, STDOUT_FILENO) == -1)
+		//error;
+	if (m->fd_in != 0)
+		close(m->fd_in);
+	if (m->fd_out != 1)
+		close(m->fd_out);
+}
 
 /*
 WIFEXITED and WEXITSTATUS used to know the exit status of the child. 
