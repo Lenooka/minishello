@@ -3,37 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   split_token.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:53:11 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/13 14:37:39 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/23 02:30:24 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-  quote == 1m / 3n
-  redir&&pip == 2
-  tab space == 3m / 1n
-  $ = 4
-*/
-
-char	*split_tmp(t_mnshll *ms, char *str, int word_len)
-{
-	int		i;
-	char	*tmp;
-
-	i = 0;
-	tmp = NULL;
-	tmp = malloc(sizeof(char) * (word_len + 1));
-	if (!tmp)
-		ft_exit(ms);
-	while (*str && i < word_len)
-		tmp[i++] = *str++;
-	tmp[i] = '\0';
-	return (tmp);
-}
 
 int	count_words(char *str)
 {

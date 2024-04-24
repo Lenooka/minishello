@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 16:03:20 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/19 04:53:35 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/04/23 02:26:16 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ int	main(int arc, char **arv, char **env)
 			mnshll->input = readline("Minishell <3 : ");
 			if (mnshll->input == NULL)
 				break ;
-			if (ft_strlen(mnshll->input) != 0)
+			if (ft_strlen(mnshll->input) != 0 && mnshll->input[0] != '\0')
 				add_history(mnshll->input);
-			if (syntax_error(mnshll) == 1) //(wait for next input)
+			if (syntax_error(mnshll) == 1 && mnshll->input) //(wait for next input)
 				continue ;
 			else if (parser_start(mnshll) != 1)
 				minishell(mnshll);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 20:10:00 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/13 16:40:02 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/23 22:26:14 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int	if_there_heredoc(t_mnshll *minsh, char **str)
 	int		i;
 
 	i = 0;
-	if (!str || !str[0] || !str[0][0]) //WHy?? IS IT SPLIT??
+	if (!str || !str[0] || !str[0][0]) 
 		return (0);
 	while (str[i])
 	{
