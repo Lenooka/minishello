@@ -3,34 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   envlist_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:37:16 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/19 20:09:32 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/24 12:40:02 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_envl	*ft_lstlast(t_envl *lst)
-{
-	while (lst)
-	{
-		if (lst->next == NULL)
-			return (lst);
-		else
-			lst = lst->next;
-	}
-	return (0);
-}
-
-void	ft_lstadd_back(t_envl **lst, t_envl *new)
-{
-	if (ft_lstlast(*lst))
-		ft_lstlast(*lst)->next = new;
-	else
-		*lst = new;
-}
 
 void	free_env(t_envl **env)
 {

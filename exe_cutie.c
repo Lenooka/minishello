@@ -6,7 +6,7 @@
 /*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:37:59 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/23 22:28:58 by olena            ###   ########.fr       */
+/*   Updated: 2024/04/24 13:05:46 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,11 +157,41 @@ char    **retrive_path_dir(char **env, char *s)
 	return (direc);	
 }
 
-void	executie_ve(char *path, char **new_cmnd, char **env)
+char	**convert_env(t_mnshll *minsh, t_envl **envlist)
 {
-	env = //get array from env list if its works :< it doess!!! just need to write a function for it
-	new_cmnd = 
-	if (execve(path, new_cmd, env) == -1)
+	int	indx;
+	int	list_len;
+	char	**env;
+	t_envl	*tmp;
+	char	*indetef;
+
+	indx = 0;
+	tmp = *envlist;
+	list_len = ft_lstsize(tmp);
+	env = malloc(sizeof(char *) * (list_len + 1));
+	if (!env)
+		return (NULL);
+	while (tmp && indx < list_len)
+	{
+		indetef = ft_strjoin(tmp->identificator, "=");
+		env[indx] = ft_strjoin(indetef, tmp->content);
+		free(indetef);
+		tmp = tmp->next;
+		indx++;
+	}
+	env[indx] = NULL;
+	return (env);
+}
+
+void	executie_ve(t_mnshll *minsh, char *path, char **cm_rem, char **env)
+{
+	env = convert_env(minsh, minsh->envl)
+	if (env = NULL)
+		//error exit process //get array from env list if its works :< it doess!!! just need to write a function for it
+	cm_rem = rem_q_from_2d(minsh->list_com->tokens);
+	if (cm_rem == NULL)
+		//error exit process
+	if (execve(path, cm_rem, env) == -1)
 		//error handle
 	//exit status??
 	//free exit process
@@ -190,7 +220,7 @@ void	exe_cutie(t_mnshll *minsh, char **array, char **new_cmd)
 	free_all_arrays(split_pathvar); //this in functuin find ex path
 	if (!path)
 	 //free maybe should do it in find expath
-	executie_ve(path, new_cmd, env);
+	executie_ve(minsh, path, new_cmd, env);
 }
 
 

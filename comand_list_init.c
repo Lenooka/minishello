@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   comand_list_init.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:57:54 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/19 20:44:50 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/24 12:38:56 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	add_new_back(t_lexer **lst, t_lexer*new)
+void	add_new_back(t_lexer **lst, t_lexer *new)
 {
 	t_lexer	*last;
 

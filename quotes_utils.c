@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:57:54 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/17 15:26:48 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/24 13:05:26 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,23 @@ char	*remove_quotes(char *str)
 		else
 			temp[x++] = str[i++];
 	}
+	return (temp);
+}
+
+char	**rem_q_from_2d(char **array)
+{
+	int		i;
+	char	**temp;
+
+	i = 0;
+	temp = ft_calloc(sizeof(char *), size_of_2d(array) + 1);
+	if (!temp)
+		return (NULL);
+	while (array[i])
+	{
+		temp[i] = remove_quotes(array[i]);
+		i++;
+	}
+	temp[i] = NULL;
 	return (temp);
 }
