@@ -6,7 +6,7 @@
 /*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:33:06 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/24 13:52:57 by olena            ###   ########.fr       */
+/*   Updated: 2024/04/24 13:56:11 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	parser_start(t_mnshll *minsh)
 	minsh->com_array = split_tokenize(minsh, minsh->input);
 	if (minsh->com_array == NULL)
 	{
-		return (1);
+		return (printf("Tokenizing fail!\n"), 1);
 	}
 	if (if_there_heredoc(minsh, minsh->com_array) == 1)
 		return (1);
