@@ -6,13 +6,15 @@
 /*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 16:03:20 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/23 02:26:16 by olena            ###   ########.fr       */
+/*   Updated: 2024/04/24 13:42:18 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 int	g_global = 0;
+
+/*if envl fails I free it inside the init*/
 
 int	main(int arc, char **arv, char **env)
 {
@@ -23,7 +25,7 @@ int	main(int arc, char **arv, char **env)
 		mnshll = NULL;
 		mnshll = mnshll_init(mnshll, env);
 		if (mnshll == NULL)
-			return (0); /*if envl fails I free it inside the init*/
+			return (0);
 		while (1)
 		{
 			make_sigaction();
@@ -32,7 +34,7 @@ int	main(int arc, char **arv, char **env)
 				break ;
 			if (ft_strlen(mnshll->input) != 0 && mnshll->input[0] != '\0')
 				add_history(mnshll->input);
-			if (syntax_error(mnshll) == 1 && mnshll->input) //(wait for next input)
+			if (syntax_error(mnshll) == 1 && mnshll->input)
 				continue ;
 			else if (parser_start(mnshll) != 1)
 				minishell(mnshll);

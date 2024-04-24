@@ -6,12 +6,11 @@
 /*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:37:16 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/24 12:40:02 by olena            ###   ########.fr       */
+/*   Updated: 2024/04/24 13:47:25 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 
 void	free_env(t_envl **env)
 {
@@ -104,35 +103,6 @@ t_envl	*create_newnode(void *content)
 	return (new_node);
 }
 
-void	print_lst(t_envl **lst, int flag)
-{
-	t_envl	*tmp;
-	char	*exp;
-
-	exp = "declare -x";
-	tmp = *lst;
-	if (!tmp)
-		return ;
-	if (flag == 2)
-		exp = "declare -x";
-	while (tmp)
-	{
-		if ((tmp)->node_flag == 1 && flag == 1)
-			ft_printf("%s=%s\n", (tmp)->identificator, (tmp)->content);
-		else if (flag == 2)
-		{
-			if ((tmp)->equal_flag == 0 && ft_strcmp((tmp)->content, "  ") == 0)
-				ft_printf("%s%s%s %s\n", exp, (tmp)->identificator);
-			else if (ft_strcmp((tmp)->content, "  ") == 0)
-				ft_printf("%s%s%s %s=\"\"\n", exp, (tmp)->identificator);
-			else
-				ft_printf("%s%s%s %s=\"%s\"\n", exp, \
-					(tmp)->identificator, (tmp)->content);
-		}
-		tmp = (tmp)->next;
-	}
-}
-
 t_envl	**env_list_init(char **env, int i)
 {
 	t_envl	**envl;
@@ -157,6 +127,5 @@ t_envl	**env_list_init(char **env, int i)
 		ft_lstadd_back(envl, node);
 		i++;
 	}
-	//print_lst(envl, 1);
 	return (envl);
 }

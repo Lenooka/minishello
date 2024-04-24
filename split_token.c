@@ -6,7 +6,7 @@
 /*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:53:11 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/23 02:30:24 by olena            ###   ########.fr       */
+/*   Updated: 2024/04/24 13:51:37 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	ft_toklen(char *str)
 	if (str[i] && parser_codes(str[i]) == 1)
 		return (big_skip_quotes(str, str[i], i));
 	if (str[i] && parser_codes(str[i]) == 2)
-		return (others(str, i));//unfinished
+		return (others(str, i));
 	if (str[i] && parser_codes(str[i]) == 4)
 		return (envar(str, i));
 	if (str[i] && !parser_codes(str[i]))
