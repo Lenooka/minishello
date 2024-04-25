@@ -6,7 +6,7 @@
 /*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 20:10:00 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/23 22:26:14 by olena            ###   ########.fr       */
+/*   Updated: 2024/04/25 14:27:54 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	heredoc_child(t_mnshll *minsh, int fd, char *del)
 	if (line)
 		free_and_null((void **)&line);
 	close(fd);
-	ft_exit(minsh);//free_hdoc(minsh);
+	free_heredoc(minsh);
 }
 
 void	init_heredoc(t_mnshll *minsh, char *del, int num_indx)
@@ -82,7 +82,7 @@ void	init_heredoc(t_mnshll *minsh, char *del, int num_indx)
 		heredoc_child(minsh, fd, del);
 	}
 	else if (pid < 0 || fd < 0)
-		exit(1);//forkerror not check fd for null closing fd
+		//forkerror not check fd for null closing fd
 	else
 	{
 		waitpid(pid, &status, 0);

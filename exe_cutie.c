@@ -6,7 +6,7 @@
 /*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:37:59 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/24 18:20:45 by olena            ###   ########.fr       */
+/*   Updated: 2024/04/25 13:22:56 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,14 +104,14 @@ void	executie_ve(t_mnshll *minsh, char *path, char **cm_rem, char **env)
 {
 	env = convert_env(minsh, minsh->envl)
 	if (env = NULL)
-		//error exit process //get array from env list if its works :< it doess!!! just need to write a function for it
+		free_exit_proccess(minsh, "Error: env conversion failed");
 	cm_rem = rem_q_from_2d(minsh->list_com->tokens);
 	if (cm_rem == NULL)
-		//free exit process messege Malloc in rem_q_from_2d failed
+		free_exit_proccess(minsh, "Error: command conversion failed");
 	if (execve(path, cm_rem, env) == -1)
-		//free exit process messege execve failed
+		free_exit_proccess(minsh, "Error: execve failed");
 	minsh->exit = errno;
-	//free exit process
+	free_exit_proccess(minsh, NULL);
 }
 
 void	exe_cutie(t_mnshll *minsh, char **array, char **new_cmd)
@@ -125,16 +125,16 @@ void	exe_cutie(t_mnshll *minsh, char **array, char **new_cmd)
 	if (isbuilt(array[0]) == 1)
 		built_exe(minsh, array);
 	if (g_global == SIGPIPE)
-		//free exit process
+		free_exit_proccess(minsh, "Error: Broken pipe");
 	if (!array || !array[0] || !array[0][0] || isbuilt(array[0]) == 1)
-		//free exit process
+		free_exit_proccess(minsh, "Error: command not found");
 	split_pathvar = retrive_path_dir(minsh->env, array[0]); //done
 	if (split_pathvar == NULL)
-		//free exit process messege Malloc in retrive path dir failed
+		free_exit_proccess(minsh, "Error: path not found");
 	if (check_executie(minsh, split_pathvar, array[0]) == 0) //done
-		//free exit process 
+		free_exit_proccess(minsh, "Error: permission denied");
 	path = find_ex_path(minsh, split_pathvar, array[0]); //simmilar to pipex?? DONE
-	free_all_arrays(split_pathvar); //this in functuin find ex path
+	free_all_arrays(split_pathvar);
 	executie_ve(minsh, path, new_cmd, env);
 }
 

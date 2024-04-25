@@ -6,7 +6,7 @@
 /*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 16:03:20 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/24 13:42:18 by olena            ###   ########.fr       */
+/*   Updated: 2024/04/25 14:24:47 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(int arc, char **arv, char **env)
 			else if (parser_start(mnshll) != 1)
 				minishell(mnshll);
 		}
-		//free stuff;
+		free_to_main(mnshll);
 	}
 	return (0);
 }

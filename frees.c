@@ -3,14 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   frees.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 14:06:39 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/24 19:10:54 by codespace        ###   ########.fr       */
+/*   Updated: 2024/04/25 14:27:11 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	free_heredoc(t_mnshll *minsh)
+{
+	int	exit_s;
+
+	exit_s = minsh->exit;
+	if (minsh->input)
+		free(minsh->input);
+	if (minsh->com_array)
+		free_all_arrays(minsh->com_array);
+	if (minsh->envl)
+		free_env(minsh->envl);
+	if (minsh->list_com)
+		free_cmd_list(minsh->list_com);
+	close(stdin);
+	close(stdout);
+	if (minsh->fdin != -1)
+		close(minsh->fdin);
+	if (minsh->fdout != -1)
+		close(minsh->fdout);
+	if (minsh)
+		free(minsh);
+	rl_clear_history();
+	exit(exit_s);			
+}
 
 void	free_cmd_list(t_lexer *cmdlist)
 {
@@ -27,7 +52,11 @@ void	free_cmd_list(t_lexer *cmdlist)
 		free(tmp);
 	}
 }
-
+void	free_to_main(t_mnshll *minsh)
+{
+	check_global_end();
+	handler_cd(minsh);
+}
 
 void	free_exit_procces(t_mnshll *minsh, char *mess)
 {
@@ -52,6 +81,7 @@ void	free_exit_procces(t_mnshll *minsh, char *mess)
 	if (minsh)
 		free(minsh);
 	rl_clear_history();
-	printf("%s\n", mess);
+	if (mess != NULL)
+		printf("%s\n", mess);
 	exit(exit_s);			
 }
