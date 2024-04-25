@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 20:10:00 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/25 16:40:45 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/25 19:41:12 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	init_heredoc(t_mnshll *minsh, char *del, int num_indx)
 	else
 	{
 		waitpid(pid, &status, 0);
-		if (pid != -1 && WIFEXITED(status) && WEXITSTATUS(status) == (128 + \
+		if (pid != -1 && WIFEXITED(status) && WEXITSTATUS(status) == (128 +
 			SIGINT))
 		{
 			g_global = SIGINT;
