@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:27:56 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/25 16:39:31 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:15:43 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	child(t_mnshll *ms, int *pipe_fd, int cmds_run, int pos)
 	char		**new_cmds;
 
 	new_cmds = NULL;
-	cmd = ms->cmdlist + cmds_run;
+	cmd = ms->list_com + cmds_run;
 	signal(SIGPIPE, signal_global);
 	if (cmds_run != 0)
 		redirect_and_close(ms, ms->fd_cmd, 1, pipe_fd);
@@ -44,7 +44,7 @@ void	child(t_mnshll *ms, int *pipe_fd, int cmds_run, int pos)
 		redirect_and_close(ms, pipe_fd[1], 2, pipe_fd);
 	close_fd(pipe_fd);
 	if (ms->command_amount == 1 && isbuilt(cmd->tokens[0]))
-		free_ms(ms);
+		free_exit_procces(ms, NULL);
 	redir(ms, ms->com_array, pos, 1);
 	exe_cutie(ms, cmd->tokens, new_cmds);
 }
@@ -61,6 +61,7 @@ void	parent(t_mnshll *m, int *pipe_fd, int cmrun, int pos)
 	int		shred;
 	int		fd_flag;
 
+	fd_flag = 0;
 	cmnds = m->list_com + cmrun;
 	shred = isbuilt(cmnds->tokens[0]) && redir(m, m->com_array, pos, 0) == 0;
 	if (m->command_amount == 1)
@@ -68,7 +69,7 @@ void	parent(t_mnshll *m, int *pipe_fd, int cmrun, int pos)
 		if(shred == 1)
 		{
 			fd_flag = 1;
-			built_ex(m, cmnds->tokens);  //non function yet
+			//built_ex(m, cmnds->tokens);  //non function yet
 		}
 	}
 	if (cmrun > 0)
@@ -105,7 +106,7 @@ void    start_procces(t_mnshll *minsh)
 			parent(minsh, pipefd, com_run, position);
 		else if (pid == 0)
 			child(minsh, pipefd, com_run, position);
-		position = find_com_pos(mnshll->com_array, position);
+		position = find_com_pos(minsh->com_array, position);
 		com_run++;
     }
 	exit_status(minsh, pid, com_run);

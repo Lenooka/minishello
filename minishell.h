@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/25 16:59:43 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:16:28 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,11 @@ void	free_exit_procces(t_mnshll *minsh, char *mess);
 void	close_fd(int *fd);
 void	free_cmd_list(t_lexer *cmdlist);
 void	dup_two_error(t_mnshll *minsh, int fd, int *pipe_fd);
-int		open_redir_error(t_mnshll *minsh, char *filename, int process);
+int		open_error(t_mnshll *minsh, char *filename, int process);
+void	free_to_main(t_mnshll *minsh);
+int		open_error(t_mnshll *minsh, char *filename, int process);
+void	pepe_error(t_mnshll *minsh, int *fd);
+void	fork_error(t_mnshll *minsh, int *fd);
+void	free_heredoc(t_mnshll *minsh);
 
 #endif

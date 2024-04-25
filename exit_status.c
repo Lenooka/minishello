@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:25:46 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/25 16:06:21 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:13:18 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	reset_fd(t_mnshll *minsh)
 		dup_two_error(minsh, -123456, NULL);
 	if (dup2(minsh->fdout, STDOUT_FILENO) == -1)
 		dup_two_error(minsh, -123456, NULL);
-	if (m->fd_in != 0)
-		close(m->fd_in);
-	if (m->fd_out != 1)
-		close(m->fd_out);
+	if (minsh->fdin != 0)
+		close(minsh->fdin);
+	if (minsh->fdout != 1)
+		close(minsh->fdout);
 }
 
 /*
@@ -43,7 +43,7 @@ void exit_status(t_mnshll *minsh, pid_t pid, int com_run)
     int status;
 
     status = 0;
-    if (minsh->command_amount == 1 && isbuilt(minsh->cmdlist->tokens[0]))
+    if (minsh->command_amount == 1 && isbuilt(minsh->list_com->tokens[0]))
     {
         wait(&status);
         reset_fd(minsh);

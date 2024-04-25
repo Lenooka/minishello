@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:34:42 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/25 17:02:01 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:19:28 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	input_redir(t_mnshll *minsh, char *filename, int procces)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{
-		open_redir_error(minsh, filename, procces);
+		open_error(minsh, filename, procces);
 		return (1);
 	}
 	else
@@ -42,7 +42,7 @@ int	heredoc_redir(t_mnshll *minsh, char *filename, int procces)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{
-		open_redir_error(minsh, filename, procces);
+		open_error(minsh, filename, procces);
 		return (1);
 	}
 	else
@@ -51,7 +51,7 @@ int	heredoc_redir(t_mnshll *minsh, char *filename, int procces)
 			dup_two_error(minsh, -123456, NULL);
 		close(fd);
 		if (unlink(file) == -1)
-			free_exit_procces(minsh, "Error: unlik fail!")
+			free_exit_procces(minsh, "Error: unlik fail!");
 	}
 	free(file);
 	return (0);
@@ -66,7 +66,7 @@ int	output_redir(t_mnshll *minsh, char *filename, int process)
 	fd = open(file, O_CREAT | O_RDWR | O_TRUNC, 0664);
 	if (fd < 0)
 	{
-		open_redir_error(minsh, filename, process);
+		open_error(minsh, filename, process);
 		return (1);
 	}
 	else
@@ -85,10 +85,10 @@ int	append_out_redir(t_mnshll *minsh, char *filename, int process)
 	char	*file;
 
 	file = remove_quotes(filename);
-	fd = open(file_buf, O_CREAT | O_RDWR | O_APPEND, 0664);
+	fd = open(file, O_CREAT | O_RDWR | O_APPEND, 0664);
 	if (fd < 0)
 	{
-		open_redir_error(minsh, filename, process);
+		open_error(minsh, filename, process);
 		return (1);
 	}
 	else

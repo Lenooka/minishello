@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 13:22:02 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/25 16:46:11 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:10:06 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ char	*replace_var_in_str(t_mnshll *minsh, char *str)
 		if (rep_res[indx] == '$' && quote != '\'')
 		{
 			minsh->lenvar = indx_from(minsh, rep_res, quote, indx);
-			rep_res = replace_vari(minsh, rep_res, quote, indx);
+			rep_res = rep_var_w_val(minsh, rep_res, quote, indx);
 			indx += minsh->lenvar - 1;
 		}
 		indx++;
