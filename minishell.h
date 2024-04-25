@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/25 17:16:28 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:27:17 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,7 @@ char		*remove_quotes(char *str);
 int			quote_amm(char *str);
 void		free_all_arrays(char **str_tab);
 int 		others(char *str, int x);
+void		ft_lstadd_back(t_envl **lst, t_envl *new);
 
 
 //FREES AND CLOSE

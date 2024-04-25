@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   comand_list_init.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:57:54 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/24 12:38:56 by olena            ###   ########.fr       */
+/*   Updated: 2024/04/25 17:27:59 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	**tokenize_commands(t_mnshll *minsh, char **arr, int p, int argc)
 	i = 0;
 	res = malloc(sizeof(char *) * (argc + 1));
 	if (!res)
-		ft_exit(minsh);
+		free_exit_procces(minsh, "Error : Malloc fail!");
 	while (arr[p] && !arr[p][0])
 		p++;
 	while (i < argc)
@@ -87,7 +87,7 @@ t_lexer	*new_node_cmdlist(t_mnshll *m, int indx)
 
 	list_com = malloc(sizeof(t_lexer));
 	if (!list_com)
-		ft_exit(m);
+		free_exit_procces(m, "Error : Malloc fail!");
 	arg_count = count_argument_f_cmnd(m->com_array, indx);
 	list_com->tokens = tokenize_commands(m, m->com_array, indx, arg_count);
 	list_com->next = NULL;
