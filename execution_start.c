@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:27:56 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/25 18:52:15 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/25 21:46:30 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,24 @@ void	child(t_mnshll *ms, int *pipe_fd, int cmds_run, int pos)
 {
 	t_lexer		*cmd;
 	char		**new_cmds;
+	int			i;
 
 	new_cmds = NULL;
-	cmd = ms->list_com + cmds_run;
+	cmd = ms->list_com;
+	i = cmds_run;
 	signal(SIGPIPE, signal_global);
+	while (i > 0)
+	{
+		cmd = cmd->next;
+		i--;
+	}
 	if (cmds_run != 0)
 		redirect_and_close(ms, ms->fd_cmd, 1, pipe_fd);
 	if (cmds_run < ms->command_amount - 1)
 		redirect_and_close(ms, pipe_fd[1], 2, pipe_fd);
 	close_fd(pipe_fd);
-	if (ms->command_amount == 1 && isbuilt(cmd->tokens[0]))
-		free_exit_procces(ms, NULL);
+	//if (ms->command_amount == 1) //&& isbuilt(cmd->tokens[0]))
+		//free_exit_procces(ms, NULL);
 	redir(ms, ms->com_array, pos, 1);
 	exe_cutie(ms, cmd->tokens, new_cmds);
 }
@@ -58,22 +65,25 @@ if there more than one close the fd for prev command
 void	parent(t_mnshll *m, int *pipe_fd, int cmrun, int pos)
 {
 	t_lexer	*cmnds;
-	int		shred;
+	//int		shred;
 	int		fd_flag;
 
 	fd_flag = 0;
+	pos = 0;
 	cmnds = m->list_com + cmrun;
-	shred = isbuilt(cmnds->tokens[0]) && redir(m, m->com_array, pos, 0) == 0;
-	if (m->command_amount == 1)
-	{
-		if(shred == 1)
-		{
-			fd_flag = 1;
+	//shred = isbuilt(cmnds->tokens[0]) && redir(m, m->com_array, pos, 0) == 0;
+	//if (m->command_amount == 1)
+	//{
+		//if(shred == 1)
+		//{
+			//fd_flag = 1;
 			//built_ex(m, cmnds->tokens);  //non function yet
-		}
-	}
+		//}
+	//}
+	printf("oi %d\n", cmrun);
 	if (cmrun > 0)
 		close(m->fd_cmd);
+	printf("oiasdasd %d\n",  m->command_amount);
 	if (cmrun < m->command_amount - 1)
 		m->fd_cmd = pipe_fd[0];
 	else
@@ -100,10 +110,10 @@ void    start_procces(t_mnshll *minsh)
 		if (pipe(pipefd) == -1)
 			pepe_error(minsh, pipefd);
 		pid = fork();
-		if (pid < 0)
-			fork_error(minsh, pipefd);
 		if (pid != 0)
 			parent(minsh, pipefd, com_run, position);
+		if (pid < 0)
+			fork_error(minsh, pipefd);
 		else if (pid == 0)
 			child(minsh, pipefd, com_run, position);
 		position = find_com_pos(minsh->com_array, position);
@@ -116,6 +126,7 @@ void	minishell(t_mnshll *mnshll)
 {
 	printf("WELLDONE\n");
 	printf("%s\n", mnshll->input);
+	printf("%s\n", mnshll->com_array[3]);
 	start_procces(mnshll);
 	free_cmd_list(mnshll->list_com);
 }

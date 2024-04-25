@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 14:06:39 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/25 17:17:28 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/25 20:23:19 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,10 @@ void	free_exit_procces(t_mnshll *minsh, char *mess)
 		free(minsh->input);
 	if (minsh->com_array)
 		free_all_arrays(minsh->com_array);
-	if (minsh->envl)
-		free_env(minsh->envl);
-	if (minsh->list_com)
-		free_cmd_list(minsh->list_com);
+	//if (minsh->envl)
+		//free_env(minsh->envl);
+	//if (minsh->list_com)
+		//free_cmd_list(minsh->list_com);
 	close(0);
 	close(1);
 	close(2);

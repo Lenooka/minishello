@@ -1,0 +1,40 @@
+noooo /home/otolmach/bin/
+u vas /usr/bin//ls
+total 244
+drwxr-xr-x 2 otolmach 2023_vienna  4096 Apr 25 20:54 LIBFTall
+-rw-r--r-- 1 otolmach 2023_vienna  1434 Apr 25 20:18 Makefile
+-rw-r--r-- 1 otolmach 2023_vienna   967 Apr 25 19:56 built_ex.c
+-rw-r--r-- 1 otolmach 2023_vienna  2960 Apr 25 20:31 comand_list_init.c
+-rw-r--r-- 1 otolmach 2023_vienna  2835 Apr 25 21:35 cute_utils.c
+-rw-r--r-- 1 otolmach 2023_vienna  2946 Apr 25 20:27 envlist_init.c
+-rw-r--r-- 1 otolmach 2023_vienna  4046 Apr 25 21:07 exe_cutie.c
+-rw-r--r-- 1 otolmach 2023_vienna  3609 Apr 25 21:46 execution_start.c
+-rw-r--r-- 1 otolmach 2023_vienna  2332 Apr 25 19:56 exit_status.c
+-rw-r--r-- 1 otolmach 2023_vienna  1120 Apr 25 20:24 exstart_utils.c
+-rw-r--r-- 1 otolmach 2023_vienna  2392 Apr 25 20:23 frees.c
+-rw-r--r-- 1 otolmach 2023_vienna  2864 Apr 25 19:56 heredoc.c
+-rw-r--r-- 1 otolmach 2023_vienna  2110 Apr 25 19:56 heredoc_utils.c
+-rw-r--r-- 1 otolmach 2023_vienna  2458 Apr 25 19:56 inoutredir.c
+-rw-r--r-- 1 otolmach 2023_vienna  1346 Apr 25 19:56 isbuilt.c
+-rw-r--r-- 1 otolmach 2023_vienna  1287 Apr 25 19:56 list_utilslibftbonus.c
+-rwxr-xr-x 1 otolmach 2023_vienna 92880 Apr 25 21:46 minishell
+-rw-r--r-- 1 otolmach 2023_vienna  1570 Apr 25 19:56 minishell.c
+-rw-r--r-- 1 otolmach 2023_vienna  6922 Apr 25 20:18 minishell.h
+-rw-r--r-- 1 otolmach 2023_vienna  1240 Apr 25 19:56 minishell_var_init.c
+-rw-r--r-- 1 otolmach 2023_vienna  1644 Apr 25 19:56 more_free.c
+drwxr-xr-x 2 otolmach 2023_vienna  4096 Apr 25 21:46 obj
+-rw-r--r-- 1 otolmach 2023_vienna  2188 Apr 25 19:56 parser_start.c
+-rw-r--r-- 1 otolmach 2023_vienna  1969 Apr 25 19:56 quotes_utils.c
+-rw-r--r-- 1 otolmach 2023_vienna  1807 Apr 25 19:56 redirections.c
+-rw-r--r-- 1 otolmach 2023_vienna  3755 Apr 25 19:56 replace_var.c
+-rw-r--r-- 1 otolmach 2023_vienna  2077 Apr 25 19:56 signals.c
+-rw-r--r-- 1 otolmach 2023_vienna  2362 Apr 25 19:56 split_token.c
+-rw-r--r-- 1 otolmach 2023_vienna  1489 Apr 25 21:34 split_token_utils.c
+-rw-r--r-- 1 otolmach 2023_vienna  1855 Apr 25 19:56 str_arr_utils.c
+-rw-r--r-- 1 otolmach 2023_vienna  1409 Apr 13 15:04 strcompr.c
+-rw-r--r-- 1 otolmach 2023_vienna  2564 Apr 25 19:56 syntax_checks.c
+-rw-r--r-- 1 otolmach 2023_vienna  2985 Apr 25 19:56 syntax_redir_unexp_checks.c
+-rw-r--r-- 1 otolmach 2023_vienna  2462 Apr 25 21:34 syntex_error.c
+-rw-r--r-- 1 otolmach 2023_vienna    45 Apr 25 21:56 test
+-rw-r--r-- 1 otolmach 2023_vienna   543 Apr 25 21:55 test.txt
+-rw-r--r-- 1 otolmach 2023_vienna  2353 Apr 13 15:04 utils.c

@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:19:24 by olena             #+#    #+#             */
-/*   Updated: 2024/04/25 18:31:13 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/25 21:35:08 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@ char	**retrive_rel_abs_path(const char *cmd)
 	char	**result;
 	char	buf[PATH_MAX + 1];
 
+	printf("what %s\n", cmd);
 	result = malloc(sizeof(char *) * 2);
 	if (!result)
 		return (NULL);
 	ft_bzero(buf, PATH_MAX + 1);
-	if (ft_strnstr(cmd, "../", 3) || ft_strnstr(cmd, "./", 2) == 0)
+	if (ft_strncmp(cmd, "../", 3) || ft_strncmp(cmd, "./", 2) == 0)
 	{
 		if (getcwd(buf, sizeof(buf)) == NULL)
 		{
@@ -47,15 +48,24 @@ char   *find_ex_path(char **array, char *cmd)
 
 	indx = 0;
 	acsess_result = 0;
-	while (array[indx])
+	while (array && array[indx])
 	{
-		temp = ft_strjoin(array[indx++], "/");
+		temp = ft_strjoin(array[indx], "/");
 		buf = ft_strjoin(temp, cmd);
 		free(temp);
 		acsess_result = access(buf, F_OK);
 		if (acsess_result == 0)
 			return (buf);
 		free(buf);
+		indx++;
+	}
+	if (ft_strchr(cmd, '/'))
+		perror(cmd);
+	else if (ft_strcmp(cmd, "\'\'") != 0 && ft_strcmp(cmd, "\"\"") != 0)
+	{
+		write(STDERR_FILENO, "Error: ", 7);
+		ft_putstr_fd(cmd, STDERR_FILENO);
+		write(STDERR_FILENO, ": command not found\n", 20);
 	}
 	return (NULL);
 }
@@ -72,14 +82,13 @@ int perm_and_isdir(t_mnshll *minsh, char *cmd_path, char **array)
 	stat(cmd_path, &path_stat);
 	if (S_ISDIR(path_stat.st_mode))
 	{
-		ft_putstr_fd("Minishell: ", STDERR_FILENO);
+		ft_putstr_fd("Error: ", STDERR_FILENO);
 		ft_putstr_fd(cmd_path, STDERR_FILENO);
 		ft_putstr_fd(": Is a directory\n", STDERR_FILENO);
 		minsh->exit = 126;
 	}
 	else if (access(cmd_path, X_OK) == 0)
 	{
-		free(cmd_path);
 		return (1);
 	}
 	else if (access(cmd_path, X_OK) != 0)
@@ -89,7 +98,6 @@ int perm_and_isdir(t_mnshll *minsh, char *cmd_path, char **array)
 	}
 	else
 		minsh->exit = 1;
-	free(cmd_path);
 	free_all_arrays(array);
 	return (0);
 }

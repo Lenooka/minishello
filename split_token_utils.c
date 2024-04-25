@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 19:02:11 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/13 14:36:44 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/25 21:34:07 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*ft_strndup(t_mnshll *mnshll, char *s, int n)
 	if (!cs)
 	{
 		mnshll->exit = 1;
-		printf("Minishell: Malloc error!\n");
+		printf("Error: Malloc error!\n");
 		return (NULL);
 	}
 	cs = ft_strncpy(cs, s, n);

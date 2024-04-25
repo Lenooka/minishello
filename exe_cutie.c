@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:37:59 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/25 18:44:38 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/25 21:07:36 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,13 @@ char    **retrive_path_dir(t_envl **env, char *s)
 	t_envl 	*tmp;
 
 	indx = 0;
-	if (ft_strnstr(s, "../", 3) || ft_strnstr(s, "./", 2) == 0 || s[0] == '/')
+	if (ft_strncmp(s, "../", 3) == 0 || ft_strncmp(s, "./", 2) == 0 || s[0] == '/')
 		return (retrive_rel_abs_path(s));
 	tmp = *env;
-	while (tmp && ft_strnstr(tmp->identificator, "PATH", 4) != 0)
+	while (tmp && ft_strncmp(tmp->identificator, "PATH", 4) != 0)
+	{
 		tmp = tmp->next;
+	}
 	if (!tmp)
 		return (NULL);
 	result = ft_split(tmp->content + 5, ':');
@@ -122,19 +124,21 @@ void	exe_cutie(t_mnshll *minsh, char **array, char **new_cmd)
 	char	*path;
 
 	if (!array || !array[0] || !array[0][0])
-		write(STDERR_FILENO, "Minishell: command not found\n", 29);
+		free_exit_procces(minsh, "Error: command not found");
 	if (isbuilt(array[0]) == 1)
 		printf("notdoneyet\n");//built_exe(minsh, array);
 	if (g_global == SIGPIPE)
 		free_exit_procces(minsh, "Error: Broken pipe");
-	if (!array || !array[0] || !array[0][0] || isbuilt(array[0]) == 1)
+	if (!array || !array[0] || !array[0][0]) //|| isbuilt(array[0]) == 1)
 		free_exit_procces(minsh, "Error: command not found");
 	split_pathvar = retrive_path_dir(minsh->envl, array[0]);
+		printf("noooo %s\n", split_pathvar[1]);
 	if (split_pathvar == NULL)
 		free_exit_procces(minsh, "Error: path not found");
 	if (check_executie(minsh, split_pathvar, array[0]) == 0)
 		free_exit_procces(minsh, "Error: permission denied");
 	path = find_ex_path(split_pathvar, array[0]);
+	printf("u vas %s\n", path);
 	free_all_arrays(split_pathvar);
 	executie_ve(minsh, path, new_cmd);
 }

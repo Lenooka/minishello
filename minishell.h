@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/25 18:48:47 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/25 20:18:57 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,7 @@ void		ft_lstadd_back(t_envl **lst, t_envl *new);
 int			ft_lstsize(t_envl *lst);
 char		**rem_q_from_2d(char **array);
 char    	**retrive_path_dir(t_envl **env, char *s);
+int			find_com_pos(char **arr, int pos);
 
 
 //FREES AND CLOSE

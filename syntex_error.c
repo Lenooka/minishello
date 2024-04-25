@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntex_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 22:14:57 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/19 18:40:51 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/04/25 21:34:20 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	report_syntax_error(char *error_message)
 {
-	write(2, "MiniShell: syntax error ", 25);
+	write(2, "error: syntax error ", 25);
 	write(2, error_message, ft_strlen(error_message));
 	write(2, "\n", 1);
 	return (1);

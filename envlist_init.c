@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:37:16 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/25 19:56:21 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/25 20:27:19 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ char	*envl_content_fill(const char *str, int c)
 	len = 0;
 	while (str[i] != '\0' && str[i] != (char)c)
 		i++;
-	i++;
 	if (str[i] == '\0' || str[i + 1] == '\0')
 		return (ft_strdup("  "));
 	len = ft_strlen(str) - i;
