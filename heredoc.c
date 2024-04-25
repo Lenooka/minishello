@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 20:10:00 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/25 16:11:45 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:40:45 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,11 @@ void	init_heredoc(t_mnshll *minsh, char *del, int num_indx)
 	pid = fork();
 	if (pid == 0 && fd != 0)
 	{
-		signal(SIGINT, heredoc_signal_handle); //signal fucntion for U JOEL <;
+		signal(SIGINT, heredoc_signal_handle);
 		heredoc_child(minsh, fd, del);
 	}
 	else if (pid < 0 || fd < 0)
-		//forkerror not check fd for null closing fd
+		fork_error(minsh, NULL);
 	else
 	{
 		waitpid(pid, &status, 0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_start.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:33:06 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/24 14:00:11 by olena            ###   ########.fr       */
+/*   Updated: 2024/04/25 16:41:55 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	parser_start(t_mnshll *minsh)
 	repl_var_array = replace_var(minsh);
 	if (repl_var_array == NULL)
 	{
-		printf("Replacing of variabls failed!\n"); //should exit free here??
+		printf("Replacing of variabls failed!\n");
 		return (1);
 	}
 	free_all_arrays(minsh->com_array);

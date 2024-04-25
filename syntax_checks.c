@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_checks.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 23:27:16 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/19 18:40:35 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/04/25 16:42:38 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,13 @@ int	pipe_syntax(char *str)
 	return (0);
 }
 
-//Why are we skipping quotes here? And only one kind? Do we need this, what? It's 5 AM am I stupid?
-//to ignore anything within single quotes, to ignore stuff like $$. to treat them just like string
-//skiping one kind bcs of this 
-//otolmach@c4r5p5:~$ echo "$HOME"
-	///home/otolmach
-//otolmach@c4r5p5:~$ echo '$HOME'
-	//$HOME
+/*Why are we skipping quotes here? And only one kind? Do we need this, what? It's 5 AM am I stupid?
+to ignore anything within single quotes, to ignore stuff like $$. to treat them just like string
+skiping one kind bcs of this 
+otolmach@c4r5p5:~$ echo "$HOME"
+	/home/otolmach
+otolmach@c4r5p5:~$ echo '$HOME'
+	$HOME*/
 
 int	dollar_syntax(char *str)
 {

@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:27:56 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/25 16:11:30 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:39:31 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,13 @@ void    start_procces(t_mnshll *minsh)
 	position = 0;
 	if (!minsh->list_com)
 		return ;
-    while (com_run < minsh->command_amount) //the amount of the commands from parser
+    while (com_run < minsh->command_amount)
     {
 		if (pipe(pipefd) == -1)
-			//free_error
+			pepe_error(minsh, pipefd);
 		pid = fork();
 		if (pid < 0)
-			//free_error
+			fork_error(minsh, pipefd);
 		if (pid != 0)
 			parent(minsh, pipefd, com_run, position);
 		else if (pid == 0)

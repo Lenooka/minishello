@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 14:06:39 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/25 16:06:05 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:34:22 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,6 @@ void	free_exit_procces(t_mnshll *minsh, char *mess)
 		free(minsh);
 	rl_clear_history();
 	if (mess != NULL)
-		printf("%s\n", mess);
+		ft_putstr_fd(mess, STDERR_FILENO);
 	exit(exit_s);			
 }

@@ -6,17 +6,11 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 13:22:02 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/19 21:01:43 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:46:11 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-/*
-  quote == 1m / 3n
-  redir&&pip == 2
-  tab space == 3m / 1n
-  $ = 4
-*/
 
 char	*iterati(t_mnshll *minsh, char *var)
 {

@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:34:42 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/25 16:10:22 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:02:01 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	input_redir(t_mnshll *minsh, char *filename, int procces)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{
-		//redir_open_error
+		open_redir_error(minsh, filename, procces);
 		return (1);
 	}
 	else
@@ -42,7 +42,7 @@ int	heredoc_redir(t_mnshll *minsh, char *filename, int procces)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{
-		//redir_open_error procces is used here
+		open_redir_error(minsh, filename, procces);
 		return (1);
 	}
 	else
@@ -66,7 +66,7 @@ int	output_redir(t_mnshll *minsh, char *filename, int process)
 	fd = open(file, O_CREAT | O_RDWR | O_TRUNC, 0664);
 	if (fd < 0)
 	{
-		//redir_open_error procces is used here
+		open_redir_error(minsh, filename, process);
 		return (1);
 	}
 	else
@@ -88,7 +88,7 @@ int	append_out_redir(t_mnshll *minsh, char *filename, int process)
 	fd = open(file_buf, O_CREAT | O_RDWR | O_APPEND, 0664);
 	if (fd < 0)
 	{
-		//redir_open_error procces is used here
+		open_redir_error(minsh, filename, process);
 		return (1);
 	}
 	else
