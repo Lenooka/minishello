@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 20:10:00 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/25 14:27:54 by olena            ###   ########.fr       */
+/*   Updated: 2024/04/25 16:11:45 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*hrdc_out(t_mnshll *minsh, char	*del, char *line)
 	out = remove_quotes(del);
 	if (!out)
 		return (NULL);
-	if (spec_strcmp(out, line, '\n') == 0) //write a special strcmp
+	if (spec_strcmp(out, line, '\n') == 0)
 	{
 		free(out);
 		return (NULL);

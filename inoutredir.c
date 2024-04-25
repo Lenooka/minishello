@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:34:42 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/17 18:13:02 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:10:22 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	input_redir(t_mnshll *minsh, char *filename, int procces)
 	else
 	{
 		if (dup2(fd, STDIN_FILENO) == -1)
-		//error_free_handle(fd, pipefd, "Dup2 fail");
+			dup_two_error(minsh, -123456, NULL);
 		close(fd);
 	}
 	free(file);
@@ -48,10 +48,10 @@ int	heredoc_redir(t_mnshll *minsh, char *filename, int procces)
 	else
 	{
 		if (dup2(fd, STDIN_FILENO) == -1)
-		//error_free_handle(fd, pipefd, "Dup2 fail");
+			dup_two_error(minsh, -123456, NULL);
 		close(fd);
 		if (unlink(file) == -1)
-			//error
+			free_exit_procces(minsh, "Error: unlik fail!")
 	}
 	free(file);
 	return (0);
@@ -72,7 +72,7 @@ int	output_redir(t_mnshll *minsh, char *filename, int process)
 	else
 	{
 		if (dup2(fd, STDOUT_FILENO) == -1)
-		//error_free_handle(fd, pipefd, "Dup2 fail");
+			dup_two_error(minsh, -123456, NULL);
 		close(fd);
 	}
 	free(file);
@@ -94,7 +94,7 @@ int	append_out_redir(t_mnshll *minsh, char *filename, int process)
 	else
 	{
 		if (dup2(fd, STDOUT_FILENO) == -1)
-		//error_free_handle(fd, pipefd, "Dup2 fail");
+			dup_two_error(minsh, -123456, NULL);
 		close(fd);
 	}
 	free(file);

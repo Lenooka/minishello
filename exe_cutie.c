@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_cutie.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:37:59 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/25 13:22:56 by olena            ###   ########.fr       */
+/*   Updated: 2024/04/25 16:11:03 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,12 +128,12 @@ void	exe_cutie(t_mnshll *minsh, char **array, char **new_cmd)
 		free_exit_proccess(minsh, "Error: Broken pipe");
 	if (!array || !array[0] || !array[0][0] || isbuilt(array[0]) == 1)
 		free_exit_proccess(minsh, "Error: command not found");
-	split_pathvar = retrive_path_dir(minsh->env, array[0]); //done
+	split_pathvar = retrive_path_dir(minsh->env, array[0]);
 	if (split_pathvar == NULL)
 		free_exit_proccess(minsh, "Error: path not found");
-	if (check_executie(minsh, split_pathvar, array[0]) == 0) //done
+	if (check_executie(minsh, split_pathvar, array[0]) == 0)
 		free_exit_proccess(minsh, "Error: permission denied");
-	path = find_ex_path(minsh, split_pathvar, array[0]); //simmilar to pipex?? DONE
+	path = find_ex_path(minsh, split_pathvar, array[0]);
 	free_all_arrays(split_pathvar);
 	executie_ve(minsh, path, new_cmd, env);
 }

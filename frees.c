@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   frees.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 14:06:39 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/25 14:27:11 by olena            ###   ########.fr       */
+/*   Updated: 2024/04/25 16:06:05 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	dup_two_error(t_mnshll *minsh, int fd, int *pipe_fd)
+{
+	if (fd != -123456)
+		close(fd);
+	if (pipe_fd != NULL)
+		close_fd(pipe_fd);
+	free_exit_procces(minsh, "Error: dup2 fail!");
+}
 
 void	free_heredoc(t_mnshll *minsh)
 {

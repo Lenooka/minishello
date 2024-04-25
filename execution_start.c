@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:27:56 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/19 15:33:17 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:11:30 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ void	redirect_and_close(t_mnshll *m, int fd, int op, int *pipefd)
 	if (op == 1)
 	{
 		if (dup2(fd, STDIN_FILENO) == -1)
-		//error_free_handle(fd, pipefd, "Dup2 fail");
+			dup_two_error(m, fd, pipefd);
 		close(fd);
 	}
 	else if (op == 2)
 	{
 		if (dup2(fd, STDOUT_FILENO) == -1)
-		//error_free_handle(fd, pipefd, "Dup2 fail");
+			dup_two_error(m, fd, pipefd);
 	}
 }
 /* setup fd for inp and outp 
@@ -78,7 +78,7 @@ void	parent(t_mnshll *m, int *pipe_fd, int cmrun, int pos)
 	else
 		close(pipe_fd[0]);
 	if (fd_flag == 1)
-		close_fd(pipe_fd);  //non function yet
+		close_fd(pipe_fd);
 	close(pipe_fd[1]);
 	signal(SIGINT, signal_global);
 }

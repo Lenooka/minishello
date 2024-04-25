@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/21 15:47:05 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:03:42 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,7 +174,13 @@ char		*remove_quotes(char *str);
 int			quote_amm(char *str);
 void		free_all_arrays(char **str_tab);
 int 		others(char *str, int x);
-void		free_cmd_list(t_lexer *cmdlist);
-char		*split_tmp(t_mnshll *ms, char *str, int word_len);
+
+
+//FREES AND CLOSE
+
+void	free_exit_procces(t_mnshll *minsh, char *mess);
+void	close_fd(int *fd);
+void	free_cmd_list(t_lexer *cmdlist);
+void	dup_two_error(t_mnshll *minsh, int fd, int *pipe_fd);
 
 #endif

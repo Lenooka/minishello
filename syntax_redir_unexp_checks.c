@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_redir_unexp_checks.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:54:23 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/19 05:19:10 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/04/25 16:12:54 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-//This logic can easily be overworked, re-think on how to handle every redirection check and check for the redirections.
 
 int	redir_syntax(char *input)
 {
