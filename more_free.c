@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 15:57:05 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/25 17:07:20 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:46:23 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	pepe_error(t_mnshll *minsh, int *fd)
 {
 	close_fd(fd);
 	minsh->exit = 1;
-	free_exit_proccess(minsh, "Error: Pipe fail 🐸");
+	free_exit_procces(minsh, "Error: Pipe fail 🐸");
 }
 
 void	fork_error(t_mnshll *minsh, int *fd)
@@ -54,5 +54,5 @@ void	fork_error(t_mnshll *minsh, int *fd)
 	if (fd != NULL)
 		close_fd(fd);
 	minsh->exit = 1;
-	free_exit_proccess(minsh, "Error: Fork fail");
+	free_exit_procces(minsh, "Error: Fork fail");
 }

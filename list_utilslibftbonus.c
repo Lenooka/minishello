@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   list_utils(libftbonus).c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 12:38:17 by olena             #+#    #+#             */
-/*   Updated: 2024/04/24 12:39:36 by olena            ###   ########.fr       */
+/*   Updated: 2024/04/25 18:37:10 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_lstsize(t_list *lst)
+int	ft_lstsize(t_envl *lst)
 {
 	int	i;
 

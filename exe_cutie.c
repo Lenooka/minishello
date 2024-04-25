@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:37:59 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/25 16:11:03 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:44:38 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int check_executie(t_mnshll *minsh, char **array, char *cmd)
 	return (1);
 }
 
-char    **retrive_path_dir(char **env, char *s)
+char    **retrive_path_dir(t_envl **env, char *s)
 {
     int		indx;
 	char	**result;
@@ -54,14 +54,14 @@ char    **retrive_path_dir(char **env, char *s)
 
 	indx = 0;
 	if (ft_strnstr(s, "../", 3) || ft_strnstr(s, "./", 2) == 0 || s[0] == '/')
-		return (retrive_rel_abs_path(str));
+		return (retrive_rel_abs_path(s));
 	tmp = *env;
 	while (tmp && ft_strnstr(tmp->identificator, "PATH", 4) != 0)
 		tmp = tmp->next;
 	if (!tmp)
 		return (NULL);
 	result = ft_split(tmp->content + 5, ':');
-	direc = malloc(sizeof(char *) * (size_of_2d(result) + 1))
+	direc = malloc(sizeof(char *) * (size_of_2d(result) + 1));
 	if (!direc)
 		return (NULL);
 	while (indx < size_of_2d(result))
@@ -69,12 +69,12 @@ char    **retrive_path_dir(char **env, char *s)
 		direc[indx] = ft_strjoin(result[indx], "/");
 		indx++;
 	}
-	direc[indx] == NULL;
+	direc[indx] = NULL;
 	free_all_arrays(result);
 	return (direc);	
 }
 
-char	**convert_env(t_mnshll *minsh, t_envl **envlist)
+char	**convert_env(t_envl **envlist)
 {
 	int	indx;
 	int	list_len;
@@ -100,42 +100,43 @@ char	**convert_env(t_mnshll *minsh, t_envl **envlist)
 	return (env);
 }
 
-void	executie_ve(t_mnshll *minsh, char *path, char **cm_rem, char **env)
+void	executie_ve(t_mnshll *minsh, char *path, char **cm_rem)
 {
-	env = convert_env(minsh, minsh->envl)
-	if (env = NULL)
-		free_exit_proccess(minsh, "Error: env conversion failed");
+	char	**env;
+
+	env = convert_env(minsh->envl);
+	if (env == NULL)
+		free_exit_procces(minsh, "Error: env conversion failed");
 	cm_rem = rem_q_from_2d(minsh->list_com->tokens);
 	if (cm_rem == NULL)
-		free_exit_proccess(minsh, "Error: command conversion failed");
+		free_exit_procces(minsh, "Error: command conversion failed");
 	if (execve(path, cm_rem, env) == -1)
-		free_exit_proccess(minsh, "Error: execve failed");
+		free_exit_procces(minsh, "Error: execve failed");
 	minsh->exit = errno;
-	free_exit_proccess(minsh, NULL);
+	free_exit_procces(minsh, NULL);
 }
 
 void	exe_cutie(t_mnshll *minsh, char **array, char **new_cmd)
 {
 	char	**split_pathvar;
 	char	*path;
-	char	**env;
 
 	if (!array || !array[0] || !array[0][0])
 		write(STDERR_FILENO, "Minishell: command not found\n", 29);
 	if (isbuilt(array[0]) == 1)
-		built_exe(minsh, array);
+		printf("notdoneyet\n");//built_exe(minsh, array);
 	if (g_global == SIGPIPE)
-		free_exit_proccess(minsh, "Error: Broken pipe");
+		free_exit_procces(minsh, "Error: Broken pipe");
 	if (!array || !array[0] || !array[0][0] || isbuilt(array[0]) == 1)
-		free_exit_proccess(minsh, "Error: command not found");
-	split_pathvar = retrive_path_dir(minsh->env, array[0]);
+		free_exit_procces(minsh, "Error: command not found");
+	split_pathvar = retrive_path_dir(minsh->envl, array[0]);
 	if (split_pathvar == NULL)
-		free_exit_proccess(minsh, "Error: path not found");
+		free_exit_procces(minsh, "Error: path not found");
 	if (check_executie(minsh, split_pathvar, array[0]) == 0)
-		free_exit_proccess(minsh, "Error: permission denied");
-	path = find_ex_path(minsh, split_pathvar, array[0]);
+		free_exit_procces(minsh, "Error: permission denied");
+	path = find_ex_path(split_pathvar, array[0]);
 	free_all_arrays(split_pathvar);
-	executie_ve(minsh, path, new_cmd, env);
+	executie_ve(minsh, path, new_cmd);
 }
 
 

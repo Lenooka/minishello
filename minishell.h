@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/25 17:27:17 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:48:47 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,9 +117,13 @@ void		child(t_mnshll *ms, int *pipe_fd, int cmds_run, int pos);
 int			isbuilt(char *com);
 void		redirect_and_close(t_mnshll *m, int fd, int op, int *pipefd);
 void		exe_cutie(t_mnshll *minsh, char **array, char **new_cmd);
-void		executie_ve(char *path, char **new_cmnd, char **env);
-char    	**retrive_path_dir(char **env, char *s);
-
+void		executie_ve(t_mnshll *minsh, char *path, char **cm_rem);
+char   	 	**retrive_path_dir(t_envl **env, char *s);
+int			perm_and_isdir(t_mnshll *minsh, char *cmd_path, char **array);
+char		**retrive_rel_abs_path(const char *cmd);
+char		**convert_env(t_envl **envlist);
+char	   *find_ex_path(char **array, char *cmd);
+int			isbuilt(char *com);
 //Redirections
 int	redir(t_mnshll *minsh, char **array, int pos, int process);
 int	redirout(t_mnshll *minsh, char *check, char *filename, int process);
@@ -175,6 +179,9 @@ int			quote_amm(char *str);
 void		free_all_arrays(char **str_tab);
 int 		others(char *str, int x);
 void		ft_lstadd_back(t_envl **lst, t_envl *new);
+int			ft_lstsize(t_envl *lst);
+char		**rem_q_from_2d(char **array);
+char    	**retrive_path_dir(t_envl **env, char *s);
 
 
 //FREES AND CLOSE

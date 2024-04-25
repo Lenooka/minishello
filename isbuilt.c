@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:37:13 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/17 13:44:13 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:51:25 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	isbuilt(char *com)
 {
-	if (!str)
+	if (!com)
 		return (0);
 	if (ft_strcmp(com, "echo") == 0)
 		return (1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cute_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:19:24 by olena             #+#    #+#             */
-/*   Updated: 2024/04/24 18:20:38 by olena            ###   ########.fr       */
+/*   Updated: 2024/04/25 18:31:13 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	**retrive_rel_abs_path(const char *cmd)
 }
 
 
-char   *find_ex_path(t_mnshll *minsh, char **array, char *cmd)
+char   *find_ex_path(char **array, char *cmd)
 {
 	int		indx;
 	char	*temp;
@@ -47,9 +47,9 @@ char   *find_ex_path(t_mnshll *minsh, char **array, char *cmd)
 
 	indx = 0;
 	acsess_result = 0;
-	while (array[i])
+	while (array[indx])
 	{
-		temp = ft_strjoin(array[i++], "/");
+		temp = ft_strjoin(array[indx++], "/");
 		buf = ft_strjoin(temp, cmd);
 		free(temp);
 		acsess_result = access(buf, F_OK);
