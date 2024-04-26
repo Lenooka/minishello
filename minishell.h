@@ -6,7 +6,7 @@
 /*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/24 18:40:31 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/04/26 05:45:22 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,5 +169,14 @@ char		*find_default(t_envl **envl);
 void		enter_dir(t_mnshll mini, char *env);
 void		change_path(t_envl **envl, char *oldpath);
 void		change_oldpath(t_envl **envl, char *oldpath);
+void		echo(char **inputs);
+int			check_flag(char *input);
+void		echo_flag(char **input, int x);
+void		no_flag(char **input);
+void		env(t_mnshll *mini);
+void		ft_exit(t_mnshll *mini, char **input);
+int			prep_atoi(t_mnshll *ms, char *str);
+int			exit_num(int n);
+void		pwd(void);
 
 #endif
