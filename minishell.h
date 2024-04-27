@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/25 20:18:57 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/27 19:37:27 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef	struct mnshll
 	int		fd_cmd;
 	int		lenvar;
 	int		rep_var_i;
+	int		fdcheck;
 	t_envl 	**envl;
 	t_lexer	*list_com;
 	
@@ -117,7 +118,7 @@ void		child(t_mnshll *ms, int *pipe_fd, int cmds_run, int pos);
 int			isbuilt(char *com);
 void		redirect_and_close(t_mnshll *m, int fd, int op, int *pipefd);
 void		exe_cutie(t_mnshll *minsh, char **array, char **new_cmd);
-void		executie_ve(t_mnshll *minsh, char *path, char **cm_rem);
+void		executie_ve(t_mnshll *minsh, char *path, char **cm_rem, char **array);
 char   	 	**retrive_path_dir(t_envl **env, char *s);
 int			perm_and_isdir(t_mnshll *minsh, char *cmd_path, char **array);
 char		**retrive_rel_abs_path(const char *cmd);
@@ -150,6 +151,7 @@ char		**duplicate_string_array(t_mnshll *minsh, char **old_arr);
 int			count_commands(char **str_tab);
 t_lexer		*init_list_of_comands(t_mnshll *minsh);
 char		*rep_var_w_val(t_mnshll *ms, char *result, char quotes, int str_index);
+char		*rep_var_w_val2(char *result, char *fix, char *buffer);
 
 //Herdoc
 int		if_there_heredoc(t_mnshll *minsh, char **str);

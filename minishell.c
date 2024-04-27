@@ -6,13 +6,22 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 16:03:20 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/25 14:53:04 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/27 19:55:35 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 int	g_global = 0;
+
+void	setting_to_zero(t_mnshll *mnshll)
+{
+	mnshll->fdin = -1;
+	mnshll->fdout = -1;
+	mnshll->exit = 0;
+	mnshll->input = NULL;
+	mnshll->com_array = NULL;
+}
 
 /*if envl fails I free it inside the init*/
 
@@ -26,6 +35,7 @@ int	main(int arc, char **arv, char **env)
 		mnshll = mnshll_init(mnshll, env);
 		if (mnshll == NULL)
 			return (0);
+		setting_to_zero(mnshll);
 		while (1)
 		{
 			make_sigaction();

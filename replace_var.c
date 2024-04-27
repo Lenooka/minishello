@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 13:22:02 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/25 17:10:06 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/27 19:37:40 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,9 @@ char	*iterati(t_mnshll *minsh, char *var)
 	char	*buf;
 	t_envl	*tmp;
 
-	buf = NULL;
+
 	if (ft_strcmp(var, "?") == 0)
 	{
-		if (minsh->exit == 0)
-			return ("0");
 		buf = ft_itoa(minsh->exit);
 		return (buf);
 	}
@@ -29,11 +27,13 @@ char	*iterati(t_mnshll *minsh, char *var)
 	while (tmp)
 	{
 		if (ft_strcmp((tmp)->identificator, var) == 0)
-		{
 			buf = ft_strdup((tmp)->content);
+		else
+			buf = NULL;
+		if (buf)
 			return (buf);
-		}
 		tmp = tmp->next;
+		free(buf);
 	}
 	return (NULL);
 }
@@ -70,6 +70,31 @@ is it????????
 yes?
 yes...
 */
+char	*ft_strrepdup(char *str, int len)
+{
+	char	*res;
+
+	res = malloc(sizeof(char) * len + 1);
+	if (!res)
+	{
+		printf("Minishell: Malloc error!\n");
+		return (NULL);
+	}
+	ft_strlcpy(res, str, len + 1);
+	return (res);
+}
+char	*rep_var_w_val2(char *result, char *fix, char *buffer)
+{
+	if (buffer && fix)
+		result = ft_strjoin(buffer, fix);
+	else
+		result = NULL;
+	free(buffer);
+	free(fix);
+	return (result);
+}
+
+
 char	*rep_var_w_val(t_mnshll *ms, char *result, char quotes, int str_index)
 {
 	char	*var;
@@ -79,23 +104,23 @@ char	*rep_var_w_val(t_mnshll *ms, char *result, char quotes, int str_index)
 	var = NULL;
 	fix = NULL;
 	buffer = NULL;
-	fix = ft_strndup(ms, result, str_index);
-	if (!(parser_codes(result[str_index + 1]) == 3 && !quotes))
-		buffer = ft_strndup(ms, result + str_index, get_var_len(result + str_index));
+	fix = ft_strrepdup(result, str_index);
+	if (!(parser_codes(result[str_index + 1]) == 1 && !quotes))
+		buffer = ft_strrepdup(result + str_index, get_var_len(result + str_index));
 	if (buffer && ft_strcmp(buffer, "$") == 0)
 		var = ft_strdup(buffer);
 	else if (buffer)
 		var = iterati(ms, buffer + 1);
 	free(buffer);
-	buffer = ft_strjoin(fix, var);
+	if (fix && var)
+		buffer = ft_strjoin(fix, var);
+	else
+		buffer = NULL;
 	free(fix);
 	fix = ft_strdup(result + str_index + get_var_len(result + str_index));
 	free(var);
 	free(result);
-	result = ft_strjoin(buffer, fix);
-	free(buffer);
-	free(fix);
-	return (result);
+	return (rep_var_w_val2(result, fix, buffer));
 }
 
 char	*replace_var_in_str(t_mnshll *minsh, char *str)
@@ -111,7 +136,7 @@ char	*replace_var_in_str(t_mnshll *minsh, char *str)
 		return (NULL);
 	while (rep_res && rep_res[indx])
 	{
-		if (!quote && parser_codes(rep_res[indx]) == 3)
+		if (!quote && parser_codes(rep_res[indx]) == 1)
 			quote = rep_res[indx];
 		else if (quote && rep_res[indx] == quote)
 			quote = '\0';

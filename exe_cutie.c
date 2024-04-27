@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:37:59 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/27 15:13:04 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/27 19:59:29 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,27 +92,29 @@ char	**convert_env(t_envl **envlist)
 	{
 		indetef = ft_strjoin(tmp->identificator, "=");
 		env[indx] = ft_strjoin(indetef, tmp->content);
-		free(indetef);
 		tmp = tmp->next;
+		free(indetef);
 		indx++;
 	}
 	env[indx] = NULL;
 	return (env);
 }
 
-void	executie_ve(t_mnshll *minsh, char *path, char **cm_rem)
+void	executie_ve(t_mnshll *minsh, char *path, char **cm_rem, char **array)
 {
 	char	**env;
 
 	env = convert_env(minsh->envl);
 	if (env == NULL)
 		free_exit_procces(minsh, "Error: env conversion failed");
-	cm_rem = rem_q_from_2d(minsh->list_com->tokens);
+	cm_rem = rem_q_from_2d(array);
 	if (cm_rem == NULL)
 		free_exit_procces(minsh, "Error: command conversion failed");
 	if (execve(path, cm_rem, env) == -1)
 		free_exit_procces(minsh, "Error: execve failed");
 	minsh->exit = errno;
+	free_all_arrays(env);
+	free_all_arrays(cm_rem);
 	free_exit_procces(minsh, NULL);
 }
 
@@ -136,7 +138,7 @@ void	exe_cutie(t_mnshll *minsh, char **array, char **new_cmd)
 		free_exit_procces(minsh, "Error: permission denied");
 	path = find_ex_path(split_pathvar, array[0]);
 	free_all_arrays(split_pathvar);
-	executie_ve(minsh, path, new_cmd);
+	executie_ve(minsh, path, new_cmd, array);
 }
 
 

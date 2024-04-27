@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:19:24 by olena             #+#    #+#             */
-/*   Updated: 2024/04/27 15:15:40 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/27 16:56:36 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,14 @@ char   *find_ex_path(char **array, char *cmd)
 	int		indx;
 	char	*temp;
 	char	*buf;
-	int		acsess_result;
 
 	indx = 0;
-	acsess_result = 0;
 	while (array && array[indx])
 	{
 		temp = ft_strjoin(array[indx], "/");
 		buf = ft_strjoin(temp, cmd);
 		free(temp);
-		acsess_result = access(buf, F_OK);
-		if (acsess_result == 0)
+		if (access(buf, 0) == 0)
 			return (buf);
 		free(buf);
 		indx++;

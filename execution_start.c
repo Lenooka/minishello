@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:27:56 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/27 15:10:13 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/27 19:22:48 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	redirect_and_close(t_mnshll *m, int fd, int op, int *pipefd)
 	{
 		if (dup2(fd, STDIN_FILENO) == -1)
 			dup_two_error(m, fd, pipefd);
-		close(fd);
 	}
 	else if (op == 2)
 	{
@@ -46,7 +45,10 @@ void	child(t_mnshll *ms, int *pipe_fd, int cmds_run, int pos)
 		i--;
 	}
 	if (cmds_run != 0)
+	{
 		redirect_and_close(ms, ms->fd_cmd, 1, pipe_fd);
+		close(ms->fd_cmd);
+	}
 	if (cmds_run < ms->command_amount - 1)
 		redirect_and_close(ms, pipe_fd[1], 2, pipe_fd);
 	close_fd(pipe_fd);
@@ -72,18 +74,15 @@ void	parent(t_mnshll *m, int *pipe_fd, int cmrun, int pos)
 	pos = 0;
 	cmnds = m->list_com + cmrun;
 	//shred = isbuilt(cmnds->tokens[0]) && redir(m, m->com_array, pos, 0) == 0;
-	//if (m->command_amount == 1)
-	//{
+	if (m->command_amount == 1)
+	{
 		//if(shred == 1)
-		//{
-			//fd_flag = 1;
+		fd_flag = 1;
 			//built_ex(m, cmnds->tokens);  //non function yet
-		//}
-	//}
-	printf("oi %d\n", cmrun);
+		
+	}
 	if (cmrun > 0)
 		close(m->fd_cmd);
-	printf("oiasdasd %d\n",  m->command_amount);
 	if (cmrun < m->command_amount - 1)
 		m->fd_cmd = pipe_fd[0];
 	else
@@ -93,6 +92,7 @@ void	parent(t_mnshll *m, int *pipe_fd, int cmrun, int pos)
 	close(pipe_fd[1]);
 	signal(SIGINT, signal_global);
 }
+
 
 void    start_procces(t_mnshll *minsh)
 {
@@ -110,12 +110,12 @@ void    start_procces(t_mnshll *minsh)
 		if (pipe(pipefd) == -1)
 			pepe_error(minsh, pipefd);
 		pid = fork();
-		if (pid != 0)
-			parent(minsh, pipefd, com_run, position);
 		if (pid < 0)
 			fork_error(minsh, pipefd);
-		else if (pid == 0)
+		if (pid == 0)
 			child(minsh, pipefd, com_run, position);
+		else
+			parent(minsh, pipefd, com_run, position);
 		position = find_com_pos(minsh->com_array, position);
 		com_run++;
     }
