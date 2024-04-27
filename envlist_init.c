@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:37:16 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/25 22:16:12 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/27 14:52:31 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ void	free_env(t_envl **env)
 		free(current);
 		current = next;
 	}
-	free(*env);
-	*env = NULL;
+	free(env);
 }
 
 char	*envl_content_fill(const char *str, int c)

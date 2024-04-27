@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 15:54:25 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/25 17:18:13 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/27 15:07:14 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	redirout(t_mnshll *minsh, char *check, char *filename, int process)
 {
 	if (ft_strcmp(check, ">") == 0)
 		return (output_redir(minsh, filename, process));
-	else if (ft_strcmp(check, "<<") == 0)
+	else if (ft_strcmp(check, ">>") == 0)
 		return (append_out_redir(minsh, filename, process));
 	return (0);
 }

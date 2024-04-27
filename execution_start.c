@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:27:56 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/25 22:21:23 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/27 15:10:13 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ void    start_procces(t_mnshll *minsh)
 
     com_run = 0;
 	position = 0;
-	printf("WELLDONE\n");
 	if (!minsh->list_com)
 		return ;
     while (com_run < minsh->command_amount)

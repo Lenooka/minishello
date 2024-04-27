@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:34:42 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/25 17:19:28 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/27 15:15:48 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	input_redir(t_mnshll *minsh, char *filename, int procces)
 	free(file);
 	return (0);
 }
+
 int	heredoc_redir(t_mnshll *minsh, char *filename, int procces)
 {
 	int		fd;
@@ -51,7 +52,7 @@ int	heredoc_redir(t_mnshll *minsh, char *filename, int procces)
 			dup_two_error(minsh, -123456, NULL);
 		close(fd);
 		if (unlink(file) == -1)
-			free_exit_procces(minsh, "Error: unlik fail!");
+			free_exit_procces(minsh, "Error: unlink fail!");
 	}
 	free(file);
 	return (0);

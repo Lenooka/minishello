@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:19:24 by olena             #+#    #+#             */
-/*   Updated: 2024/04/25 21:35:08 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/04/27 15:15:40 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ char	**retrive_rel_abs_path(const char *cmd)
 	char	**result;
 	char	buf[PATH_MAX + 1];
 
-	printf("what %s\n", cmd);
 	result = malloc(sizeof(char *) * 2);
 	if (!result)
 		return (NULL);
