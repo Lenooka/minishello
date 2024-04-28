@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/26 05:44:40 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/27 16:42:20 by jhuber           ###   ########.fr       */
+/*   Created: 2024/04/27 16:43:24 by jhuber            #+#    #+#             */
+/*   Updated: 2024/04/28 20:34:31 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	pwd(void)
+void	ft_export(t_mnshll mini, char **input)
 {
-	int		x;
-	char	env[PATH_MAX + 1];
+	int	x;
+	int	check;
+	char *content;
 
-	x = 0;
-	if (getcwd(env, sizeof(env)) != NULL) 
+	x = 1;
+	if (!input[x])
 	{
-		printf("%s\n", env);
-		while (cwd[x])
-		{
-			env[x] = 0;
-			x++;
-		}
+		export_empty(mini);
+		return ;
 	}
-	else
-		perror("Minishell$> pwd() error!"); //message needs to be changed, otherwise, this function should work.
+	while (cmd_line[x])
+	{
+		content = ft_strdup(cmd_line[i]);
+		check = check_identifier(mini, content);
+		ft_export_2(mini, content, check);
+		x++;
+		free(content);
+	}
 }
