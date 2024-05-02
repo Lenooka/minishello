@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 13:22:02 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/27 19:37:40 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/02 16:24:32 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,5 +176,6 @@ char	**replace_var(t_mnshll *minsh)
 			rep_arr[minsh->rep_var_i++] = rep_res;
 	}
 	rep_arr[minsh->rep_var_i] = NULL;
+	free_all_arrays(minsh->com_array);
 	return (rep_arr);
 }

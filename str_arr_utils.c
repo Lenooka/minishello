@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 19:10:26 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/27 19:55:24 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/02 18:48:12 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,17 @@ char	**duplicate_string_array(t_mnshll *minsh, char **old_arr)
 	int		i;
 
 	i = 0;
-	size = size_of_2d(old_arr) + 1;
-	result = malloc(sizeof(char *) * (size));
+	size = size_of_2d(old_arr);
+	result = malloc(sizeof(char *) * (size + 1));
 	if (!result)
 		free_exit_procces(minsh, "Error : Malloc fail!");
 	while (old_arr && old_arr[i])
 	{
-		result[i] = ft_strdup(old_arr[i]);
+		result[i] = ft_strndup(minsh, old_arr[i], ft_strlen(old_arr[i]));
 		i++;
 	}
 	result[i] = NULL;
+	free_all_arrays(old_arr);
 	return (result);
 }
 
@@ -72,7 +73,7 @@ void	free_all_arrays(char **str_tab)
 	j = 0;
 	if (!str_tab)
 		return ;
-	while (str_tab[j] != 0)
+	while (str_tab[j] != NULL)
 	{
 		free(str_tab[j]);
 		j++;

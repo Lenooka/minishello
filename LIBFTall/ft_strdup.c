@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 17:58:46 by otolmach          #+#    #+#             */
-/*   Updated: 2024/01/06 13:42:50 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/02 16:23:09 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,6 @@ char	*ft_strdup(char *s)
 	{
 		return (NULL);
 	}
-	while (s[i])
-	{
-		cs[i] = s[i];
-		i++;
-	}
-	cs[i] = '\0';
+	ft_strlcpy(cs, s, size + 1);
 	return (cs);
 }

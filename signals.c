@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:41:46 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/25 13:16:20 by olena            ###   ########.fr       */
+/*   Updated: 2024/05/02 16:31:26 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	make_sigaction(void) // This makes sigaction, catching signals and redirect
 void	handler_cd(t_mnshll *minsh) // This is about Control+D
 {
 	if (!(minsh->input))
-		free_exit_procces(minsh, "exit");
+		free_exit_procces(minsh, "exit\n");
 }
 
 void	check_global_end(void) // checks for any Signals after the process has finished.

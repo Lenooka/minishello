@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:37:59 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/27 19:59:29 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/02 19:20:02 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,12 +106,12 @@ void	executie_ve(t_mnshll *minsh, char *path, char **cm_rem, char **array)
 
 	env = convert_env(minsh->envl);
 	if (env == NULL)
-		free_exit_procces(minsh, "Error: env conversion failed");
+		free_exit_procces(minsh, "Error: env conversion failed \n");
 	cm_rem = rem_q_from_2d(array);
 	if (cm_rem == NULL)
-		free_exit_procces(minsh, "Error: command conversion failed");
+		free_exit_procces(minsh, "Error: command conversion failed\n");
 	if (execve(path, cm_rem, env) == -1)
-		free_exit_procces(minsh, "Error: execve failed");
+		free_exit_procces(minsh, NULL);
 	minsh->exit = errno;
 	free_all_arrays(env);
 	free_all_arrays(cm_rem);
@@ -124,18 +124,18 @@ void	exe_cutie(t_mnshll *minsh, char **array, char **new_cmd)
 	char	*path;
 
 	if (!array || !array[0] || !array[0][0])
-		free_exit_procces(minsh, "Error: command not found");
+		free_exit_procces(minsh, NULL);
 	//if (isbuilt(array[0]) == 1)
 		//printf("notdoneyet\n");//built_exe(minsh, array);
 	if (g_global == SIGPIPE)
-		free_exit_procces(minsh, "Error: Broken pipe");
+		free_exit_procces(minsh, "Error: Broken pipe\n");
 	if (!array || !array[0] || !array[0][0]) //|| isbuilt(array[0]) == 1)
-		free_exit_procces(minsh, "Error: command not found");
+		free_exit_procces(minsh, "Error: command not found\n");
 	split_pathvar = retrive_path_dir(minsh->envl, array[0]);
 	if (split_pathvar == NULL)
-		free_exit_procces(minsh, "Error: path not found");
+		free_exit_procces(minsh, "Error: path not found\n");
 	if (check_executie(minsh, split_pathvar, array[0]) == 0)
-		free_exit_procces(minsh, "Error: permission denied");
+		free_exit_procces(minsh, "Error: permission denied\n");
 	path = find_ex_path(split_pathvar, array[0]);
 	free_all_arrays(split_pathvar);
 	executie_ve(minsh, path, new_cmd, array);

@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:54:23 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/25 16:12:54 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/02 14:20:54 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	token_syntax(char *input)
 
 	x = 0;
 	len = ft_strlen(input);
-	while (x < len)
+	while (x < len && input[x])
 	{
 		if (x < len && parser_codes(input[x]) == 3)
 			x = little_skip_quotes(input, x, len);

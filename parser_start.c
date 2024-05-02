@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:33:06 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/27 19:41:09 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/02 16:24:12 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,7 @@ int	parser_start(t_mnshll *minsh)
 		printf("Replacing of variabls failed!\n");
 		return (1);
 	}
-	free_all_arrays(minsh->com_array);
 	minsh->com_array = duplicate_string_array(minsh, repl_var_array);
-	free_all_arrays(repl_var_array);
 	minsh->command_amount = count_commands(minsh->com_array);
 	minsh->list_com = init_list_of_comands(minsh);
 	if (minsh->list_com == NULL)

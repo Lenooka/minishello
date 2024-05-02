@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:57:54 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/25 17:10:28 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/02 14:27:11 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@ int	little_skip_quotes(char *str, int x, int len)
 {
 	char	c;
 
-	c = str[x];
+	c = '\0';
+	if (x < len && str[x])
+        c = str[x];
 	x++;
-	while (x < len && str[x] != c)
+	while (x < len && str[x] != c && str[x] != '\0')
 		x++;
 	if (x < len)
 		x++;
@@ -34,7 +36,7 @@ int	quote_amm(char *str)
 	n = 0;
 	while (str[i] != '\0')
 	{
-		if (parser_codes(str[i]) == 1)
+		if (parser_codes(str[i]) == 1 && str[i])
 		{
 			i = little_skip_quotes(str, str[i], ft_strlen(str));
 			n = n + 2;
