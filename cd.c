@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 18:41:45 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/24 18:13:55 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/05/03 17:11:03 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*find_default(t_envl **envl)
 	return (NULL);
 }
 
-void	cd_default(t_mnshll mini)
+void	cd_default(t_mnshll *mini)
 {
 	char	*default;
 
