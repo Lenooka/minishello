@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 20:10:00 by otolmach          #+#    #+#             */
-/*   Updated: 2024/05/02 18:57:05 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/03 12:08:01 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ void	init_heredoc(t_mnshll *minsh, char *del, int num_indx)
 	pid_t	pid;
 	int		status;
 
-	signal(SIGINT, SIG_IGN);
 	fd = file_des_create(minsh, num_indx);
 	pid = fork();
 	if (pid == 0 && fd != 0)
@@ -110,9 +109,10 @@ int	if_there_heredoc(t_mnshll *minsh, char **str)
 			free(str[i + 1]);
 			str[i + 1] = ft_strdup(minsh->heredoc_buf);
 			free(minsh->heredoc_buf);
-			if (g_global == SIGINT)
+			if (g_global == 0)
 			{
 				g_global = 0;
+				free_all_arrays(str);
 				return (1);
 			}
 			i += 2;

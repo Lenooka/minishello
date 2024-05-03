@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:37:59 by otolmach          #+#    #+#             */
-/*   Updated: 2024/05/02 19:20:02 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/03 12:17:01 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,7 @@ void	executie_ve(t_mnshll *minsh, char *path, char **cm_rem, char **array)
 	cm_rem = rem_q_from_2d(array);
 	if (cm_rem == NULL)
 		free_exit_procces(minsh, "Error: command conversion failed\n");
-	if (execve(path, cm_rem, env) == -1)
-		free_exit_procces(minsh, NULL);
+	execve(path, cm_rem, env);
 	minsh->exit = errno;
 	free_all_arrays(env);
 	free_all_arrays(cm_rem);

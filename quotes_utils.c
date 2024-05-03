@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:57:54 by jhuber            #+#    #+#             */
-/*   Updated: 2024/05/02 14:27:11 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/03 12:11:30 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	quote_amm(char *str)
 
 	i = 0;
 	n = 0;
+	if (!str || !str[0])
+		return (0);
 	while (str[i] != '\0')
 	{
 		if (parser_codes(str[i]) == 1 && str[i])
