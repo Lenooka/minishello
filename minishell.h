@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/05/03 13:01:21 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/03 13:03:26 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,5 +202,19 @@ void	free_heredoc(t_mnshll *minsh);
 
 //builtins
 void		cd(t_mnshll mini, char **env);
+void		cd_default(t_mnshll mini);
+char		*find_default(t_envl **envl);
+void		enter_dir(t_mnshll mini, char *env);
+void		change_path(t_envl **envl, char *oldpath);
+void		change_oldpath(t_envl **envl, char *oldpath);
+void		echo(char **inputs);
+int			check_flag(char *input);
+void		echo_flag(char **input, int x);
+void		no_flag(char **input);
+void		env(t_mnshll *mini);
+void		ft_exit(t_mnshll *mini, char **input);
+int			prep_atoi(t_mnshll *ms, char *str);
+int			exit_num(int n);
+void		pwd(void);
 
 #endif
