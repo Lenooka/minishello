@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:20:11 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/25 17:09:07 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/03 18:23:23 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	file_des_create(t_mnshll *minsh, int here_num)
 		i++;
 	}
 	fd = create_file(minsh, minsh->heredoc_buf);
+	close(fd);
 	return (fd);
 }
 

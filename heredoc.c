@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 20:10:00 by otolmach          #+#    #+#             */
-/*   Updated: 2024/05/03 13:49:47 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/03 18:22:11 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	init_heredoc(t_mnshll *minsh, char *del, int num_indx)
 	{
 		signal(SIGINT, heredoc_signal_handle);
 		heredoc_child(minsh, fd, del);
+		close(fd);
 	}
 	else if (pid < 0 || fd < 0)
 		fork_error(minsh, NULL);

@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:27:56 by otolmach          #+#    #+#             */
-/*   Updated: 2024/05/03 16:44:32 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/03 18:30:31 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,21 +67,21 @@ if there more than one close the fd for prev command
 void	parent(t_mnshll *m, int *pipe_fd, int cmrun, int pos)
 {
 	t_lexer	*cmnds;
-	int		shred;
+	//int		shred;
 	int		fd_flag;
 
 	fd_flag = 0;
 	pos = 0;
-	cmnds = m->list_com + cmrun;
-	shred = isbuilt(cmnds->tokens[0]) && redir(m, m->com_array, pos, 0) == 0;
-	if (m->command_amount == 1)
-	{
-		if(shred == 1)
-		{
-			fd_flag = 1;
-			built_ex(m, cmnds->tokens);  //non function yet
-		}
-	}
+	cmnds = m->list_com + cmrun; //this is ,ight be the promblem
+	//shred = isbuilt(cmnds->tokens[0]) && redir(m, m->com_array, pos, 0) == 0;
+	// if (m->command_amount == 1)
+	// {
+	// 	if(shred == 1)
+	// 	{
+	// 		fd_flag = 1;
+	// 		built_ex(m, cmnds->tokens);  //non function yet
+	// 	}
+	// }
 	if (cmrun > 0)
 		close(m->fd_cmd);
 	if (cmrun < m->command_amount - 1)
