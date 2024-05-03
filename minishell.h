@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/27 19:37:27 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/03 13:01:21 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,5 +199,8 @@ int		open_error(t_mnshll *minsh, char *filename, int process);
 void	pepe_error(t_mnshll *minsh, int *fd);
 void	fork_error(t_mnshll *minsh, int *fd);
 void	free_heredoc(t_mnshll *minsh);
+
+//builtins
+void		cd(t_mnshll mini, char **env);
 
 #endif
