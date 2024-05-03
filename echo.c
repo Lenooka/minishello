@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 21:35:11 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/26 03:11:15 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/05/03 13:56:41 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	echo_flag(char **input, int x)
 			printf("%s", str);
 			free(str);
 		}
-		if (cmd_line[x + 1])
+		if (str[x + 1])
 			ft_printf(" ");
 		x++;
 	}
@@ -79,14 +79,14 @@ int	check_flag(char *input) //Should work, might be trolling doe, who knows? Clu
 	return (0);
 }
 
-void	echo(char **inputs)
+void	ft_echo(char **inputs)
 {
 	int	x;
 	int	option;
 
 	x = 1;
 	option = 0;
-	if (!inputs[i])
+	if (!inputs[x])
 	{
 		printf("\n");
 		return ;

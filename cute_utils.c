@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:19:24 by olena             #+#    #+#             */
-/*   Updated: 2024/05/02 16:39:14 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/03 13:32:32 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	**retrive_rel_abs_path(const char *cmd)
 }
 
 
-char   *find_ex_path(char **array, char *cmd)
+char   *find_ex_path(t_mnshll *minsh, char **array, char *cmd)
 {
 	int		indx;
 	char	*temp;
@@ -61,7 +61,8 @@ char   *find_ex_path(char **array, char *cmd)
 	{
 		write(STDERR_FILENO, "Error: ", 7);
 		ft_putstr_fd(cmd, STDERR_FILENO);
-		write(STDERR_FILENO, ": command not found\n", 20);
+		minsh->exit = 127;
+		return (NULL);
 	}
 	return (NULL);
 }

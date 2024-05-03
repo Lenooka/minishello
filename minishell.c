@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 16:03:20 by otolmach          #+#    #+#             */
-/*   Updated: 2024/05/02 19:13:10 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/03 13:42:00 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	setting_to_zero(t_mnshll *mnshll)
 	mnshll->exit = 0;
 	mnshll->input = NULL;
 	mnshll->com_array = NULL;
+	mnshll->list_com = NULL;
 }
 
 /*if envl fails I free it inside the init*/

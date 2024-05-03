@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 20:10:00 by otolmach          #+#    #+#             */
-/*   Updated: 2024/05/03 12:08:01 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/03 13:49:47 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	heredoc_child(t_mnshll *minsh, int fd, char *del)
 	if (line)
 		free_and_null((void **)&line);
 	close(fd);
-	free_heredoc(minsh);
+	free_heredoc(minsh, fd);
 }
 
 void	init_heredoc(t_mnshll *minsh, char *del, int num_indx)
@@ -109,10 +109,9 @@ int	if_there_heredoc(t_mnshll *minsh, char **str)
 			free(str[i + 1]);
 			str[i + 1] = ft_strdup(minsh->heredoc_buf);
 			free(minsh->heredoc_buf);
-			if (g_global == 0)
+			if (g_global == SIGINT)
 			{
 				g_global = 0;
-				free_all_arrays(str);
 				return (1);
 			}
 			i += 2;

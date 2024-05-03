@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:57:54 by jhuber            #+#    #+#             */
-/*   Updated: 2024/05/03 12:11:30 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/03 16:55:22 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ int	quote_amm(char *str)
 		return (0);
 	while (str[i] != '\0')
 	{
-		if (parser_codes(str[i]) == 1 && str[i])
+		if (parser_codes(str[i]) == 1)
 		{
-			i = little_skip_quotes(str, str[i], ft_strlen(str));
+			i = little_skip_quotes(str, i, ft_strlen(str) + 1);
 			n = n + 2;
 		}
 		else
@@ -61,7 +61,7 @@ char	*remove_quotes(char *str)
 	temp = ft_calloc(sizeof(char), (ft_strlen(str) - quote_amm(str) + 1));
 	if (!temp)
 		return (NULL);
-	while (str[i])
+	while (str[i] != '\0')
 	{
 		if (parser_codes(str[i]) == 1)
 		{
@@ -83,10 +83,10 @@ char	**rem_q_from_2d(char **array)
 	char	**temp;
 
 	i = 0;
-	temp = ft_calloc(sizeof(char *), size_of_2d(array) + 1);
+	temp = ft_calloc(sizeof(char *), (size_of_2d(array) + 1));
 	if (!temp)
 		return (NULL);
-	while (array[i])
+	while (array[i] != NULL)
 	{
 		temp[i] = remove_quotes(array[i]);
 		i++;

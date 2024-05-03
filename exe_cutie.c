@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:37:59 by otolmach          #+#    #+#             */
-/*   Updated: 2024/05/03 12:17:01 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/03 16:26:29 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,18 +124,23 @@ void	exe_cutie(t_mnshll *minsh, char **array, char **new_cmd)
 
 	if (!array || !array[0] || !array[0][0])
 		free_exit_procces(minsh, NULL);
-	//if (isbuilt(array[0]) == 1)
-		//printf("notdoneyet\n");//built_exe(minsh, array);
+	if (isbuilt(array[0]) == 1)
+		built_ex(minsh, array);
 	if (g_global == SIGPIPE)
 		free_exit_procces(minsh, "Error: Broken pipe\n");
-	if (!array || !array[0] || !array[0][0]) //|| isbuilt(array[0]) == 1)
-		free_exit_procces(minsh, "Error: command not found\n");
+	if ((!array || !array[0] || !array[0][0]) || isbuilt(array[0]) == 1)
+		free_exit_procces(minsh, NULL);
 	split_pathvar = retrive_path_dir(minsh->envl, array[0]);
 	if (split_pathvar == NULL)
 		free_exit_procces(minsh, "Error: path not found\n");
 	if (check_executie(minsh, split_pathvar, array[0]) == 0)
 		free_exit_procces(minsh, "Error: permission denied\n");
-	path = find_ex_path(split_pathvar, array[0]);
+	path = find_ex_path(minsh, split_pathvar, array[0]);
+	if (path == NULL)
+	{
+		free_all_arrays(split_pathvar);
+		free_exit_procces(minsh, ": command not found\n");
+	}
 	free_all_arrays(split_pathvar);
 	executie_ve(minsh, path, new_cmd, array);
 }

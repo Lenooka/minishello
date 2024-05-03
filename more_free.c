@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 15:57:05 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/25 18:46:23 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/03 14:37:53 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	open_error(t_mnshll *minsh, char *filename, int process)
 		if (filename)
 			free(filename);
 		minsh->exit = 1;
-		free_exit_procces(minsh, NULL);
+		free_exit_out_all(minsh, NULL);
 	}
 	else
 	{
@@ -55,4 +55,30 @@ void	fork_error(t_mnshll *minsh, int *fd)
 		close_fd(fd);
 	minsh->exit = 1;
 	free_exit_procces(minsh, "Error: Fork fail");
+}
+
+void	free_exit_out_all(t_mnshll *minsh, char *mess)
+{
+	int	exit_s;
+
+	exit_s = minsh->exit;
+	if (mess != NULL)
+		write(STDERR_FILENO, mess, ft_strlen(mess));
+	if (minsh->input)
+		free(minsh->input);
+	if (minsh->list_com)
+		free_cmd_list(minsh->list_com);
+	if (minsh->envl)
+		free_env(minsh->envl);
+	close(0);
+	close(1);
+	close(2);
+	if (minsh->fdin != -1)
+		close(minsh->fdin);
+	if (minsh->fdout != -1)
+		close(minsh->fdout);
+	if (minsh)
+		free(minsh);
+	rl_clear_history();
+	exit(exit_s);			
 }

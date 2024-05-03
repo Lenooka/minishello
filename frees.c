@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 14:06:39 by otolmach          #+#    #+#             */
-/*   Updated: 2024/05/03 12:15:46 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/03 14:35:59 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@ void	dup_two_error(t_mnshll *minsh, int fd, int *pipe_fd)
 	free_exit_procces(minsh, "Error: dup2 fail!");
 }
 
-void	free_heredoc(t_mnshll *minsh)
+void	free_heredoc(t_mnshll *minsh, int fd)
 {
 	int	exit_s;
 
+	close(fd);
 	exit_s = minsh->exit;
 	if (minsh->input)
 		free(minsh->input);

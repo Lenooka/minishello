@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/05/03 13:03:26 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/03 14:37:29 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ void		minishell(t_mnshll *mnshll);
 void		start_procces(t_mnshll *mnshll);
 void 		exit_status(t_mnshll *mnshll, pid_t pid, int com_run);
 int			if_there_heredoc(t_mnshll *minsh, char **str);
-void		ft_exit(t_mnshll *m);
 void		parent(t_mnshll *m, int *pipe_fd, int cmrun, int pos);
 void		child(t_mnshll *ms, int *pipe_fd, int cmds_run, int pos);
 int			isbuilt(char *com);
@@ -123,7 +122,7 @@ char   	 	**retrive_path_dir(t_envl **env, char *s);
 int			perm_and_isdir(t_mnshll *minsh, char *cmd_path, char **array);
 char		**retrive_rel_abs_path(const char *cmd);
 char		**convert_env(t_envl **envlist);
-char	   *find_ex_path(char **array, char *cmd);
+char   		*find_ex_path(t_mnshll *minsh, char **array, char *cmd);
 int			isbuilt(char *com);
 //Redirections
 int	redir(t_mnshll *minsh, char **array, int pos, int process);
@@ -198,16 +197,18 @@ void	free_to_main(t_mnshll *minsh);
 int		open_error(t_mnshll *minsh, char *filename, int process);
 void	pepe_error(t_mnshll *minsh, int *fd);
 void	fork_error(t_mnshll *minsh, int *fd);
-void	free_heredoc(t_mnshll *minsh);
+void	free_heredoc(t_mnshll *minsh, int fd);
+void	free_exit_out_all(t_mnshll *minsh, char *mess);
 
 //builtins
+void		built_ex(t_mnshll *minsh, char **tokens);
 void		cd(t_mnshll mini, char **env);
 void		cd_default(t_mnshll mini);
 char		*find_default(t_envl **envl);
 void		enter_dir(t_mnshll mini, char *env);
 void		change_path(t_envl **envl, char *oldpath);
 void		change_oldpath(t_envl **envl, char *oldpath);
-void		echo(char **inputs);
+void		ft_echo(char **inputs);
 int			check_flag(char *input);
 void		echo_flag(char **input, int x);
 void		no_flag(char **input);

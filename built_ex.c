@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 17:14:21 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/19 17:51:56 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/03 16:37:03 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	built_ex(t_mnshll *minsh, char **tokens)
 {
-
-
+	minsh->exit = 0;
+	tokens = rem_q_from_2d(tokens);
+	ft_echo(tokens);
+	free_all_arrays(tokens);
 }
