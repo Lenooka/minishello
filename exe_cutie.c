@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:37:59 by otolmach          #+#    #+#             */
-/*   Updated: 2024/05/03 16:26:29 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/06 13:02:58 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	executie_ve(t_mnshll *minsh, char *path, char **cm_rem, char **array)
 	minsh->exit = errno;
 	free_all_arrays(env);
 	free_all_arrays(cm_rem);
-	free_exit_procces(minsh, NULL);
+	free_exit_procces(minsh, array[0]);
 }
 
 void	exe_cutie(t_mnshll *minsh, char **array, char **new_cmd)

@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:57:54 by jhuber            #+#    #+#             */
-/*   Updated: 2024/05/03 16:55:22 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:54:02 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,11 @@ char	**rem_q_from_2d(char **array)
 {
 	int		i;
 	char	**temp;
+	int		len;
 
 	i = 0;
-	temp = ft_calloc(sizeof(char *), (size_of_2d(array) + 1));
+	len = size_of_2d(array);
+	temp = ft_calloc(sizeof(char *), (len + 1));
 	if (!temp)
 		return (NULL);
 	while (array[i] != NULL)
