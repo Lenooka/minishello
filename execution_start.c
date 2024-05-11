@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_start.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:27:56 by otolmach          #+#    #+#             */
-/*   Updated: 2024/05/06 13:07:44 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/11 16:01:43 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,21 +67,19 @@ if there more than one close the fd for prev command
 void	parent(t_mnshll *m, int *pipe_fd, int cmrun, int pos)
 {
 	t_lexer	*cmnds;
-	//int		shred;
 	int		fd_flag;
 
 	fd_flag = 0;
 	pos = 0;
 	cmnds = m->list_com + cmrun;
-	// shred = isbuilt(cmnds->tokens[0]) && redir(m, m->com_array, pos, 0) == 0;
-	// if (m->command_amount == 1)
-	// {
-	// 	if(shred == 1)
-	// 	{
-	// 		fd_flag = 1;
-	// 		built_ex(m, cmnds->tokens);
-	// 	}
-	// }
+	if (m->command_amount == 1)
+	{
+		if(isbuilt(cmnds->tokens[0]) && redir(m, m->com_array, pos, 0) == 0)
+		{
+			fd_flag = 1;
+			built_ex(m, cmnds->tokens);
+		}
+	}
 	if (cmrun > 0)
 		close(m->fd_cmd);
 	if (cmrun < m->command_amount - 1)
