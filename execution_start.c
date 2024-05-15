@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_start.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:27:56 by otolmach          #+#    #+#             */
-/*   Updated: 2024/05/11 16:01:43 by olena            ###   ########.fr       */
+/*   Updated: 2024/05/15 13:48:03 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void	child(t_mnshll *ms, int *pipe_fd, int cmds_run, int pos)
 	if (cmds_run < ms->command_amount - 1)
 		redirect_and_close(ms, pipe_fd[1], 2, pipe_fd);
 	close_fd(pipe_fd);
-	//if ((ms->command_amount == 1) && isbuilt(cmd->tokens[0]))
-		//free_exit_procces(ms, NULL);
+	if ((ms->command_amount == 1) && isbuilt(cmd->tokens[0]))
+		free_exit_procces(ms, NULL);
 	redir(ms, ms->com_array, pos, 1);
 	exe_cutie(ms, cmd->tokens, new_cmds);
 }
