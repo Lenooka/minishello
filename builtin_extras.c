@@ -6,7 +6,7 @@
 /*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:06:37 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/28 20:10:38 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/05/05 00:56:23 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,53 @@ void	list_swap(t_mnshll *mini, t_envl *list)
 	top->content = top->next->content;
 	top->next->ident = ident;
 	top->next->content = content;
+}
+
+char	*get_ident(char *str, int c) //might need const
+{
+	int		i;
+	int		j;
+	int		len;
+	char	*res;
+
+	i = -1;
+	j = 0;
+	while (str[++i])
+		if (str[i] == (char)c)
+			break ;
+	len = i + 1;
+	res = malloc(sizeof(char) * len);
+	if (!res)
+		return (NULL);
+	while (j < i)
+	{
+		res[j] = str[j];
+		j++;
+	}
+	res[j] = '\0';
+	return (res);
+}
+
+char	*get_cont(char *str, int c) //might need const char
+{
+	int		i;
+	int		j;
+	int		len;
+	char	*res;
+
+	i = -1;
+	j = -1;
+	while (str[++i])
+		if (str[i] == (char)c)
+			break ;
+	if (i == (int)ft_strlen(str) || str[i + 1] == '\0')
+		return (ft_strdup("  "));
+	len = ft_strlen(str) - i + 1;
+	res = malloc(sizeof(char) * len);
+	if (!res)
+		return (NULL);
+	while (str[i])
+		res[++j] = str[++i];
+	res[j] = '\0';
+	return (res);
 }
