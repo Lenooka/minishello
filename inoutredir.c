@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:34:42 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/27 15:15:48 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/28 13:34:52 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	heredoc_redir(t_mnshll *minsh, char *filename, int procces)
 		if (unlink(file) == -1)
 			free_exit_procces(minsh, "Error: unlink fail!");
 	}
+	free(filename);
 	free(file);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:37:59 by otolmach          #+#    #+#             */
-/*   Updated: 2024/05/06 13:02:58 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/28 15:55:29 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ char    **retrive_path_dir(t_envl **env, char *s)
 
 	indx = 0;
 	if (ft_strncmp(s, "../", 3) == 0 || ft_strncmp(s, "./", 2) == 0 || s[0] == '/')
+	{
 		return (retrive_rel_abs_path(s));
+	}
 	tmp = *env;
 	while (tmp && ft_strncmp(tmp->identificator, "PATH", 4) != 0)
 		tmp = tmp->next;
@@ -130,7 +132,7 @@ void	exe_cutie(t_mnshll *minsh, char **array, char **new_cmd)
 		free_exit_procces(minsh, "Error: Broken pipe\n");
 	if ((!array || !array[0] || !array[0][0]) || isbuilt(array[0]) == 1)
 		free_exit_procces(minsh, NULL);
-	split_pathvar = retrive_path_dir(minsh->envl, array[0]);
+	split_pathvar = retrive_path_dir(minsh->envl, array[0]);			
 	if (split_pathvar == NULL)
 		free_exit_procces(minsh, "Error: path not found\n");
 	if (check_executie(minsh, split_pathvar, array[0]) == 0)

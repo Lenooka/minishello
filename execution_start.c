@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:27:56 by otolmach          #+#    #+#             */
-/*   Updated: 2024/05/15 13:48:03 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/28 15:52:58 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,9 @@ void    start_procces(t_mnshll *minsh)
 		if (pid < 0)
 			fork_error(minsh, pipefd);
 		if (pid == 0)
+		{
 			child(minsh, pipefd, com_run, position);
+		}
 		else
 			parent(minsh, pipefd, com_run, position);
 		position = find_com_pos(minsh->com_array, position);
@@ -123,9 +125,11 @@ void    start_procces(t_mnshll *minsh)
 
 void	minishell(t_mnshll *mnshll)
 {
+	mnshll->extra = 0;
 	start_procces(mnshll);
 	free_cmd_list(mnshll->list_com);
 	mnshll->list_com = NULL;
-	free_all_arrays(mnshll->com_array);
+	if (mnshll->extra == 0)
+		free_all_arrays(mnshll->com_array);
 	mnshll->com_array = NULL;
 }

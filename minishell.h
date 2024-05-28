@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/05/03 14:37:29 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/28 12:58:24 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef	struct mnshll
 	int		lenvar;
 	int		rep_var_i;
 	int		fdcheck;
+	int 	extra;
 	t_envl 	**envl;
 	t_lexer	*list_com;
 	

@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 15:57:05 by otolmach          #+#    #+#             */
-/*   Updated: 2024/05/03 14:37:53 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/28 13:35:40 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ int	open_error(t_mnshll *minsh, char *filename, int process)
 		if (filename)
 			free(filename);
 		minsh->exit = 1;
-		free_exit_out_all(minsh, NULL);
+		minsh->extra = 1;
+		free_exit_procces(minsh, NULL);
 	}
 	else
 	{
 		ft_putstr_fd("Error : ", STDERR_FILENO);
 		perror(filename);
-		if (filename)
-			free(filename);
 		minsh->exit = 1;
+		minsh->extra = 1;
 		return (1);
 	}
 	return (0);
