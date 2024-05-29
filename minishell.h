@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/05/28 12:58:24 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/29 16:20:49 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,6 +200,7 @@ void	pepe_error(t_mnshll *minsh, int *fd);
 void	fork_error(t_mnshll *minsh, int *fd);
 void	free_heredoc(t_mnshll *minsh, int fd);
 void	free_exit_out_all(t_mnshll *minsh, char *mess);
+void	error_msg(t_mnshll *minsh, char *msg, int exit_code);
 
 //builtins
 void		built_ex(t_mnshll *minsh, char **tokens);

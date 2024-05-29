@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_extras.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:06:37 by jhuber            #+#    #+#             */
-/*   Updated: 2024/05/05 00:56:23 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/05/29 16:20:34 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	error_msg(t_mnshll *minsh, char *msg, int exit_code)
+{
+	if (exit_code == 1 && msg)
+	{
+		printf("Error: %s\n", msg);
+	}
+	else if (exit_code == 2)
+	{
+		printf("Error: Malloc error\n");
+		free(minsh);
+		exit(12);
+	}
+}
 
 void	change_oldpath(t_envl **envl, char *oldpath)
 {
