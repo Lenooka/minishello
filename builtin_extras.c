@@ -6,17 +6,17 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:06:37 by jhuber            #+#    #+#             */
-/*   Updated: 2024/05/29 16:20:34 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/29 17:22:54 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	error_msg(t_mnshll *minsh, char *msg, int exit_code)
+void	error_msg(t_mnshll *minsh, char *msg, int exit_code, char *com)
 {
 	if (exit_code == 1 && msg)
 	{
-		printf("Error: %s\n", msg);
+		printf("Error: %s: %s\n", com, msg);
 	}
 	else if (exit_code == 2)
 	{
@@ -28,7 +28,7 @@ void	error_msg(t_mnshll *minsh, char *msg, int exit_code)
 
 void	change_oldpath(t_envl **envl, char *oldpath)
 {
-	t_envl	tmp;
+	t_envl	*tmp;
 	char	*new_content;
 
 	tmp = *envl;
@@ -64,11 +64,11 @@ void	list_swap(t_mnshll *mini, t_envl *list)
 		return ;
 	}
 	tmp = top;
-	ident = tmp->ident;
+	ident = tmp->identificator;
 	content = tmp->content;
-	top->ident = top->next->ident;
+	top->identificator = top->next->identificator;
 	top->content = top->next->content;
-	top->next->ident = ident;
+	top->next->identificator = ident;
 	top->next->content = content;
 }
 

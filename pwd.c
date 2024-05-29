@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 05:44:40 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/27 16:42:20 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/05/29 17:19:56 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void	pwd(void)
 	if (getcwd(env, sizeof(env)) != NULL) 
 	{
 		printf("%s\n", env);
-		while (cwd[x])
+		while (env[x])
 		{
 			env[x] = 0;
 			x++;
 		}
 	}
 	else
-		perror("Minishell$> pwd() error!"); //message needs to be changed, otherwise, this function should work.
+		perror("pwd:"); //message needs to be changed, otherwise, this function should work.
 }

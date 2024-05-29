@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 18:41:45 by jhuber            #+#    #+#             */
-/*   Updated: 2024/05/29 16:28:02 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/29 17:11:28 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	change_path(t_envl **envl, char *oldpath)
 {
-	t_envl	tmp;
+	t_envl	*tmp;
 	char	newpath[PATH_MAX + 1];
 
 	tmp = *envl;
@@ -35,7 +35,7 @@ void	change_path(t_envl **envl, char *oldpath)
 	change_oldpath(envl, oldpath);
 }
 
-void	enter_dir(t_mnshll mini, char *env)
+void	enter_dir(t_mnshll *mini, char *env)
 {
 	size_t	len;
 	char	*new_env;
@@ -44,8 +44,8 @@ void	enter_dir(t_mnshll mini, char *env)
 	new_env = ft_substr(env, 2, len);
 	if (chdir(new_env) == -1)
 	{
-		error;		//Free, errors, bla bla new_env needs to be freed if you exit here
-		ms->exit = 1;
+		error_msg(mini, "No such file or directory", 1, "cd");
+		mini->exit = 1;
 	}
 	free(new_env);
 }
@@ -60,7 +60,7 @@ char	*find_default(t_envl **envl)
 	while (tmp)
 	{
 		if (ft_strcmp((char *)(tmp)->identificator, "HOME") == 0)
-			return ((tmp)->content)
+			return ((tmp)->content);
 		tmp = (tmp)->next;
 	}
 	return (NULL);
@@ -68,47 +68,46 @@ char	*find_default(t_envl **envl)
 
 void	cd_default(t_mnshll *mini)
 {
-	char	*default;
+	char	*def;
 
-	default = find_default(mini->env)
-	if (!default)
+	def = find_default(mini->envl);
+	if (!def)
 	{
-		error;		//error_msg(mini, "error msg", 1), on malloc error error_msg(mini, NULL, 2)
-		mini->exit = 1;
+		error_msg(mini, "Home not set", 1, "cd");
 	}
 	else
 	{
-		if (chdir(default) == -1)
+		if (chdir(def) == -1)
 		{
-			error;				//Need free, exit and error functions
-			ms->exit = 1;
+			error_msg(mini, "No such file or directory", 1, "cd");
+			mini->exit = 1;
 		}
 	}
 }
 
-void	cd(t_mnshll mini, char **env)
+void	cd(t_mnshll *mini, char **env)
 {
 	char	oldenv[PATH_MAX + 1];
 	
-	getcwd(oldenv, sizeof(oldenv))
+	getcwd(oldenv, sizeof(oldenv));
 	if (env && size_of_2d(env) > 2)
 	{
-		error;						//error_msg(mini, "error msg", 1), on malloc error error_msg(mini, NULL, 2)
+		error_msg(mini, "too many arguments", 1, "cd");
 		mini->exit = 1; 
 	}
 	else if (!env || !env[1] || !env[1][0])
 		cd_default(mini);			//need to make
 	else if (env[1][0] == '~' && env)
 	{
-		cd_default(mini)
+		cd_default(mini);
 		if (env[1][1] == '/' && env[1][2])
 			enter_dir(mini, env[1]);
 	}
 	else if (chdir(env[1]) == -1)
 	{
-		error;						//Need free, exit and error functions, duh.
+		error_msg(mini, "No such file or directory", 1, "cd");
 		mini->exit = 1;
 	}
-	change_path(mini->env, oldenv);
+	change_path(mini->envl, oldenv);
 	ft_bzero(oldenv, ft_strlen(oldenv));
 }

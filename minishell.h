@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/05/29 16:31:30 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/29 17:20:27 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,14 +200,14 @@ void	pepe_error(t_mnshll *minsh, int *fd);
 void	fork_error(t_mnshll *minsh, int *fd);
 void	free_heredoc(t_mnshll *minsh, int fd);
 void	free_exit_out_all(t_mnshll *minsh, char *mess);
-void	error_msg(t_mnshll *minsh, char *msg, int exit_code);
+void	error_msg(t_mnshll *minsh, char *msg, int exit_code, char *com);
 
 //builtins
 void		built_ex(t_mnshll *minsh, char **tokens);
-void		cd(t_mnshll mini, char **env);
-void		cd_default(t_mnshll mini);
+void		cd(t_mnshll *mini, char **env);
+void		cd_default(t_mnshll *mini);
 char		*find_default(t_envl **envl);
-void		enter_dir(t_mnshll mini, char *env);
+void		enter_dir(t_mnshll *mini, char *env);
 void		change_path(t_envl **envl, char *oldpath);
 void		change_oldpath(t_envl **envl, char *oldpath);
 void		ft_echo(char **inputs);
@@ -219,6 +219,9 @@ void		ft_exit(t_mnshll *mini, char **input);
 int			prep_atoi(t_mnshll *ms, char *str);
 int			exit_num(int n);
 void		pwd(void);
-void		unset(t_mnshll mini, char **input);
+void		unset(t_mnshll *mini, char **input);
+void		ft_export(t_mnshll *mini, char **input);
+int			valid_ident(char *str);
+
 
 #endif

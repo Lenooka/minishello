@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 16:43:24 by jhuber            #+#    #+#             */
-/*   Updated: 2024/05/28 15:55:03 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/05/29 17:19:05 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	find_ident(t_envl **env, char *ident, char *new_cont, int flag)
 
 	tmp = *env;
 	if (!tmp)
-		perror("Minishell$> export");		//Errors
+		perror("export");		//Errors
 	while (tmp)
 	{
 		if (ft_strcmp((char *)(tmp)->ident, ident) == 0)
@@ -79,7 +79,7 @@ int	check_identifier(t_mnshll *mini, char *content)
 		flag = get_flag(mini, ident, new_con, content);
 	else if (valid_ident(ident) == 0)
 	{
-		error(mini, 1, "export: not a valid identifier\n", ident); //Exit error bla bla
+		error_msg(mini, "not a valid identifier", 1, "export");
 		mini->exit = 1;
 	}
 	if (flag == 1 || flag == 3 || flag == 0)
@@ -110,7 +110,7 @@ void	ft_export_2(t_mnshll *mini, char *content, int check)
 	}
 }
 
-void	ft_export(t_mnshll mini, char **input)
+void	ft_export(t_mnshll *mini, char **input)
 {
 	int		x;
 	int		check;

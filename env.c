@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 03:35:28 by jhuber            #+#    #+#             */
-/*   Updated: 2024/05/03 17:10:26 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/29 17:15:23 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ void	print_lst(t_envl **lst, int flag)
 
 void	env(t_mnshll *mini)
 {
-	if (mini->env == NULL)
+	if (mini->envl == NULL)
 	{
-		error;		//Error handling, message, frees needed.
+		error_msg(mini, "environment variable list not set", 1, "env");
 		return ;
 	}
-	print_lst(ms->env, 1);
+	print_lst(mini->envl, 1);
 }
