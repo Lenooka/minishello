@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:19:24 by olena             #+#    #+#             */
-/*   Updated: 2024/05/28 16:54:26 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:32:53 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,13 @@ char	**retrive_rel_abs_path(const char *cmd)
 		result[0] = ft_strjoin(buf, "/");
 		ft_bzero(buf, ft_strlen(buf));
 	}
+	printf("seg1\n");
 	if (cmd[0] == '/')
 	{
-		result[0] = ft_strjoin(NULL, "/");
+		result[0] = ft_strjoin(buf, "/");
 	}
 	result[1] = NULL;
+	printf("seg2\n");
 	return (result);
 }
 
@@ -92,11 +94,12 @@ int perm_and_isdir(t_mnshll *minsh, char *cmd_path, char **array)
 	}
 	else if (access(cmd_path, X_OK) != 0)
 	{
-		perror("Minishell: error: ");
+		perror("Error: ");
 		minsh->exit = 126;
 	}
 	else
 		minsh->exit = 1;
+	printf("%s\n", array[0]);
 	free_all_arrays(array);
 	return (0);
 }

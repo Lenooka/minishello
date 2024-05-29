@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 15:57:05 by otolmach          #+#    #+#             */
-/*   Updated: 2024/05/28 13:35:40 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:25:49 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	open_error(t_mnshll *minsh, char *filename, int process)
 		return (1);
 	}
 	return (0);
-	
 }
 
 void	close_fd(int *fd)

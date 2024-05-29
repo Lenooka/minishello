@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 17:14:21 by otolmach          #+#    #+#             */
-/*   Updated: 2024/05/15 13:46:51 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/29 16:00:24 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,19 @@ void	built_ex(t_mnshll *minsh, char **tokens)
 {
 	minsh->exit = 0;
 	tokens = rem_q_from_2d(tokens);
-	ft_echo(tokens);
+	if (ft_strcmp(tokens[0], "echo") == 0)
+		ft_echo(tokens);
+	else if (ft_strcmp(tokens[0], "cd") == 0)
+		cd(minsh, tokens);
+	else if (ft_strcmp(tokens[0], "pwd") == 0)
+		ft_pwd();
+	else if (ft_strcmp(tokens[0], "export") == 0)
+		export(minsh, tokens);
+	else if (ft_strcmp(tokens[0], "unset") == 0)
+		unset(minsh, tokens);
+	else if (ft_strcmp(tokens[0], "env") == 0)
+		env(minsh);
+	else if (ft_strcmp(tokens[0], "exit") == 0)
+		ft_exit(minsh, tokens);
 	free_all_arrays(tokens);
 }
