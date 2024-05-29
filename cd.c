@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 18:41:45 by jhuber            #+#    #+#             */
-/*   Updated: 2024/05/29 16:25:22 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/29 16:28:02 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	cd(t_mnshll mini, char **env)
 	getcwd(oldenv, sizeof(oldenv))
 	if (env && size_of_2d(env) > 2)
 	{
-		error;						//Need free, exit and error functions duh.
+		error;						//error_msg(mini, "error msg", 1), on malloc error error_msg(mini, NULL, 2)
 		mini->exit = 1; 
 	}
 	else if (!env || !env[1] || !env[1][0])
