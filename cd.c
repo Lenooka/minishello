@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 18:41:45 by jhuber            #+#    #+#             */
-/*   Updated: 2024/05/03 17:11:03 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:44:29 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	change_path(t_envl **envl, char *oldpath)
 		if (ft_strcmp((char *)(tmp)->identificator, "PWD") == 0)
 		{
 			getcwd(newpath, sizeof(newpath));
-			free((tmp)->content);						//Invalid free????
+			free((tmp)->content);
 			(tmp)->content = ft_strdup(newpath);
 			ft_bzero(newpath, ft_strlen(newpath));
 			break ;
