@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 18:41:45 by jhuber            #+#    #+#             */
-/*   Updated: 2024/05/29 14:44:29 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/05/29 16:25:22 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	cd_default(t_mnshll *mini)
 	default = find_default(mini->env)
 	if (!default)
 	{
-		error;		//Need free, exit and error functions
+		error;		//error_msg(mini, "error msg", 1), on malloc error error_msg(mini, NULL, 2)
 		mini->exit = 1;
 	}
 	else
