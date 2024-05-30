@@ -6,7 +6,7 @@
 /*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 16:43:24 by jhuber            #+#    #+#             */
-/*   Updated: 2024/05/28 15:55:03 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/05/30 15:02:36 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	check_identifier(t_mnshll *mini, char *content)
 		flag = get_flag(mini, ident, new_con, content);
 	else if (valid_ident(ident) == 0)
 	{
-		error(mini, 1, "export: not a valid identifier\n", ident); //Exit error bla bla
+		error(mini, 1, "export: not a valid identifier\n", ident);
 		mini->exit = 1;
 	}
 	if (flag == 1 || flag == 3 || flag == 0)

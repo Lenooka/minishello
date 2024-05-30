@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/05/29 16:31:30 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/30 15:02:38 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,5 +220,16 @@ int			prep_atoi(t_mnshll *ms, char *str);
 int			exit_num(int n);
 void		pwd(void);
 void		unset(t_mnshll mini, char **input);
+void		ft_export(t_mnshll mini, char **input);
+void		ft_export_2(t_mnshll *mini, char *content, int check);
+int			check_identifier(t_mnshll *mini, char *content);
+int			find_ident(t_envl **env, char *ident, char *new_cont, int flag);
+int			valid_ident(char *str);
+void		export_empty(t_mnshll mini);
+char		*get_ident(char *str, int c);
+char		*get_cont(char *str, int c);
+t_envl		*ft_envnew(void *input);
+void		ft_lstadd_front(t_envl **lst, t_envl *new);
+int			get_flag(t_mnshll *ms, char *ident, char *new_con, char *content);
 
 #endif
