@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:19:24 by olena             #+#    #+#             */
-/*   Updated: 2024/05/29 13:32:53 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:52:39 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,11 @@ char	**retrive_rel_abs_path(const char *cmd)
 		result[0] = ft_strjoin(buf, "/");
 		ft_bzero(buf, ft_strlen(buf));
 	}
-	printf("seg1\n");
 	if (cmd[0] == '/')
 	{
 		result[0] = ft_strjoin(buf, "/");
 	}
 	result[1] = NULL;
-	printf("seg2\n");
 	return (result);
 }
 

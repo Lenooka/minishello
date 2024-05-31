@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:37:13 by otolmach          #+#    #+#             */
-/*   Updated: 2024/05/29 17:26:11 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:25:03 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	isbuilt(char *com)
 		return (1);
 	else if (ft_strcmp(com, "pwd") == 0)
 		return (1);
-	//else if (ft_strcmp(com, "export") == 0)
-	// 	return (1);
+	else if (ft_strcmp(com, "export") == 0)
+	 	return (1);
 	else if (ft_strcmp(com, "unset") == 0)
 		return (1);
 	else if (ft_strcmp(com, "env") == 0)

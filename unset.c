@@ -6,37 +6,13 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:14:17 by jhuber            #+#    #+#             */
-/*   Updated: 2024/05/29 17:24:38 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:13:18 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 
-int	valid_ident(char *str)
-{
-	int	x;
-	int	flag;
-
-	if (ft_strcmp(str, "_") == 0)
-		return (2);
-	if ((str[0] >= '0' && str[0] <= '9') || str[0] == '=')
-		return (0);
-	x = 0;
-	flag = 0;
-	while (str[x])
-	{
-		if ((str[x] >= 'a' && str[x] <= 'z') || (str[x] >= '0' && str[x] <= '9')
-			|| (str[x] >= 'A' && str[x] <= 'Z') || str[x] == '_')
-			flag = 1;
-		else
-			return (0);
-		x++;
-	}
-	if (flag == 1)
-		return (1);
-	return (0);
-}
 
 void	rm_first(t_envl **env)
 {

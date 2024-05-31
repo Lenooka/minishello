@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:27:56 by otolmach          #+#    #+#             */
-/*   Updated: 2024/05/29 16:01:59 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:52:20 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	redirect_and_close(t_mnshll *m, int fd, int op, int *pipefd)
 if one command and its a built in free/execute in a parent
 else
 function for execution (simmilar to pipex???)*/
-void	child(t_mnshll *ms, int *pipe_fd, int cmds_run, int pos)
+void	 child(t_mnshll *ms, int *pipe_fd, int cmds_run, int pos)
 {
 	t_lexer		*cmd;
 	char		**new_cmds;
@@ -96,7 +96,6 @@ void	parent(t_mnshll *m, int *pipe_fd, int cmrun, int pos)
 void    start_procces(t_mnshll *minsh)
 {
     int     com_run;
-    int     pipefd[2];
     pid_t   pid;
     int     position;
 
@@ -106,15 +105,15 @@ void    start_procces(t_mnshll *minsh)
 		return ;
     while (com_run < minsh->command_amount)
     {
-		if (pipe(pipefd) == -1)
-			pepe_error(minsh, pipefd);
+		if (pipe(minsh->pipefd) == -1)
+			pepe_error(minsh, minsh->pipefd);
 		pid = fork();
 		if (pid < 0)
-			fork_error(minsh, pipefd);
+			fork_error(minsh, minsh->pipefd);
 		if (pid == 0)
-			child(minsh, pipefd, com_run, position);
+			child(minsh, minsh->pipefd, com_run, position);
 		else
-			parent(minsh, pipefd, com_run, position);
+			parent(minsh, minsh->pipefd, com_run, position);
 		position = find_com_pos(minsh->com_array, position);
 		com_run++;
     }

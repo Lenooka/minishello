@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/05/29 17:20:27 by otolmach         ###   ########.fr       */
-=======
-/*   Updated: 2024/05/30 15:02:38 by jhuber           ###   ########.fr       */
->>>>>>> e918e576f74f9925e6b3b5a94ea402e5bbfcccda
+/*   Updated: 2024/05/31 14:46:07 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +64,7 @@ typedef	struct mnshll
 	int		rep_var_i;
 	int		fdcheck;
 	int 	extra;
+	int		pipefd[2];
 	t_envl 	**envl;
 	t_lexer	*list_com;
 	
@@ -229,11 +226,12 @@ void		ft_export_2(t_mnshll *mini, char *content, int check);
 int			check_identifier(t_mnshll *mini, char *content);
 int			find_ident(t_envl **env, char *ident, char *new_cont, int flag);
 int			valid_ident(char *str);
-void		export_empty(t_mnshll mini);
+void		export_empty(t_mnshll *mini);
 char		*get_ident(char *str, int c);
 char		*get_cont(char *str, int c);
 t_envl		*ft_envnew(void *input);
 void		ft_lstadd_front(t_envl **lst, t_envl *new);
 int			get_flag(t_mnshll *ms, char *ident, char *new_con, char *content);
+void		list_swap(t_mnshll *mini, t_envl *list);
 
 #endif

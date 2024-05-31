@@ -6,11 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 16:43:24 by jhuber            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/05/29 17:19:05 by otolmach         ###   ########.fr       */
-=======
-/*   Updated: 2024/05/30 15:02:36 by jhuber           ###   ########.fr       */
->>>>>>> e918e576f74f9925e6b3b5a94ea402e5bbfcccda
+/*   Updated: 2024/05/31 14:12:59 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +46,14 @@ int	find_ident(t_envl **env, char *ident, char *new_cont, int flag)
 		perror("export");		//Errors
 	while (tmp)
 	{
-		if (ft_strcmp((char *)(tmp)->ident, ident) == 0)
+		if (ft_strcmp((char *)(tmp)->identificator, ident) == 0)
 		{
-			if (flag == 2 && (tmp)->n == 1)
+			if (flag == 2 && (tmp)->node_flag == 1)
 				return (1);
-			if (flag == 1 && (tmp)->n == 2)
+			if (flag == 1 && (tmp)->node_flag == 2)
 			{
-				(tmp)->n = 1;
-				(tmp)->equal = 1;
+				(tmp)->node_flag = 1;
+				(tmp)->equal_flag = 1;
 			}
 			free((tmp)->content);
 			(tmp)->content = ft_strdup(new_cont);
@@ -101,16 +97,16 @@ void	ft_export_2(t_mnshll *mini, char *content, int check)
 	if (check == 1)
 	{
 		new = ft_envnew(content);
-		new->n = 1;
-		new->equal = 1;
-		ft_lstadd_front(mini->env, new);
+		new->node_flag = 1;
+		new->equal_flag = 1;
+		ft_lstadd_front(mini->envl, new);
 	}
 	if (check == 3)
 	{
 		new = ft_envnew(content);
-		new->n = 2;
-		new->equal = 0;
-		ft_lstadd_front(mini->env, new);
+		new->node_flag = 2;
+		new->equal_flag = 0;
+		ft_lstadd_front(mini->envl, new);
 	}
 }
 
@@ -126,9 +122,9 @@ void	ft_export(t_mnshll *mini, char **input)
 		export_empty(mini);
 		return ;
 	}
-	while (cmd_line[x])
+	while (input[x])
 	{
-		content = ft_strdup(cmd_line[x]);
+		content = ft_strdup(input[x]);
 		check = check_identifier(mini, content);
 		ft_export_2(mini, content, check);
 		x++;

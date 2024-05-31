@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 04:45:13 by jhuber            #+#    #+#             */
-/*   Updated: 2024/05/29 18:06:42 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:46:27 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	ft_exit(t_mnshll *mini, char **input)
 	nbr = exit_num(nbr);				//leaving it like this for now.
 	mini->exit = nbr;
 	free_all_arrays(input);
-	ft_printf("exit\n");
+	close_fd(mini->pipefd);
+	printf("exit\n");
 	free_exit_procces(mini, NULL);
 }

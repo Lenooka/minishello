@@ -1,6 +1,6 @@
 NAME = minishell
 CC = cc
-SRCS = minishell.c heredoc_utils.c  cute_utils.c strcompr.c replace_var.c str_arr_utils.c quotes_utils.c echo.c built_ex.c comand_list_init.c envlist_init.c exit_status.c minishell_var_init.c execution_start.c syntax_checks.c syntex_error.c syntax_redir_unexp_checks.c utils.c exstart_utils.c parser_start.c split_token_utils.c split_token.c  heredoc.c signals.c frees.c builtin_extras.c redirections.c inoutredir.c pwd.c exe_cutie.c cd.c exit.c  env.c unset.c list_utilslibftbonus.c more_free.c isbuilt.c 
+SRCS = minishell.c heredoc_utils.c  cute_utils.c strcompr.c replace_var.c str_arr_utils.c quotes_utils.c  libft_bonus.c echo.c built_ex.c  export_empty.c export.c comand_list_init.c envlist_init.c exit_status.c minishell_var_init.c execution_start.c syntax_checks.c syntex_error.c syntax_redir_unexp_checks.c utils.c exstart_utils.c parser_start.c split_token_utils.c split_token.c  heredoc.c signals.c frees.c builtin_extras.c redirections.c inoutredir.c pwd.c exe_cutie.c cd.c exit.c  env.c unset.c list_utilslibftbonus.c more_free.c isbuilt.c 
 OBJS = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRCS))
 CFLAGS = -Werror -Wall -Wextra -g
 RM = rm -rf
