@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:25:46 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/25 17:13:18 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:54:52 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void exit_status(t_mnshll *minsh, pid_t pid, int com_run)
         if (pid != -1 && WIFEXITED(status))
             minsh->exit = WEXITSTATUS(status);
         else if (pid != -1 && WIFSIGNALED(status))
-            minsh->exit = 128 + WTERMSIG(status);
+            minsh->exit = WTERMSIG(status);
         else
             minsh->exit = 127;
         com_run--;

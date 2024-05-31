@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:37:59 by otolmach          #+#    #+#             */
-/*   Updated: 2024/05/29 13:37:04 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/31 16:41:36 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,12 +136,12 @@ void	exe_cutie(t_mnshll *minsh, char **array, char **new_cmd)
 	if (split_pathvar == NULL)
 		free_exit_procces(minsh, "Error: path not found\n");
 	if (check_executie(minsh, split_pathvar, array[0]) == 0)
-		free_exit_procces(minsh, "Error: permission denied\n");
+		free_exit_procces(minsh, "Error: Permission denied\n");
 	path = find_ex_path(minsh, split_pathvar, array[0]);
 	if (path == NULL)
 	{
 		free_all_arrays(split_pathvar);
-		free_exit_procces(minsh, ": command not found\n");
+		free_exit_procces(minsh, NULL);
 	}
 	free_all_arrays(split_pathvar);
 	executie_ve(minsh, path, new_cmd, array);

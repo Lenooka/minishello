@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:19:24 by olena             #+#    #+#             */
-/*   Updated: 2024/05/31 14:52:39 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/31 16:41:03 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,7 @@ char   *find_ex_path(t_mnshll *minsh, char **array, char *cmd)
 		perror(cmd);
 	else if (ft_strcmp(cmd, "\'\'") != 0 && ft_strcmp(cmd, "\"\"") != 0)
 	{
-		write(STDERR_FILENO, "Error: ", 7);
-		ft_putstr_fd(cmd, STDERR_FILENO);
+		printf("Error: %s: command not found\n", cmd);
 		minsh->exit = 127;
 		return (NULL);
 	}
@@ -92,7 +91,7 @@ int perm_and_isdir(t_mnshll *minsh, char *cmd_path, char **array)
 	}
 	else if (access(cmd_path, X_OK) != 0)
 	{
-		perror("Error: ");
+		//perror("Error: ");
 		minsh->exit = 126;
 	}
 	else

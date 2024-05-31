@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 22:14:57 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/25 21:34:20 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/31 17:03:17 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,17 @@ int	redir_unexpect_errors(char *input)
 
 	x = redir_syntax(input);
 	if (x == 1)
-		return (report_syntax_error("near unexpected token `|'"));
+		return (report_syntax_error("near unexpected token `|1'"));
 	if (x == 2)
 		return (report_syntax_error("near unexpected token `newline'"));
 	if (x == 3)
 		return (report_syntax_error("near unexpected token `<'"));
 	else if (double_redir_syntax(input) == 1)
-		return (report_syntax_error("near unexpected token `|'"));
+		return (report_syntax_error("near unexpected token `|2'"));
 	else if (sucession_syntax(input) == 1)
-		return (report_syntax_error("near unexpected token `|'"));
+		return (report_syntax_error("near unexpected token `|3'"));
 	else if (token_syntax(input) == 1)
-		return (report_syntax_error("near unexpected token `|'"));
+		return (report_syntax_error("near unexpected token `|4'"));
 	return (0);
 }
 

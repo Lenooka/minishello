@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 14:06:39 by otolmach          #+#    #+#             */
-/*   Updated: 2024/05/31 14:38:38 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/05/31 16:42:11 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	free_exit_procces(t_mnshll *minsh, char *mess)
 
 	exit_s = minsh->exit;
 	if (mess != NULL)
-		write(STDERR_FILENO, mess, ft_strlen(mess));
+		printf("%s", mess);
 	if (minsh->input)
 		free(minsh->input);
 	if (minsh->list_com)
