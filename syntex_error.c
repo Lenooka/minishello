@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 22:14:57 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/01 16:58:34 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/01 17:06:43 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	report_syntax_error(char *error_message)
 int	redir_unexpect_errors(char *input)
 {
 	int	x;
-	int x;
 	int len;
 
 	len = ft_strlen(input) - 1;

@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:37:59 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/01 16:52:28 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/01 17:06:14 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ char	**retrive_path_dir(t_envl **env, char *s)
 		|| ft_strncmp(s, "./", 2) == 0 || s[0] == '/')
 	{
 		return (retrive_rel_abs_path(s));
+	}
 	tmp = *env;
 	while (tmp && ft_strncmp(tmp->identificator, "PATH", 4) != 0)
 		tmp = tmp->next;
