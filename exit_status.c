@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:25:46 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/01 17:03:25 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/01 19:34:44 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,8 @@ void	reset_fd(t_mnshll *minsh)
 		dup_two_error(minsh, -123456, NULL);
 	if (dup2(minsh->fdout, STDOUT_FILENO) == -1)
 		dup_two_error(minsh, -123456, NULL);
-	if (minsh->fdin != 0)
-		close(minsh->fdin);
-	if (minsh->fdout != 1)
-		close(minsh->fdout);
+	close(minsh->fdin);
+	close(minsh->fdout);
 }
 
 /*
@@ -44,7 +42,7 @@ void	exit_status(t_mnshll *minsh, pid_t pid, int com_run)
 	int	status;
 
 	status = 0;
-	if (minsh->command_amount == 1 && isbuilt(minsh->list_com->tokens[0]))
+	if (minsh->command_amount == 1 && isbuilt(minsh->list_com->tokens[0]) == 1)
 	{
 		wait(&status);
 		reset_fd(minsh);
@@ -52,14 +50,25 @@ void	exit_status(t_mnshll *minsh, pid_t pid, int com_run)
 	}
 	while (com_run > 0)
 	{
-        wait(&status);
-        if (pid != -1 && WIFEXITED(status))
-            minsh->exit = WEXITSTATUS(status);
-        else if (pid != -1 && WIFSIGNALED(status))
-            minsh->exit = 128 + WTERMSIG(status);
-        else
-            minsh->exit = 127;
-        com_run--;
+		wait(&status);
+		if (pid != -1 && WIFEXITED(status))
+			minsh->exit = WEXITSTATUS(status);
+		else if (pid != -1 && WIFSIGNALED(status))
+			g_global = WTERMSIG(status);
+		else
+		{	
+			g_global = 0;
+		}
+		com_run--;
     }
     reset_fd(minsh); 
 }
+
+/*wait(&status);
+        if (pid != -1 && WIFEXITED(status))
+            minsh->exit = WEXITSTATUS(status);
+        else if (pid != -1 && WIFSIGNALED(status))
+            minsh->exit = WTERMSIG(status);
+        else
+            minsh->exit = 127;
+        com_run--;*/
