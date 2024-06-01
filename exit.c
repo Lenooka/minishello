@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 04:45:13 by jhuber            #+#    #+#             */
-/*   Updated: 2024/05/31 14:46:27 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/01 17:03:33 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	prep_atoi(t_mnshll *ms, char *str)
 	{
 		if (str[x] > '9' || str[x] < '0')
 		{
-			error_msg(ms, "numeric argument required", 1, "exit");					//Error handling, message and frees needed.
+			error_msg(ms, "numeric argument required", 1, "exit");
 			return (0);
 		}
 		x++;
@@ -64,10 +64,10 @@ void	ft_exit(t_mnshll *mini, char **input)
 	}
 	else if (input[2] && size_of_2d(input) > 2)
 	{
-		error_msg(mini, "too many arguments", 1, "exit");					//Error handling, message and frees needed.
+		error_msg(mini, "too many arguments", 1, "exit");
 		nbr = 1;
 	}
-	nbr = exit_num(nbr);				//leaving it like this for now.
+	nbr = exit_num(nbr);
 	mini->exit = nbr;
 	free_all_arrays(input);
 	close_fd(mini->pipefd);

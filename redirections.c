@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 15:54:25 by otolmach          #+#    #+#             */
-/*   Updated: 2024/04/27 16:36:35 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/01 15:28:39 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ int	redir(t_mnshll *minsh, char **array, int pos, int process)
 
 	i = pos;
 	result = 0;
-	while (array[i] && array[i][0] && ft_strcmp(array[i], "|" )!= 0)
+	while (array[i] && array[i][0] && ft_strcmp(array[i], "|" ) != 0)
 	{
 		result += redirin(minsh, array[i], array[i + 1], process);
 		result += redirout(minsh, array[i], array[i + 1], process);
 		i++;
 		if (result > 0)
-			return (1); 
+			return (1);
 	}
 	return (0);
 }

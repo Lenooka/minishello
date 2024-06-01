@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:41:46 by jhuber            #+#    #+#             */
-/*   Updated: 2024/05/15 16:34:42 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/01 15:38:13 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	handle_sigint(int signum, siginfo_t *info, void *context) // Handles SIGINT, The process was “interrupted”. This happens when you press Control+C on the controlling terminal.
+void	handle_sigint(int signum, siginfo_t *info, void *context)
 {
 	(void)context;
 	(void)info;
@@ -25,7 +25,7 @@ void	handle_sigint(int signum, siginfo_t *info, void *context) // Handles SIGINT
 	}
 }
 
-void	signal_global(int signum) // Corrects the global variable mid Process.
+void	signal_global(int signum)
 {
 	if (signum == SIGQUIT)
 		g_global = SIGQUIT;
@@ -33,7 +33,7 @@ void	signal_global(int signum) // Corrects the global variable mid Process.
 		g_global = SIGINT;
 }
 
-void	make_sigaction(void) // This makes sigaction, catching signals and redirecting them to their handler functions, work in progress.
+void	make_sigaction(void)
 {
 	struct sigaction	sa;
 
@@ -50,7 +50,7 @@ void	handler_cd(t_mnshll *minsh) // This is about Control+D
 		free_exit_procces(minsh, NULL);
 }
 
-void	check_global_end(void) // checks for any Signals after the process has finished.
+void	check_global_end(void)
 {
 	if (!g_global)
 		return ;

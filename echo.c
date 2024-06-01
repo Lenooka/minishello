@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 21:35:11 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/01 16:24:34 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/01 17:02:00 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ void	echo_flag(char **input, int x)
 	}
 }
 
-int	check_flag(char *input) //Should work, might be trolling doe, who knows? Cluegi.
+int	check_flag(char *input)
 {
 	int	x;
-	
+
 	x = 0;
 	if (!input)
 		return (0);

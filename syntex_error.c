@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 22:14:57 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/01 15:15:33 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/01 17:06:43 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	report_syntax_error(char *error_message)
 {
-	write(2, "error: syntax error ", 25);
+	write(2, "error: syntax error ", 20);
 	write(2, error_message, ft_strlen(error_message));
 	write(2, "\n", 1);
 	return (1);
@@ -22,7 +22,7 @@ int	report_syntax_error(char *error_message)
 
 int	redir_unexpect_errors(char *input)
 {
-	int x;
+	int	x;
 	int len;
 
 	len = ft_strlen(input) - 1;
@@ -38,7 +38,7 @@ int	redir_unexpect_errors(char *input)
 	else if (sucession_syntax(input, len) == 1)
 		return (report_syntax_error("near unexpected token `|'"));
 	else if (token_syntax(input) == 1)
-		return (report_syntax_error("near unexpected token `|'"));
+		return (report_syntax_error("near unexpected token `&();'"));
 	return (0);
 }
 

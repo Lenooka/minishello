@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 14:06:39 by otolmach          #+#    #+#             */
-/*   Updated: 2024/05/31 16:42:11 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/01 16:53:55 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	free_heredoc(t_mnshll *minsh, int fd)
 	if (minsh->input)
 		free(minsh->input);
 	free_all_arrays(minsh->com_array);
-	//free_cmd_list(minsh->list_com);
 	if (minsh->envl)
 		free_env(minsh->envl);
 	free(minsh->heredoc_buf);
@@ -43,24 +42,23 @@ void	free_heredoc(t_mnshll *minsh, int fd)
 	if (minsh)
 		free(minsh);
 	rl_clear_history();
-	exit(exit_s);			
+	exit(exit_s);
 }
 
-
-void free_cmd_list(t_lexer *cmdlist)
+void	free_cmd_list(t_lexer *cmdlist)
 {
-    t_lexer *tmp;
-    t_lexer *next_node;
+	t_lexer	*tmp;
+	t_lexer	*next_node;
 
-    tmp = cmdlist;
-    while (tmp != NULL)
-    {
-        next_node = tmp->next;  // Store the next node before freeing the current one
-        if (tmp->tokens != NULL)
-            free(tmp->tokens);
-        free(tmp);
-        tmp = next_node;  // Move to the next node
-    }
+	tmp = cmdlist;
+	while (tmp != NULL)
+	{
+		next_node = tmp->next;
+		if (tmp->tokens != NULL)
+			free(tmp->tokens);
+		free(tmp);
+		tmp = next_node;
+	}
 }
 
 void	free_to_main(t_mnshll *minsh)
@@ -80,7 +78,7 @@ void	free_exit_procces(t_mnshll *minsh, char *mess)
 		free(minsh->input);
 	if (minsh->list_com)
 		free_cmd_list(minsh->list_com);
-	if (minsh->com_array && minsh->extra == 0) 	
+	if (minsh->com_array && minsh->extra == 0)
 		free_all_arrays(minsh->com_array);
 	if (minsh->envl)
 		free_env(minsh->envl);
@@ -94,5 +92,6 @@ void	free_exit_procces(t_mnshll *minsh, char *mess)
 	if (minsh)
 		free(minsh);
 	rl_clear_history();
+	exit(exit_s);
 	exit(exit_s);
 }

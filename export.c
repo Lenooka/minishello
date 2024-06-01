@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 16:43:24 by jhuber            #+#    #+#             */
-/*   Updated: 2024/05/31 14:12:59 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/01 16:53:42 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	find_ident(t_envl **env, char *ident, char *new_cont, int flag)
 
 	tmp = *env;
 	if (!tmp)
-		perror("export");		//Errors
+		perror("export");
 	while (tmp)
 	{
 		if (ft_strcmp((char *)(tmp)->identificator, ident) == 0)
