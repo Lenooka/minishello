@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/05/31 14:46:07 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/01 15:16:28 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int			pipe_syntax(char *input);
 int			dollar_syntax(char *input);
 int			redir_syntax(char *input);
 int			double_redir_syntax(char *input);
-int			sucession_syntax(char *input);
+int			sucession_syntax(char *input, int len);
 int			token_syntax(char *input);
 //Names need to be changed, logic of the syntax checks needs to be overworked, but for now, this works. (Should)
 

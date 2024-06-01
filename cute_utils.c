@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:19:24 by olena             #+#    #+#             */
-/*   Updated: 2024/05/31 16:41:03 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/01 16:26:52 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,11 @@ int perm_and_isdir(t_mnshll *minsh, char *cmd_path, char **array)
 	}
 	else if (access(cmd_path, X_OK) != 0)
 	{
-		//perror("Error: ");
+		perror("Error: ");
 		minsh->exit = 126;
 	}
 	else
 		minsh->exit = 1;
-	printf("%s\n", array[0]);
 	free_all_arrays(array);
 	return (0);
 }

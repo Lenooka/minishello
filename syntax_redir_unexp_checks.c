@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:54:23 by otolmach          #+#    #+#             */
-/*   Updated: 2024/05/31 17:17:17 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/01 15:16:41 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,11 @@ int	double_redir_syntax(char *input)
 	return (0);
 }
 
-int	sucession_syntax(char *input)
+int	sucession_syntax(char *input, int len)
 {
 	int	x;
-	int	len;
 
 	x = 0;
-	len = ft_strlen(input) - 1;
 	while (x < len)
 	{
 		while (x < len && input[x] != '<' && input[x] != '>' && parser_codes(input[x]) != 1)

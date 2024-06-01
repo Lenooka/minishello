@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:27:56 by otolmach          #+#    #+#             */
-/*   Updated: 2024/05/31 14:52:20 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/01 16:38:34 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,10 +108,10 @@ void    start_procces(t_mnshll *minsh)
 		if (pipe(minsh->pipefd) == -1)
 			pepe_error(minsh, minsh->pipefd);
 		pid = fork();
-		if (pid < 0)
-			fork_error(minsh, minsh->pipefd);
 		if (pid == 0)
 			child(minsh, minsh->pipefd, com_run, position);
+		else if (pid < 0)
+			fork_error(minsh, minsh->pipefd);
 		else
 			parent(minsh, minsh->pipefd, com_run, position);
 		position = find_com_pos(minsh->com_array, position);

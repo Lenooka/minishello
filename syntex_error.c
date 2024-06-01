@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 22:14:57 by otolmach          #+#    #+#             */
-/*   Updated: 2024/05/31 17:03:17 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/01 15:15:33 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,22 @@ int	report_syntax_error(char *error_message)
 int	redir_unexpect_errors(char *input)
 {
 	int x;
+	int len;
 
+	len = ft_strlen(input) - 1;
 	x = redir_syntax(input);
 	if (x == 1)
-		return (report_syntax_error("near unexpected token `|1'"));
+		return (report_syntax_error("near unexpected token `|'"));
 	if (x == 2)
 		return (report_syntax_error("near unexpected token `newline'"));
 	if (x == 3)
 		return (report_syntax_error("near unexpected token `<'"));
 	else if (double_redir_syntax(input) == 1)
-		return (report_syntax_error("near unexpected token `|2'"));
-	else if (sucession_syntax(input) == 1)
-		return (report_syntax_error("near unexpected token `|3'"));
+		return (report_syntax_error("near unexpected token `|'"));
+	else if (sucession_syntax(input, len) == 1)
+		return (report_syntax_error("near unexpected token `|'"));
 	else if (token_syntax(input) == 1)
-		return (report_syntax_error("near unexpected token `|4'"));
+		return (report_syntax_error("near unexpected token `|'"));
 	return (0);
 }
 
