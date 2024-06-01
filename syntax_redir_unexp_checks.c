@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_redir_unexp_checks.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:54:23 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/01 15:22:25 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/01 16:59:27 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,11 @@ int	double_redir_syntax(char *input)
 	return (0);
 }
 
-int	sucession_syntax(char *input)
+int	sucession_syntax(char *input, int len)
 {
 	int	x;
-	int	len;
 
 	x = 0;
-	len = ft_strlen(input) - 1;
 	while (x < len)
 	{
 		while (x < len && input[x] != '<'

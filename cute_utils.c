@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cute_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:19:24 by olena             #+#    #+#             */
-/*   Updated: 2024/06/01 15:58:42 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/01 17:01:08 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,11 @@ char	**retrive_rel_abs_path(const char *cmd)
 		result[0] = ft_strjoin(buf, "/");
 		ft_bzero(buf, ft_strlen(buf));
 	}
-	printf("seg1\n");
 	if (cmd[0] == '/')
 	{
 		result[0] = ft_strjoin(buf, "/");
 	}
 	result[1] = NULL;
-	printf("seg2\n");
 	return (result);
 }
 
@@ -62,8 +60,7 @@ char	*find_ex_path(t_mnshll *minsh, char **array, char *cmd)
 		perror(cmd);
 	else if (ft_strcmp(cmd, "\'\'") != 0 && ft_strcmp(cmd, "\"\"") != 0)
 	{
-		write(STDERR_FILENO, "Error: ", 7);
-		ft_putstr_fd(cmd, STDERR_FILENO);
+		printf("Error: %s: command not found\n", cmd);
 		minsh->exit = 127;
 		return (NULL);
 	}
@@ -99,7 +96,6 @@ int	perm_and_isdir(t_mnshll *minsh, char *cmd_path, char **array)
 	}
 	else
 		minsh->exit = 1;
-	printf("%s\n", array[0]);
 	free_all_arrays(array);
 	return (0);
 }

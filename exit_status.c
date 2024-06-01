@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_status.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:25:46 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/01 15:42:19 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/01 17:03:25 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,14 @@ void	exit_status(t_mnshll *minsh, pid_t pid, int com_run)
 	}
 	while (com_run > 0)
 	{
-		wait(&status);
-		if (pid != -1 && WIFEXITED(status))
-			minsh->exit = WEXITSTATUS(status);
-		else if (pid != -1 && WIFSIGNALED(status))
-			minsh->exit = 128 + WTERMSIG(status);
-		else
-			minsh->exit = 127;
-		com_run--;
-	}
-	reset_fd(minsh);
+        wait(&status);
+        if (pid != -1 && WIFEXITED(status))
+            minsh->exit = WEXITSTATUS(status);
+        else if (pid != -1 && WIFSIGNALED(status))
+            minsh->exit = 128 + WTERMSIG(status);
+        else
+            minsh->exit = 127;
+        com_run--;
+    }
+    reset_fd(minsh); 
 }

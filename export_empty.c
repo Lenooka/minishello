@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_empty.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 18:51:25 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/01 15:56:36 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/01 16:53:20 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_envl	*node(t_envl *new, t_envl *env)
 {
 	new = malloc(sizeof(t_envl));
-	new->ident = ft_strdup(env->identificator);
+	new->identificator = ft_strdup(env->identificator);
 	new->content = ft_strdup((char *)env->content);
 	new->next = NULL;
 	return (new);
@@ -93,7 +93,7 @@ t_envl	*copy_envl(t_envl *env)
 	return (top);
 }
 
-void	export_empty(t_mnshll mini)
+void	export_empty(t_mnshll *mini)
 {
 	t_envl	*tmp;
 	t_envl	*next;

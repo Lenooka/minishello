@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 04:45:13 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/01 16:26:09 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/01 17:03:33 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	ft_exit(t_mnshll *mini, char **input)
 	nbr = exit_num(nbr);
 	mini->exit = nbr;
 	free_all_arrays(input);
-	ft_printf("exit\n");
+	close_fd(mini->pipefd);
+	printf("exit\n");
 	free_exit_procces(mini, NULL);
 }

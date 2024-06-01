@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   frees.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 14:06:39 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/01 16:19:44 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/01 16:53:55 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	free_exit_procces(t_mnshll *minsh, char *mess)
 
 	exit_s = minsh->exit;
 	if (mess != NULL)
-		write(STDERR_FILENO, mess, ft_strlen(mess));
+		printf("%s", mess);
 	if (minsh->input)
 		free(minsh->input);
 	if (minsh->list_com)
@@ -92,5 +92,6 @@ void	free_exit_procces(t_mnshll *minsh, char *mess)
 	if (minsh)
 		free(minsh);
 	rl_clear_history();
+	exit(exit_s);
 	exit(exit_s);
 }

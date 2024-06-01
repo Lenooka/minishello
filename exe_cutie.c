@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_cutie.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:37:59 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/01 16:13:36 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/01 16:52:28 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ char	**retrive_path_dir(t_envl **env, char *s)
 		|| ft_strncmp(s, "./", 2) == 0 || s[0] == '/')
 	{
 		return (retrive_rel_abs_path(s));
-	}
 	tmp = *env;
 	while (tmp && ft_strncmp(tmp->identificator, "PATH", 4) != 0)
 		tmp = tmp->next;
@@ -138,12 +137,12 @@ void	exe_cutie(t_mnshll *minsh, char **array, char **new_cmd)
 	if (split_pathvar == NULL)
 		free_exit_procces(minsh, "Error: path not found\n");
 	if (check_executie(minsh, split_pathvar, array[0]) == 0)
-		free_exit_procces(minsh, "Error: permission denied\n");
+		free_exit_procces(minsh, NULL);
 	path = find_ex_path(minsh, split_pathvar, array[0]);
 	if (path == NULL)
 	{
 		free_all_arrays(split_pathvar);
-		free_exit_procces(minsh, ": command not found\n");
+		free_exit_procces(minsh, NULL);
 	}
 	free_all_arrays(split_pathvar);
 	executie_ve(minsh, path, new_cmd, array);
