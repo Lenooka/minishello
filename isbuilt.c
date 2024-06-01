@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   isbuilt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:37:13 by otolmach          #+#    #+#             */
-/*   Updated: 2024/05/29 17:26:11 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/01 16:27:45 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	isbuilt(char *com)
 		return (1);
 	else if (ft_strcmp(com, "pwd") == 0)
 		return (1);
-	//else if (ft_strcmp(com, "export") == 0)
-	// 	return (1);
+	else if (ft_strcmp(com, "export") == 0)
+		return (1);
 	else if (ft_strcmp(com, "unset") == 0)
 		return (1);
 	else if (ft_strcmp(com, "env") == 0)

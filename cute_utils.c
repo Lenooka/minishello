@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cute_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:19:24 by olena             #+#    #+#             */
-/*   Updated: 2024/05/29 13:32:53 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/01 15:58:42 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ char	**retrive_rel_abs_path(const char *cmd)
 	return (result);
 }
 
-
-char   *find_ex_path(t_mnshll *minsh, char **array, char *cmd)
+char	*find_ex_path(t_mnshll *minsh, char **array, char *cmd)
 {
 	int		indx;
 	char	*temp;
@@ -76,9 +75,10 @@ If is a dir, error message and set exit status to 126.
 If no exec perm,  error message and set exit to 126.
 If no access to path, error message and set exit to 1.
  */
-int perm_and_isdir(t_mnshll *minsh, char *cmd_path, char **array)
+
+int	perm_and_isdir(t_mnshll *minsh, char *cmd_path, char **array)
 {
-	struct stat path_stat;
+	struct stat	path_stat;
 
 	stat(cmd_path, &path_stat);
 	if (S_ISDIR(path_stat.st_mode))

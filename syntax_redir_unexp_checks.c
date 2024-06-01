@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_redir_unexp_checks.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:54:23 by otolmach          #+#    #+#             */
-/*   Updated: 2024/05/15 16:20:22 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/01 15:22:25 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	redir_syntax(char *input)
 	len = ft_strlen(input) - 1;
 	while (x < len)
 	{
-		while (x < len && input[x] != '<' && input[x] != '>' && parser_codes(input[x]) != 1)
+		while (x < len && input[x] != '<'
+			&& input[x] != '>' && parser_codes(input[x]) != 1)
 			x++;
 		if (x < len && parser_codes(input[x]) == 1)
 			x = little_skip_quotes(input, x, len);
@@ -47,7 +48,8 @@ int	double_redir_syntax(char *input)
 	len = ft_strlen(input) - 1;
 	while (x < len)
 	{
-		while (x < len && input[x] != '<' && input[x] != '>' && parser_codes(input[x]) != 1)
+		while (x < len && input[x] != '<'
+			&& input[x] != '>' && parser_codes(input[x]) != 1)
 			x++;
 		if (x < len && parser_codes(input[x]) == 1)
 			x = little_skip_quotes(input, x, len);
@@ -55,7 +57,8 @@ int	double_redir_syntax(char *input)
 		{
 			if (input[x + 1] == '>' || input[x + 1] == '<')
 				x++;
-			if (x < len && (input[x + 1] == '|' || (input[x + 1] == ' ' && input[x + 2] == '|')))
+			if (x < len && (input[x + 1] == '|'
+					|| (input[x + 1] == ' ' && input[x + 2] == '|')))
 				return (1);
 		}
 		x++;
@@ -72,8 +75,10 @@ int	sucession_syntax(char *input)
 	len = ft_strlen(input) - 1;
 	while (x < len)
 	{
-		while (x < len && input[x] != '<' && input[x] != '>' && parser_codes(input[x]) != 1)
+		while (x < len && input[x] != '<'
+			&& input[x] != '>' && parser_codes(input[x]) != 1)
 			x++;
+		x++;
 		if (x < len && parser_codes(input[x]) == 1)
 			x = little_skip_quotes(input, input[x], len);
 		if (x < len && (input[x] == '>' || input[x] == '<'))
@@ -101,10 +106,11 @@ int	token_syntax(char *input)
 	len = ft_strlen(input);
 	while (x < len && input[x])
 	{
-		if (x < len && parser_codes(input[x]) == 3)
+		if (x < len && parser_codes(input[x]) == 1)
 			x = little_skip_quotes(input, x, len);
-		if (x < len && (input[x] == '&' || input[x] == '(' || input[x] == ')' || input[x] == ';'))
-			return (1);
+		if (x < len && (input[x] == '&' || input[x] == '('
+				|| input[x] == ')' || input[x] == ';'))
+			return (input[x]);
 		x++;
 	}
 	return (0);

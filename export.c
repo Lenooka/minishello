@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 16:43:24 by jhuber            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/05/29 17:19:05 by otolmach         ###   ########.fr       */
-=======
-/*   Updated: 2024/05/30 15:02:36 by jhuber           ###   ########.fr       */
->>>>>>> e918e576f74f9925e6b3b5a94ea402e5bbfcccda
+/*   Updated: 2024/06/01 16:27:23 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +43,7 @@ int	find_ident(t_envl **env, char *ident, char *new_cont, int flag)
 
 	tmp = *env;
 	if (!tmp)
-		perror("export");		//Errors
+		perror("export");
 	while (tmp)
 	{
 		if (ft_strcmp((char *)(tmp)->ident, ident) == 0)

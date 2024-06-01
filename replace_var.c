@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace_var.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 13:22:02 by otolmach          #+#    #+#             */
-/*   Updated: 2024/05/15 16:56:51 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/01 15:35:58 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ char	*iterati(t_mnshll *minsh, char *var)
 {
 	char	*buf;
 	t_envl	*tmp;
-
 
 	if (ft_strcmp(var, "?") == 0)
 	{
@@ -37,7 +36,6 @@ char	*iterati(t_mnshll *minsh, char *var)
 	}
 	return (NULL);
 }
-
 
 size_t	indx_from(t_mnshll *minsh, char *rep_res, char q, int indx)
 {
@@ -83,6 +81,7 @@ char	*ft_strrepdup(char *str, int len)
 	ft_strlcpy(res, str, len + 1);
 	return (res);
 }
+
 char	*rep_var_w_val2(char *result, char *fix, char *buffer)
 {
 	if (buffer && fix)
@@ -94,8 +93,7 @@ char	*rep_var_w_val2(char *result, char *fix, char *buffer)
 	return (result);
 }
 
-
-char	*rep_var_w_val(t_mnshll *ms, char *result, char quotes, int str_index)
+char	*rep_var_w_val(t_mnshll *ms, char *res, char quotes, int str_index)
 {
 	char	*var;
 	char	*fix;
@@ -104,9 +102,9 @@ char	*rep_var_w_val(t_mnshll *ms, char *result, char quotes, int str_index)
 	var = NULL;
 	fix = NULL;
 	buffer = NULL;
-	fix = ft_strrepdup(result, str_index);
-	if (!(parser_codes(result[str_index + 1]) == 1 && !quotes))
-		buffer = ft_strrepdup(result + str_index, get_var_len(result + str_index));
+	fix = ft_strrepdup(res, str_index);
+	if (!(parser_codes(res[str_index + 1]) == 1 && !quotes))
+		buffer = ft_strrepdup(res + str_index, get_var_len(res + str_index));
 	if (buffer && ft_strcmp(buffer, "$") == 0)
 		var = ft_strdup(buffer);
 	else if (buffer)
@@ -117,65 +115,8 @@ char	*rep_var_w_val(t_mnshll *ms, char *result, char quotes, int str_index)
 	else
 		buffer = NULL;
 	free(fix);
-	fix = ft_strdup(result + str_index + get_var_len(result + str_index));
+	fix = ft_strdup(res + str_index + get_var_len(res + str_index));
 	free(var);
-	free(result);
-	return (rep_var_w_val2(result, fix, buffer));
-}
-
-char	*replace_var_in_str(t_mnshll *minsh, char *str)
-{
-	int		indx;
-	char	quote;
-	char	*rep_res;
-
-	indx = 0;
-	quote = '\0';
-	rep_res = ft_strdup(str);
-	if (!rep_res)
-		return (NULL);
-	while (rep_res && rep_res[indx])
-	{
-		if (!quote && parser_codes(rep_res[indx]) == 1)
-			quote = rep_res[indx];
-		else if (quote && rep_res[indx] == quote)
-			quote = '\0';
-		if (rep_res[indx] == '$' && quote != '\'')    //&& quote != '\"')
-		{
-			minsh->lenvar = indx_from(minsh, rep_res, quote, indx);
-			rep_res = rep_var_w_val(minsh, rep_res, quote, indx);
-			indx += minsh->lenvar;
-		}
-		indx++;
-	}
-	return (rep_res);
-}
-
-char	**replace_var(t_mnshll *minsh)
-{
-	char	**rep_arr;
-	char	*rep_res;
-	int		i;
-
-	i = 0;
-	rep_res = NULL;
-	rep_arr = ft_calloc(sizeof(char *), size_of_2d(minsh->com_array) + 1);
-	if (!rep_arr)
-		return (NULL);
-	while (minsh->com_array[i])
-	{
-		if (!ft_strchr(minsh->com_array[i], '$'))
-		{
-			rep_arr[minsh->rep_var_i] = ft_strdup(minsh->com_array[i]);
-			minsh->rep_var_i++;
-			i++;
-			continue ;
-		}
-		rep_res = replace_var_in_str(minsh, minsh->com_array[i++]);
-		if (rep_res && rep_res[0])
-			rep_arr[minsh->rep_var_i++] = rep_res;
-	}
-	rep_arr[minsh->rep_var_i] = NULL;
-	free_all_arrays(minsh->com_array);
-	return (rep_arr);
+	free(res);
+	return (rep_var_w_val2(res, fix, buffer));
 }

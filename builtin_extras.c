@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_extras.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:06:37 by jhuber            #+#    #+#             */
-/*   Updated: 2024/05/29 17:22:54 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/01 16:24:18 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	list_swap(t_mnshll *mini, t_envl *list)
 	top = list;
 	if (!top && !top->next)
 	{
-		write(2, "List Swap Error\n", 16);		//error changes
+		write(2, "List Swap Error\n", 16);
 		mini->exit = 1;
 		return ;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 20:10:00 by otolmach          #+#    #+#             */
-/*   Updated: 2024/05/03 18:22:11 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/01 15:52:13 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ void	init_heredoc(t_mnshll *minsh, char *del, int num_indx)
 	else
 	{
 		waitpid(pid, &status, 0);
-		if (pid != -1 && WIFEXITED(status) && WEXITSTATUS(status) == (128 +
-			SIGINT))
+		if (pid != -1 && WIFEXITED(status) && WEXITSTATUS(status)
+			== (128 + SIGINT))
 		{
 			g_global = SIGINT;
 			unlink(minsh->heredoc_buf);
@@ -100,7 +100,7 @@ int	if_there_heredoc(t_mnshll *minsh, char **str)
 	int		i;
 
 	i = 0;
-	if (!str || !str[0] || !str[0][0]) 
+	if (!str || !str[0] || !str[0][0])
 		return (0);
 	while (str[i])
 	{

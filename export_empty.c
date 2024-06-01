@@ -6,7 +6,7 @@
 /*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 18:51:25 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/28 20:17:17 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/01 15:56:36 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ void	print_table(t_envl **env)
 			else
 				break ;
 		}
-		ft_printf("%s %s=\"%s\"\n", "declare -x", curr->identificator, curr->content); //Not sure if I changed this printf correctly, gotta check later
+		ft_printf("%s %s=\"%s\"\n", "declare -x",
+			curr->identificator, curr->content); //Cut this into two lines, does it work? Work on export dumbass
 		curr = curr->next;
 	}
 }

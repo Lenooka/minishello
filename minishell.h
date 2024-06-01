@@ -6,11 +6,7 @@
 /*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/05/29 17:20:27 by otolmach         ###   ########.fr       */
-=======
-/*   Updated: 2024/05/30 15:02:38 by jhuber           ###   ########.fr       */
->>>>>>> e918e576f74f9925e6b3b5a94ea402e5bbfcccda
+/*   Updated: 2024/06/01 16:47:52 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +38,18 @@ typedef struct s_envl
 {
 	int				equal_flag;
 	int				node_flag;
-	void 			*content;
+	void			*content;
 	char			*identificator;
-	struct s_envl 	*next;
-} 	t_envl;
+	struct s_envl	*next;
+}	t_envl;
 
 typedef struct s_lexer
 {
 	char			**tokens;
 	struct s_lexer	*next;
-	
-} t_lexer;
+}	t_lexer;
 
-typedef	struct mnshll
+typedef struct mnshll
 {
 	int		command_amount;
 	char	**com_array;
@@ -67,11 +62,10 @@ typedef	struct mnshll
 	int		lenvar;
 	int		rep_var_i;
 	int		fdcheck;
-	int 	extra;
-	t_envl 	**envl;
+	int		extra;
+	t_envl	**envl;
 	t_lexer	*list_com;
-	
-} t_mnshll;
+}	t_mnshll;
 
 //main function
 int			main(int arc, char **arv, char **env);
@@ -94,8 +88,7 @@ void		make_sigaction(void);
 void		handler_cd(t_mnshll *mnshll);
 void		check_global_end(void);
 void		signal_global(int signum);
-void 		handle_sigint(int signum, siginfo_t *info, void *context);
-
+void		handle_sigint(int signum, siginfo_t *info, void *context);
 
 //Syntax Errors
 int			syntax_error(t_mnshll *mnshll);
@@ -110,33 +103,33 @@ int			redir_syntax(char *input);
 int			double_redir_syntax(char *input);
 int			sucession_syntax(char *input);
 int			token_syntax(char *input);
-//Names need to be changed, logic of the syntax checks needs to be overworked, but for now, this works. (Should)
+//changable
 
 //Exececution
 void		minishell(t_mnshll *mnshll);
 void		start_procces(t_mnshll *mnshll);
-void 		exit_status(t_mnshll *mnshll, pid_t pid, int com_run);
+void		exit_status(t_mnshll *mnshll, pid_t pid, int com_run);
 int			if_there_heredoc(t_mnshll *minsh, char **str);
 void		parent(t_mnshll *m, int *pipe_fd, int cmrun, int pos);
 void		child(t_mnshll *ms, int *pipe_fd, int cmds_run, int pos);
 int			isbuilt(char *com);
 void		redirect_and_close(t_mnshll *m, int fd, int op, int *pipefd);
 void		exe_cutie(t_mnshll *minsh, char **array, char **new_cmd);
-void		executie_ve(t_mnshll *minsh, char *path, char **cm_rem, char **array);
+void		executie_ve(t_mnshll *minsh, char *path, char **cm_rem, char **array); //Too long
 char   	 	**retrive_path_dir(t_envl **env, char *s);
 int			perm_and_isdir(t_mnshll *minsh, char *cmd_path, char **array);
 char		**retrive_rel_abs_path(const char *cmd);
 char		**convert_env(t_envl **envlist);
-char   		*find_ex_path(t_mnshll *minsh, char **array, char *cmd);
+char		*find_ex_path(t_mnshll *minsh, char **array, char *cmd);
 int			isbuilt(char *com);
 //Redirections
-int	redir(t_mnshll *minsh, char **array, int pos, int process);
-int	redirout(t_mnshll *minsh, char *check, char *filename, int process);
-int	redirin(t_mnshll *minsh, char *check, char *filename, int process);
-int	input_redir(t_mnshll *minsh, char *filename, int procces);
-int	heredoc_redir(t_mnshll *minsh, char *filename, int procces);
-int	output_redir(t_mnshll *minsh, char *filename, int process);
-int	append_out_redir(t_mnshll *minsh, char *filename, int process);
+int			redir(t_mnshll *minsh, char **array, int pos, int process);
+int			redirout(t_mnshll *minsh, char *check, char *filename, int process);
+int			redirin(t_mnshll *minsh, char *check, char *filename, int process);
+int			input_redir(t_mnshll *minsh, char *filename, int procces);
+int			heredoc_redir(t_mnshll *minsh, char *filename, int procces);
+int			output_redir(t_mnshll *minsh, char *filename, int process);
+int			append_out_redir(t_mnshll *minsh, char *filename, int process);
 
 //Parser
 int			parser_codes(char c);
@@ -158,18 +151,18 @@ char		*rep_var_w_val(t_mnshll *ms, char *result, char quotes, int str_index);
 char		*rep_var_w_val2(char *result, char *fix, char *buffer);
 
 //Herdoc
-int		if_there_heredoc(t_mnshll *minsh, char **str);
-void	init_heredoc(t_mnshll *minsh, char *del, int num_indx);
-void	heredoc_signal_handle(int signal);
-int		file_des_create(t_mnshll *minsh, int here_num);
-void	heredoc_child(t_mnshll *minsh, int fd, char *del);
-int		create_file(t_mnshll *minsh, char *filename);
-void	free_and_null(void **ptr);
-void    disable_quit_signals(void);
-void	heredoc_warn(char *del);
-char	*hrdc_out(t_mnshll *minsh, char	*del, char *line);
-int		spec_strcmp(char *s1, char *s2, char c);
-int		len_un_chr(char *str, char c);
+int			if_there_heredoc(t_mnshll *minsh, char **str);
+void		init_heredoc(t_mnshll *minsh, char *del, int num_indx);
+void		heredoc_signal_handle(int signal);
+int			file_des_create(t_mnshll *minsh, int here_num);
+void		heredoc_child(t_mnshll *minsh, int fd, char *del);
+int			create_file(t_mnshll *minsh, char *filename);
+void		free_and_null(void **ptr);
+void 	   disable_quit_signals(void);
+void		heredoc_warn(char *del);
+char		*hrdc_out(t_mnshll *minsh, char	*del, char *line);
+int			spec_strcmp(char *s1, char *s2, char c);
+int			len_un_chr(char *str, char c);
 
 //Utilities
 int			parser_codes(char c);
@@ -193,18 +186,18 @@ int			find_com_pos(char **arr, int pos);
 
 //FREES AND CLOSE
 
-void	free_exit_procces(t_mnshll *minsh, char *mess);
-void	close_fd(int *fd);
-void	free_cmd_list(t_lexer *cmdlist);
-void	dup_two_error(t_mnshll *minsh, int fd, int *pipe_fd);
-int		open_error(t_mnshll *minsh, char *filename, int process);
-void	free_to_main(t_mnshll *minsh);
-int		open_error(t_mnshll *minsh, char *filename, int process);
-void	pepe_error(t_mnshll *minsh, int *fd);
-void	fork_error(t_mnshll *minsh, int *fd);
-void	free_heredoc(t_mnshll *minsh, int fd);
-void	free_exit_out_all(t_mnshll *minsh, char *mess);
-void	error_msg(t_mnshll *minsh, char *msg, int exit_code, char *com);
+void		free_exit_procces(t_mnshll *minsh, char *mess);
+void		close_fd(int *fd);
+void		free_cmd_list(t_lexer *cmdlist);
+void		dup_two_error(t_mnshll *minsh, int fd, int *pipe_fd);
+int			open_error(t_mnshll *minsh, char *filename, int process);
+void		free_to_main(t_mnshll *minsh);
+int			open_error(t_mnshll *minsh, char *filename, int process);
+void		pepe_error(t_mnshll *minsh, int *fd);
+void		fork_error(t_mnshll *minsh, int *fd);
+void		free_heredoc(t_mnshll *minsh, int fd);
+void		free_exit_out_all(t_mnshll *minsh, char *mess);
+void		error_msg(t_mnshll *minsh, char *msg, int exit_code, char *com);
 
 //builtins
 void		built_ex(t_mnshll *minsh, char **tokens);

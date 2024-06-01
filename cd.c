@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 18:41:45 by jhuber            #+#    #+#             */
-/*   Updated: 2024/05/29 17:11:28 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/01 16:24:56 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,15 +88,15 @@ void	cd_default(t_mnshll *mini)
 void	cd(t_mnshll *mini, char **env)
 {
 	char	oldenv[PATH_MAX + 1];
-	
+
 	getcwd(oldenv, sizeof(oldenv));
 	if (env && size_of_2d(env) > 2)
 	{
 		error_msg(mini, "too many arguments", 1, "cd");
-		mini->exit = 1; 
+		mini->exit = 1;
 	}
 	else if (!env || !env[1] || !env[1][0])
-		cd_default(mini);			//need to make
+		cd_default(mini);
 	else if (env[1][0] == '~' && env)
 	{
 		cd_default(mini);

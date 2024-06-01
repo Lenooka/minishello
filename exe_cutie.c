@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_cutie.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:37:59 by otolmach          #+#    #+#             */
-/*   Updated: 2024/05/29 13:37:04 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/01 16:13:36 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@ if getcwd fails return NULL
 if cmd starts with ../ or ./ or / join with / and return
 else return NULL
 */
-int check_executie(t_mnshll *minsh, char **array, char *cmd)
+
+int	check_executie(t_mnshll *minsh, char **array, char *cmd)
 {
-	int indx;
-	char *temp;
-	char *buf;
-	int access_result;
-	int result;
+	int		indx;
+	char	*temp;
+	char	*buf;
+	int		access_result;
+	int		result;
 
 	indx = 0;
 	result = 0;
@@ -45,15 +46,16 @@ int check_executie(t_mnshll *minsh, char **array, char *cmd)
 	return (1);
 }
 
-char    **retrive_path_dir(t_envl **env, char *s)
+char	**retrive_path_dir(t_envl **env, char *s)
 {
-    int		indx;
+	int		indx;
 	char	**result;
 	char	**direc;
-	t_envl 	*tmp;
+	t_envl	*tmp;
 
 	indx = 0;
-	if (ft_strncmp(s, "../", 3) == 0 || ft_strncmp(s, "./", 2) == 0 || s[0] == '/')
+	if (ft_strncmp(s, "../", 3) == 0
+		|| ft_strncmp(s, "./", 2) == 0 || s[0] == '/')
 	{
 		return (retrive_rel_abs_path(s));
 	}
@@ -73,16 +75,16 @@ char    **retrive_path_dir(t_envl **env, char *s)
 	}
 	direc[indx] = NULL;
 	free_all_arrays(result);
-	return (direc);	
+	return (direc);
 }
 
 char	**convert_env(t_envl **envlist)
 {
-	int	indx;
-	int	list_len;
+	int		indx;
+	int		list_len;
 	char	**env;
-	t_envl	*tmp;
 	char	*indetef;
+	t_envl	*tmp;
 
 	indx = 0;
 	tmp = *envlist;
@@ -132,7 +134,7 @@ void	exe_cutie(t_mnshll *minsh, char **array, char **new_cmd)
 		free_exit_procces(minsh, "Error: Broken pipe\n");
 	if ((!array || !array[0] || !array[0][0]) || isbuilt(array[0]) == 1)
 		free_exit_procces(minsh, NULL);
-	split_pathvar = retrive_path_dir(minsh->envl, array[0]);			
+	split_pathvar = retrive_path_dir(minsh->envl, array[0]);
 	if (split_pathvar == NULL)
 		free_exit_procces(minsh, "Error: path not found\n");
 	if (check_executie(minsh, split_pathvar, array[0]) == 0)
@@ -146,5 +148,3 @@ void	exe_cutie(t_mnshll *minsh, char **array, char **new_cmd)
 	free_all_arrays(split_pathvar);
 	executie_ve(minsh, path, new_cmd, array);
 }
-
-

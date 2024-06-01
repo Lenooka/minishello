@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 21:35:11 by jhuber            #+#    #+#             */
-/*   Updated: 2024/05/03 13:56:41 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/01 15:39:26 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ void	echo_flag(char **input, int x)
 	}
 }
 
-int	check_flag(char *input) //Should work, might be trolling doe, who knows? Cluegi.
+int	check_flag(char *input)
 {
 	int	x;
-	
+
 	x = 0;
 	if (!input)
 		return (0);
