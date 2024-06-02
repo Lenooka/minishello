@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_redir_unexp_checks.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:54:23 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/01 16:59:27 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/01 18:34:18 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ int	sucession_syntax(char *input, int len)
 		while (x < len && input[x] != '<'
 			&& input[x] != '>' && parser_codes(input[x]) != 1)
 			x++;
-		x++;
 		if (x < len && parser_codes(input[x]) == 1)
 			x = little_skip_quotes(input, input[x], len);
 		if (x < len && (input[x] == '>' || input[x] == '<'))

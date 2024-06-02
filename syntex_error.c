@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntex_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 22:14:57 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/01 17:06:43 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/02 17:01:53 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	redir_unexpect_errors(char *input)
 		return (report_syntax_error("near unexpected token `<'"));
 	else if (double_redir_syntax(input) == 1)
 		return (report_syntax_error("near unexpected token `|'"));
-	else if (sucession_syntax(input, len) == 1)
+	else if (sucession_syntax(input, len) == 1)		//infinite loop here
 		return (report_syntax_error("near unexpected token `|'"));
 	else if (token_syntax(input) == 1)
 		return (report_syntax_error("near unexpected token `&();'"));
