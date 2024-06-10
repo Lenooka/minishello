@@ -6,7 +6,7 @@
 /*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 18:41:45 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/10 09:40:20 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/10 18:17:57 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,35 +84,6 @@ void	cd_default(t_mnshll *mini)
 		}
 	}
 }
-/*
-void	cd(t_mnshll *mini, char **env)
-{
-	char	oldenv[PATH_MAX + 1];
-
-	getcwd(oldenv, sizeof(oldenv));
-	if (env && size_of_2d(env) > 2)
-	{
-		error_msg(mini, "too many arguments", 1, "cd");
-		mini->exit = 1;
-	}
-	else if (!env || !env[1] || !env[1][0])
-		cd_default(mini);
-	else if (env[1][0] == '~' && env)
-	{
-		cd_default(mini);
-		if (env[1][1] == '/' && env[1][2])
-			enter_dir(mini, env[1]);
-	}
-	else if (chdir(env[1]) == -1)
-	{
-		error_msg(mini, "No such file or directory", 1, "cd");
-		mini->exit = 1;
-	}
-	change_path(mini->envl, oldenv);
-	ft_bzero(oldenv, ft_strlen(oldenv));
-}
-*/
-
 
 void	cd(t_mnshll *mini, char **env)
 {
@@ -128,8 +99,11 @@ void	cd(t_mnshll *mini, char **env)
 	if (!env || !env[1] || !env[1][0] || (env[1][0] == '~' && env))
 	{
 		cd_default(mini);
-		//if (env[1][0] == '~' && env[1][1] == '/' && env[1][2] && env) Problems with this line, not sure why but it seg faults, everything works with this logic though, would like to use it like this, throw a few small changes into the small functions and cd is done.
-		//	enter_dir(mini, env[1]);
+		if (env && env[1] && env[1][0])
+		{
+		if (env[1][0] == '~' && env[1][1] == '/' && env[1][2] && env)
+			enter_dir(mini, env[1]);
+		}
 	}
 	else if (chdir(env[1]) == -1)
 	{
