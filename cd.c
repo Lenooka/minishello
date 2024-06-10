@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 18:41:45 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/10 09:40:20 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/10 16:30:41 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,8 +128,11 @@ void	cd(t_mnshll *mini, char **env)
 	if (!env || !env[1] || !env[1][0] || (env[1][0] == '~' && env))
 	{
 		cd_default(mini);
-		//if (env[1][0] == '~' && env[1][1] == '/' && env[1][2] && env) Problems with this line, not sure why but it seg faults, everything works with this logic though, would like to use it like this, throw a few small changes into the small functions and cd is done.
-		//	enter_dir(mini, env[1]);
+		if (env && env[1] && env[1][0])
+		{
+			if (env[1][0] == '~' && env[1][1] == '/' && env[1][2] && env) //Problems with this line, not sure why but it seg faults, everything works with this logic though, would like to use it like this, throw a few small changes into the small functions and cd is done.
+				enter_dir(mini, env[1]);
+		}
 	}
 	else if (chdir(env[1]) == -1)
 	{
