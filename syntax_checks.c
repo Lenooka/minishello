@@ -6,7 +6,7 @@
 /*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 23:27:16 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/01 15:29:11 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/10 06:31:45 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	end_syntax(char *input)
 	return (0);
 }
 
-int	pipe_syntax(char *str)
+int	check_pipe_syntax(char *str)
 {
 	int	x;
 
@@ -95,22 +95,15 @@ otolmach@c4r5p5:~$ echo "$HOME"
 otolmach@c4r5p5:~$ echo '$HOME'
 	$HOME*/
 
-int	dollar_syntax(char *str)
+int	check_dollar_syntax(char *str)
 {
 	int	x;
 
 	x = 0;
 	while (str[x])
 	{
-		if (str[x] == '\'')
-		{
-			x++;
-			while (str[x] && str[x] != '\'')
-				x++;
-			if (str[x] == '\0')
-				break ;
-			x++;
-		}
+		if (check_squotes(str, x))
+			break ;
 		else if (str[x] == '$' && str[x + 1] == '$')
 			return (1);
 		else

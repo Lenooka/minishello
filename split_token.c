@@ -6,7 +6,7 @@
 /*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:53:11 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/01 15:38:38 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/10 06:08:19 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int	count_words(char *str)
 		else if (str[i] && parser_codes(str[i]) == 1)
 			i = big_skip_quotes(str, str[i], i);
 		else if (str[i] && str[i] == '$')
-			i = envar(str, i);
+			i = skip_envar(str, i);
 		else if (str[i] && !parser_codes(str[i]))
-			i = space_tab(str, i);
+			i = skip_spaces(str, i);
 	}
 	return (amm_words);
 }
@@ -51,9 +51,9 @@ int	ft_toklen(char *str)
 	if (str[i] && parser_codes(str[i]) == 2)
 		return (others(str, i));
 	if (str[i] && parser_codes(str[i]) == 4)
-		return (envar(str, i));
+		return (skip_envar(str, i));
 	if (str[i] && !parser_codes(str[i]))
-		return (space_tab(str, i));
+		return (skip_spaces(str, i));
 	return (i);
 }
 
