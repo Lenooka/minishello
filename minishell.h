@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/01 17:05:40 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/10 08:30:02 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,16 +94,18 @@ void		handle_sigint(int signum, siginfo_t *info, void *context);
 //Syntax Errors
 int			syntax_error(t_mnshll *mnshll);
 int			has_syntax_error(char *input);
-int			report_syntax_error(char *error_message);
+int			other_syntax_errors(char *input);
+int			syntax_message(char *error_message);
 int			unclosed_quote(char *inp);
 int			start_syntax(char *input);
 int			end_syntax(char *input);
-int			pipe_syntax(char *input);
-int			dollar_syntax(char *input);
-int			redir_syntax(char *input);
+int			check_pipe_syntax(char *input);
+int			check_dollar_syntax(char *input);
+int			check_redir_syntax(char *input);
 int			double_redir_syntax(char *input);
 int			sucession_syntax(char *input, int len);
 int			token_syntax(char *input);
+int			check_squotes(char *str, int x);
 //changable
 
 //Exececution
@@ -159,7 +161,7 @@ int			file_des_create(t_mnshll *minsh, int here_num);
 void		heredoc_child(t_mnshll *minsh, int fd, char *del);
 int			create_file(t_mnshll *minsh, char *filename);
 void		free_and_null(void **ptr);
-void 	   disable_quit_signals(void);
+void		disable_quit_signals(void);
 void		heredoc_warn(char *del);
 char		*hrdc_out(t_mnshll *minsh, char	*del, char *line);
 int			spec_strcmp(char *s1, char *s2, char c);
@@ -170,8 +172,8 @@ int			parser_codes(char c);
 int			find_com_pos(char **com_array, int	pos);
 int			big_skip_quotes(char *str, char c, int x);
 int			little_skip_quotes(char *str, int x, int len);
-int			space_tab(char *str, int x);
-int			envar(char *str, int x);
+int			skip_spaces(char *str, int x);
+int			skip_envar(char *str, int x);
 int			ft_strcmp(char *s1, char *s2);
 int			size_of_2d(char **arr);
 char		*remove_quotes(char *str);

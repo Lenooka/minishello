@@ -6,13 +6,13 @@
 /*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 22:14:57 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/02 17:01:53 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/10 06:58:20 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	report_syntax_error(char *error_message)
+int	syntax_message(char *error_message)
 {
 	write(2, "error: syntax error ", 20);
 	write(2, error_message, ft_strlen(error_message));
@@ -20,41 +20,41 @@ int	report_syntax_error(char *error_message)
 	return (1);
 }
 
-int	redir_unexpect_errors(char *input)
+int	other_syntax_errors(char *input)
 {
 	int	x;
 	int len;
 
 	len = ft_strlen(input) - 1;
-	x = redir_syntax(input);
+	x = check_redir_syntax(input);
 	if (x == 1)
-		return (report_syntax_error("near unexpected token `|'"));
+		return (syntax_message("near unexpected token `|'"));
 	if (x == 2)
-		return (report_syntax_error("near unexpected token `newline'"));
+		return (syntax_message("near unexpected token `newline'"));
 	if (x == 3)
-		return (report_syntax_error("near unexpected token `<'"));
+		return (syntax_message("near unexpected token `<'"));
 	else if (double_redir_syntax(input) == 1)
-		return (report_syntax_error("near unexpected token `|'"));
-	else if (sucession_syntax(input, len) == 1)		//infinite loop here
-		return (report_syntax_error("near unexpected token `|'"));
+		return (syntax_message("near unexpected token `|'"));
+	else if (sucession_syntax(input, len) == 1)
+		return (syntax_message("near unexpected token `|'"));
 	else if (token_syntax(input) == 1)
-		return (report_syntax_error("near unexpected token `&();'"));
+		return (syntax_message("near unexpected token `&();'"));
 	return (0);
 }
 
 int	has_syntax_error(char *input)
 {
 	if (start_syntax(input) == 1)
-		return (report_syntax_error("near unexpected token `|'"));
+		return (syntax_message("near unexpected token `|'"));
 	else if (end_syntax(input) == 1)
-		return (report_syntax_error("near unexpected token `newline'"));
+		return (syntax_message("near unexpected token `newline'"));
 	else if (unclosed_quote(input) == 1)
-		return (report_syntax_error("unclosed quote marks"));
-	else if (pipe_syntax(input) == 1)
-		return (report_syntax_error("near unexpected token '|'"));
-	else if (dollar_syntax(input) == 1)
-		return (report_syntax_error("near unexpected token '$'"));
-	else if (redir_unexpect_errors(input) == 1)
+		return (syntax_message("unclosed quote marks"));
+	else if (check_pipe_syntax(input) == 1)
+		return (syntax_message("near unexpected token '|'"));
+	else if (check_dollar_syntax(input) == 1)
+		return (syntax_message("near unexpected token '$'"));
+	else if (other_syntax_errors(input) == 1)
 		return (1);
 	return (0);
 }

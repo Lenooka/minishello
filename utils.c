@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 22:14:57 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/01 15:12:14 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/10 06:08:05 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,30 +36,30 @@ int	big_skip_quotes(char *str, char c, int x)
 			return (x);
 		x++;
 		if (str[x] && !parser_codes(str[x]))
-			return (space_tab(str, x));
+			return (skip_spaces(str, x));
 		else if (str[x] && str[x] == '$')
-			return (envar(str, x));
+			return (skip_envar(str, x));
 		else if (str[x] && parser_codes(str[x]) == 1)
 			return (big_skip_quotes(str, str[x], x));
 	}
 	return (x);
 }
 
-int	space_tab(char *str, int x)
+int	skip_spaces(char *str, int x)
 {
 	if (str[x] && !parser_codes(str[x]))
 	{
 		while (str[x] && !parser_codes(str[x]))
 			x++;
 		if (str[x] && str[x] == '$')
-			return (envar(str, x));
+			return (skip_envar(str, x));
 		else if (str[x] && parser_codes(str[x]) == 1)
 			return (big_skip_quotes(str, str[x], x));
 	}
 	return (x);
 }
 
-int	envar(char *str, int x)
+int	skip_envar(char *str, int x)
 {
 	if (str[x] == '$')
 	{
@@ -67,7 +67,7 @@ int	envar(char *str, int x)
 		if (str[x] && parser_codes(str[x]) == 1)
 			return (big_skip_quotes(str, str[x], x));
 		else if (str[x] && !parser_codes(str[x]))
-			return (space_tab(str, x));
+			return (skip_spaces(str, x));
 	}
 	return (x);
 }

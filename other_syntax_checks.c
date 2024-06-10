@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   syntax_redir_unexp_checks.c                        :+:      :+:    :+:   */
+/*   other_syntax_checks.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:54:23 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/01 18:34:18 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/10 06:58:15 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	redir_syntax(char *input)
+int	check_redir_syntax(char *input)
 {
 	int	x;
 	int	len;
