@@ -6,7 +6,7 @@
 /*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 18:41:45 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/10 18:17:57 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/11 19:33:14 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	enter_dir(t_mnshll *mini, char *env)
 		error_msg(mini, "No such file or directory", 1, "cd");
 		mini->exit = 1;
 	}
+	if (!new_env)
+		return ;
 	free(new_env);
 }
 
@@ -55,8 +57,6 @@ char	*find_default(t_envl **envl)
 	t_envl	*tmp;
 
 	tmp = *envl;
-	if (!tmp)
-		return (NULL);
 	while (tmp)
 	{
 		if (ft_strcmp((char *)(tmp)->identificator, "HOME") == 0)
@@ -72,9 +72,7 @@ void	cd_default(t_mnshll *mini)
 
 	def = find_default(mini->envl);
 	if (!def)
-	{
 		error_msg(mini, "Home not set", 1, "cd");
-	}
 	else
 	{
 		if (chdir(def) == -1)
