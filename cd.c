@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 18:41:45 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/10 16:30:41 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/12 13:23:12 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,11 @@ void	cd(t_mnshll *mini, char **env)
 	change_path(mini->envl, oldenv);
 	ft_bzero(oldenv, ft_strlen(oldenv));
 }
-*/
+//Problems with this line, not sure why but it seg faults, 
+everything works with this logic though
+, would like to use it like this, 
+throw a few small changes into the small functions and cd is done.*/
+
 
 
 void	cd(t_mnshll *mini, char **env)
@@ -130,7 +134,7 @@ void	cd(t_mnshll *mini, char **env)
 		cd_default(mini);
 		if (env && env[1] && env[1][0])
 		{
-			if (env[1][0] == '~' && env[1][1] == '/' && env[1][2] && env) //Problems with this line, not sure why but it seg faults, everything works with this logic though, would like to use it like this, throw a few small changes into the small functions and cd is done.
+			if (env[1][0] == '~' && env[1][1] == '/' && env[1][2] && env) 
 				enter_dir(mini, env[1]);
 		}
 	}

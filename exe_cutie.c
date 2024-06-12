@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:37:59 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/11 17:39:14 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/12 13:09:59 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,7 @@ char	**retrive_path_dir(t_envl **env, char *s)
 		direc[indx] = ft_strjoin(result[indx], "/");
 		indx++;
 	}
-	direc[indx] = NULL;
-	free_all_arrays(result);
+	direc[indx] = NULL;	//free_all_arrays(result); how does it not leak?
 	return (direc);
 }
 

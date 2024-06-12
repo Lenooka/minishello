@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 13:54:12 by otolmach          #+#    #+#             */
-/*   Updated: 2024/03/25 17:16:26 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/12 13:23:33 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include <string.h>
 # include <stdarg.h>
 # include <stdint.h>
-
 
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t n);
