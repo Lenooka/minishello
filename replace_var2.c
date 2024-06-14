@@ -6,7 +6,7 @@
 /*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 15:35:05 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/01 15:35:48 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/14 14:29:20 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*replace_var_in_str(t_mnshll *minsh, char *str)
 		return (NULL);
 	while (rep_res && rep_res[indx])
 	{
-		if (!quote && parser_codes(rep_res[indx]) == 1)
+		if (!quote && check_quotes(rep_res, indx))
 			quote = rep_res[indx];
 		else if (quote && rep_res[indx] == quote)
 			quote = '\0';

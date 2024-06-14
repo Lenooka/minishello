@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:57:54 by jhuber            #+#    #+#             */
-/*   Updated: 2024/05/31 17:16:44 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/14 14:03:43 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	quote_amm(char *str)
 		return (0);
 	while (str[i] != '\0')
 	{
-		if (parser_codes(str[i]) == 1)
+		if (check_quotes(str, i))
 		{
 			i = little_skip_quotes(str, i, ft_strlen(str) + 1);
 			n = n + 2;
@@ -63,7 +63,7 @@ char	*remove_quotes(char *str)
 		return (NULL);
 	while (str[i] != '\0')
 	{
-		if (parser_codes(str[i]) == 1)
+		if (check_quotes(str, i))
 		{
 			q = str[i++];
 			while (str[i] && str[i] != q)

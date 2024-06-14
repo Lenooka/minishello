@@ -6,7 +6,7 @@
 /*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/10 08:30:02 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/14 14:30:50 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,6 @@ int			output_redir(t_mnshll *minsh, char *filename, int process);
 int			append_out_redir(t_mnshll *minsh, char *filename, int process);
 
 //Parser
-int			parser_codes(char c);
 int			parser_start(t_mnshll *minsh);
 int			init_fds(t_mnshll *minsh);
 char		**split_tokenize(t_mnshll *minsh, char *str);
@@ -168,7 +167,11 @@ int			spec_strcmp(char *s1, char *s2, char c);
 int			len_un_chr(char *str, char c);
 
 //Utilities
-int			parser_codes(char c);
+int			check_quotes(char *str, int x);
+int			check_redir_pipe(char *str, int x);
+int			check_space_tabs(char *str, int x);
+int			check_dollar(char *str, int x);
+int			check_all(char *str, int x);
 int			find_com_pos(char **com_array, int	pos);
 int			big_skip_quotes(char *str, char c, int x);
 int			little_skip_quotes(char *str, int x, int len);

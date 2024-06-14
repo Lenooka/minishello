@@ -6,7 +6,7 @@
 /*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:53:11 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/10 06:08:19 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/14 14:18:40 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,21 @@ int	count_words(char *str)
 	amm_words = 0;
 	while (str && str[i])
 	{
-		while (str[i] && parser_codes(str[i]) == 3)
+		while (str[i] && check_space_tabs(str, i))
 		{
 			i++;
 		}
-		if (str[i] && parser_codes(str[i]) != 3)
+		if (str[i] && !check_space_tabs(str, i))
 		{
 			amm_words++;
 		}
-		if (str[i] && parser_codes(str[i]) == 2)
+		if (str[i] && check_redir_pipe(str, i))
 			i = others(str, i);
-		else if (str[i] && parser_codes(str[i]) == 1)
+		else if (str[i] && check_quotes(str, i))
 			i = big_skip_quotes(str, str[i], i);
 		else if (str[i] && str[i] == '$')
 			i = skip_envar(str, i);
-		else if (str[i] && !parser_codes(str[i]))
+		else if (str[i] && !check_all(str, i))
 			i = skip_spaces(str, i);
 	}
 	return (amm_words);
@@ -46,13 +46,13 @@ int	ft_toklen(char *str)
 	int	i;
 
 	i = 0;
-	if (str[i] && parser_codes(str[i]) == 1)
+	if (str[i] && check_quotes(str, i))
 		return (big_skip_quotes(str, str[i], i));
-	if (str[i] && parser_codes(str[i]) == 2)
+	if (str[i] && check_redir_pipe(str, i))
 		return (others(str, i));
-	if (str[i] && parser_codes(str[i]) == 4)
+	if (str[i] && check_dollar(str, i))
 		return (skip_envar(str, i));
-	if (str[i] && !parser_codes(str[i]))
+	if (str[i] && !check_all(str, i))
 		return (skip_spaces(str, i));
 	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 13:22:02 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/01 15:35:58 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/14 14:05:27 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ size_t	indx_from(t_mnshll *minsh, char *rep_res, char q, int indx)
 	vari = NULL;
 	tmp = NULL;
 	indx_from = 0;
-	if (!(parser_codes(rep_res[indx + 1]) == 1 && !q))
+	if (!(check_quotes(rep_res, indx + 1) && !q))
 	{
 		varlena = get_var_len(rep_res + indx);
 		tmp = ft_strndup(minsh, rep_res + indx, varlena);
@@ -103,7 +103,7 @@ char	*rep_var_w_val(t_mnshll *ms, char *res, char quotes, int str_index)
 	fix = NULL;
 	buffer = NULL;
 	fix = ft_strrepdup(res, str_index);
-	if (!(parser_codes(res[str_index + 1]) == 1 && !quotes))
+	if (!(check_quotes(res, str_index + 1) && !quotes))
 		buffer = ft_strrepdup(res + str_index, get_var_len(res + str_index));
 	if (buffer && ft_strcmp(buffer, "$") == 0)
 		var = ft_strdup(buffer);

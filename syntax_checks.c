@@ -6,7 +6,7 @@
 /*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 23:27:16 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/10 06:31:45 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/14 14:29:34 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	unclosed_quote(char *inp)
 	i = 0;
 	while (inp[i] != '\0')
 	{
-		if (parser_codes(inp[i]) == 1)
+		if (check_quotes(inp, i))
 		{
 			c = inp[i++];
 			while (inp[i] != '\0' && inp[i] != c)
@@ -39,7 +39,7 @@ int	start_syntax(char *input)
 	int	x;
 
 	x = 0;
-	while (input[x] && parser_codes(input[x]) == 3)
+	while (input[x] && check_space_tabs(input, x))
 		x++;
 	if (input[x] == '|')
 		return (1);
@@ -58,7 +58,7 @@ int	end_syntax(char *input)
 	{
 		if (input[x] == '|' || input[x] == '<' || input[x] == '>')
 			return (1);
-		else if (parser_codes(input[x]) == 3)
+		else if (check_space_tabs(input, x))
 			x--;
 		else
 			break ;
@@ -73,12 +73,12 @@ int	check_pipe_syntax(char *str)
 	x = 0;
 	while (str[x])
 	{
-		if (str[x] && parser_codes(str[x]) == 1)
+		if (str[x] && check_quotes(str, x))
 			x = big_skip_quotes(str, str[x], x);
 		else if (str[x] && str[x] == '|')
 		{
 			x++;
-			while (str[x] && parser_codes(str[x]) == 3)
+			while (str[x] && check_space_tabs(str, x))
 				x++;
 			if (str[x] && str[x] == '|')
 				return (1);
