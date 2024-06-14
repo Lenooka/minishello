@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:19:24 by olena             #+#    #+#             */
-/*   Updated: 2024/06/11 19:30:53 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/14 18:00:45 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ char	*find_ex_path(t_mnshll *minsh, char **array, char *cmd)
 	char	*buf;
 
 	indx = 0;
+	cmd = remove_quotes(cmd);
 	while (array && array[indx])
 	{
 		temp = ft_strjoin(array[indx], "/");
@@ -60,7 +61,7 @@ char	*find_ex_path(t_mnshll *minsh, char **array, char *cmd)
 		perror(cmd);
 	else if (ft_strcmp(cmd, "\'\'") != 0 && ft_strcmp(cmd, "\"\"") != 0)
 	{
-		printf("Error: %s: command not found\n", cmd);
+		printf("Error: %s: command not found!\n", cmd);
 		minsh->exit = 127;
 		return (NULL);
 	}

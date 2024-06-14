@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:57:54 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/14 14:03:43 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/14 17:38:20 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	little_skip_quotes(char *str, int x, int len)
 
 	c = str[x];
 	x++;
-	while (x < len && str[x] != c)
+	while (str && x < len && str[x] != c)
 	{
 		x++;
 	}

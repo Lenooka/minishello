@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 20:10:00 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/14 14:32:04 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/14 19:40:13 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*hrdc_out(t_mnshll *minsh, char	*del, char *line)
 	if (!ft_strchr(del, '\'') && !ft_strchr(del, '\"'))
 		out = replace_var_in_str(minsh, line);
 	else
-	out = ft_strdup(line);
+		out = ft_strdup(line);
 	return (out);
 }
 
@@ -63,7 +63,6 @@ void	heredoc_child(t_mnshll *minsh, int fd, char *del)
 	}
 	if (line)
 		free_and_null((void **)&line);
-	close(fd);
 	free_heredoc(minsh, fd);
 }
 

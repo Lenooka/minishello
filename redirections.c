@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 15:54:25 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/01 15:28:39 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/14 19:52:53 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	redirout(t_mnshll *minsh, char *check, char *filename, int process)
 
 int	redirin(t_mnshll *minsh, char *check, char *filename, int process)
 {
+	printf("filename: %s\n", filename);
 	if (ft_strcmp(check, "<<") == 0)
 		return (heredoc_redir(minsh, filename, process));
 	else if (ft_strcmp(check, "<") == 0)
