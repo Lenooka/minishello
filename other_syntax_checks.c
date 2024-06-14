@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   other_syntax_checks.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:54:23 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/14 14:37:28 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/14 17:39:35 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	sucession_syntax(char *input, int len)
 			&& input[x] != '>' && !check_quotes(input, x))
 			x++;
 		if (x < len && check_quotes(input, x))
-			x = little_skip_quotes(input, input[x], len);
+			x = little_skip_quotes(input, x, len);
 		if (x < len && (input[x] == '>' || input[x] == '<'))
 		{
 			x++;

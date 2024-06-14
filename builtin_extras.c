@@ -6,7 +6,7 @@
 /*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:06:37 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/11 19:59:24 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/14 19:37:17 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,27 @@ void	error_msg(t_mnshll *minsh, char *msg, int exit_code, char *com)
 		exit(12);
 	}
 }
+//tmp changed here too, not protected.
 
 void	change_oldpath(t_envl **envl, char *oldpath)
 {
 	t_envl	*tmp;
 	char	*new_content;
+	int		x;
 
+	x = 0;
 	tmp = *envl;
-	if (!tmp)
-		return ;
-	while (tmp)
+	while (tmp && !x)
 	{
-		if (strcmp((char *)(tmp)->identificator, "OLDPWD") == 0)
+		if (strcmp((tmp)->identificator, "OLDPWD") == 0)
 		{
 			new_content = ft_strdup(oldpath);
 			free((tmp)->content);
 			(tmp)->content = new_content;
-			break ;
+			x++;
 		}
-		tmp = (tmp)->next;
+		if (!x)
+			tmp = (tmp)->next;
 	}
 }
 

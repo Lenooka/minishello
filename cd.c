@@ -3,34 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 18:41:45 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/14 14:36:09 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/14 19:46:58 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+//removed the tmp check for Null, if issue hi.
+
 void	change_path(t_envl **envl, char *oldpath)
 {
 	t_envl	*tmp;
 	char	newpath[PATH_MAX + 1];
+	int		x;
 
+	x = 0;
 	tmp = *envl;
-	if (!tmp)
-		return ;
-	while (tmp)
+	while (tmp && !x)
 	{
-		if (ft_strcmp((char *)(tmp)->identificator, "PWD") == 0)
+		if (ft_strcmp((tmp)->identificator, "PWD") == 0)
 		{
 			getcwd(newpath, sizeof(newpath));
 			free((tmp)->content);
 			(tmp)->content = ft_strdup(newpath);
 			ft_bzero(newpath, ft_strlen(newpath));
-			break ;
+			x++;
 		}
-		tmp = (tmp)->next;
+		if (!x)
+			tmp = (tmp)->next;
 	}
 	change_oldpath(envl, oldpath);
 }
@@ -38,11 +41,13 @@ void	change_path(t_envl **envl, char *oldpath)
 void	enter_dir(t_mnshll *mini, char *env)
 {
 	size_t	len;
+	int		x;
 	char	*new_env;
 
-	len = ft_strlen(env) - 2;
-	new_env = ft_substr(env, 2, len);
-	if (chdir(new_env) == -1)
+	len = ft_strlen(env);
+	new_env = ft_substr(env, 2, len - 2);
+	x = chdir(new_env);
+	if (x == -1)
 	{
 		error_msg(mini, "No such file or directory", 1, "cd");
 		mini->exit = 1;
@@ -52,6 +57,7 @@ void	enter_dir(t_mnshll *mini, char *env)
 	free(new_env);
 }
 
+/*
 char	*find_default(t_envl **envl)
 {
 	t_envl	*tmp;
@@ -59,9 +65,21 @@ char	*find_default(t_envl **envl)
 	tmp = *envl;
 	while (tmp)
 	{
-		if (ft_strcmp((char *)(tmp)->identificator, "HOME") == 0)
+		if (ft_strcmp((tmp)->identificator, "HOME") == 0)
 			return ((tmp)->content);
 		tmp = (tmp)->next;
+	}
+	return (NULL);
+}
+*/
+
+char	*find_default(t_envl **envl)
+{
+	while (*envl)
+	{
+		if (ft_strcmp((*envl)->identificator, "HOME") == 0)
+			return ((*envl)->content);
+		*envl = (*envl)->next;
 	}
 	return (NULL);
 }
@@ -69,17 +87,18 @@ char	*find_default(t_envl **envl)
 void	cd_default(t_mnshll *mini)
 {
 	char	*def;
+	int		x;
 
+	x = 0;
 	def = find_default(mini->envl);
 	if (!def)
 		error_msg(mini, "Home not set", 1, "cd");
 	else
+		x = chdir(def);
+	if (x == -1)
 	{
-		if (chdir(def) == -1)
-		{
-			error_msg(mini, "No such file or directory", 1, "cd");
-			mini->exit = 1;
-		}
+		error_msg(mini, "No such file or directory", 1, "cd");
+		mini->exit = 1;
 	}
 }
 
