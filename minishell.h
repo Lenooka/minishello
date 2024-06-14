@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/12 13:28:28 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/14 13:32:16 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ void		executie_ve(t_mnshll *minsh, char *path, char **cm_rem, char **a);
 char		**retrive_path_dir(t_envl **env, char *s);
 int			perm_and_isdir(t_mnshll *minsh, char *cmd_path, char **array);
 char		**retrive_rel_abs_path(const char *cmd);
+int			cmpr_cutlines(char *s);
 char		**convert_env(t_envl **envlist);
 char		*find_ex_path(t_mnshll *minsh, char **array, char *cmd);
 int			isbuilt(char *com);
@@ -155,7 +156,8 @@ char		*rep_var_w_val2(char *result, char *fix, char *buffer);
 
 //Herdoc
 int			if_there_heredoc(t_mnshll *minsh, char **str);
-void		init_heredoc(t_mnshll *minsh, char *del, int num_indx);
+int			init_heredoc(t_mnshll *minsh, char **str, int i);
+void		start_heredoc(t_mnshll *minsh, char *del, int num_indx);
 void		heredoc_signal_handle(int signal);
 int			file_des_create(t_mnshll *minsh, int here_num);
 void		heredoc_child(t_mnshll *minsh, int fd, char *del);
@@ -166,6 +168,7 @@ void		heredoc_warn(char *del);
 char		*hrdc_out(t_mnshll *minsh, char	*del, char *line);
 int			spec_strcmp(char *s1, char *s2, char c);
 int			len_un_chr(char *str, char c);
+
 
 //Utilities
 int			parser_codes(char c);

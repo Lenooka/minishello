@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:37:59 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/12 13:09:59 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/14 14:07:27 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,20 @@ int	check_executie(t_mnshll *minsh, char **array, char *cmd)
 	return (1);
 }
 
+int	cmpr_cutlines(char *s)
+{
+	int	res;
+
+	res = 0;
+	if (ft_strncmp(s, "../", 3) == 0)
+		res = 1;
+	else if (ft_strncmp(s, "./", 2) == 0)
+		res = 1;
+	else if (s[0] == '/')
+		res = 1;
+	return (res);
+}
+
 char	**retrive_path_dir(t_envl **env, char *s)
 {
 	int		indx;
@@ -55,8 +69,7 @@ char	**retrive_path_dir(t_envl **env, char *s)
 	t_envl	*tmp;
 
 	indx = 0;
-	if (ft_strncmp(s, "../", 3) == 0 
-			|| ft_strncmp(s, "./", 2) == 0 || s[0] == '/')
+	if (cmpr_cutlines(s) == 1)
 		return (retrive_rel_abs_path(s));
 	tmp = *env;
 	while (tmp && ft_strncmp(tmp->identificator, "PATH", 4) != 0)
@@ -72,7 +85,8 @@ char	**retrive_path_dir(t_envl **env, char *s)
 		direc[indx] = ft_strjoin(result[indx], "/");
 		indx++;
 	}
-	direc[indx] = NULL;	//free_all_arrays(result); how does it not leak?
+	direc[indx] = NULL;	
+	free_all_arrays(result);
 	return (direc);
 }
 
