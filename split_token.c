@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_token.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:53:11 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/14 14:18:40 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/14 14:36:22 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	**split_tokenize(t_mnshll *minsh, char *str)
 		return (NULL);
 	while (i < token_ammount - 1)
 	{
-		if (*str && parser_codes(*str) == 3)
+		if (*str && (*str == '\t' || *str == ' '))
 			str++;
 		else
 		{

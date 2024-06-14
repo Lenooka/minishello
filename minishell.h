@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/14 14:30:50 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/14 14:37:03 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,10 +118,11 @@ void		child(t_mnshll *ms, int *pipe_fd, int cmds_run, int pos);
 int			isbuilt(char *com);
 void		redirect_and_close(t_mnshll *m, int fd, int op, int *pipefd);
 void		exe_cutie(t_mnshll *minsh, char **array, char **new_cmd);
-void		executie_ve(t_mnshll *minsh, char *path, char **cm_rem, char **array); //Too long
-char   	 	**retrive_path_dir(t_envl **env, char *s);
+void		executie_ve(t_mnshll *minsh, char *path, char **cm_rem, char **a);
+char		**retrive_path_dir(t_envl **env, char *s);
 int			perm_and_isdir(t_mnshll *minsh, char *cmd_path, char **array);
 char		**retrive_rel_abs_path(const char *cmd);
+int			cmpr_cutlines(char *s);
 char		**convert_env(t_envl **envlist);
 char		*find_ex_path(t_mnshll *minsh, char **array, char *cmd);
 int			isbuilt(char *com);
@@ -149,12 +150,13 @@ char		*iterati(t_mnshll *minsh, char *var);
 char		**duplicate_string_array(t_mnshll *minsh, char **old_arr);
 int			count_commands(char **str_tab);
 t_lexer		*init_list_of_comands(t_mnshll *minsh);
-char		*rep_var_w_val(t_mnshll *ms, char *result, char quotes, int str_index);
+char		*rep_var_w_val(t_mnshll *ms, char *result, char quotes, int i);
 char		*rep_var_w_val2(char *result, char *fix, char *buffer);
 
 //Herdoc
 int			if_there_heredoc(t_mnshll *minsh, char **str);
-void		init_heredoc(t_mnshll *minsh, char *del, int num_indx);
+int			init_heredoc(t_mnshll *minsh, char **str, int i);
+void		start_heredoc(t_mnshll *minsh, char *del, int num_indx);
 void		heredoc_signal_handle(int signal);
 int			file_des_create(t_mnshll *minsh, int here_num);
 void		heredoc_child(t_mnshll *minsh, int fd, char *del);
@@ -165,6 +167,7 @@ void		heredoc_warn(char *del);
 char		*hrdc_out(t_mnshll *minsh, char	*del, char *line);
 int			spec_strcmp(char *s1, char *s2, char c);
 int			len_un_chr(char *str, char c);
+
 
 //Utilities
 int			check_quotes(char *str, int x);
@@ -182,13 +185,12 @@ int			size_of_2d(char **arr);
 char		*remove_quotes(char *str);
 int			quote_amm(char *str);
 void		free_all_arrays(char **str_tab);
-int 		others(char *str, int x);
+int			others(char *str, int x);
 void		ft_lstadd_back(t_envl **lst, t_envl *new);
 int			ft_lstsize(t_envl *lst);
 char		**rem_q_from_2d(char **array);
-char    	**retrive_path_dir(t_envl **env, char *s);
+char		**retrive_path_dir(t_envl **env, char *s);
 int			find_com_pos(char **arr, int pos);
-
 
 //FREES AND CLOSE
 

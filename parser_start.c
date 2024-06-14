@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:33:06 by otolmach          #+#    #+#             */
-/*   Updated: 2024/05/03 13:44:39 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/11 19:17:54 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int	parser_start(t_mnshll *minsh)
 		return (1);
 	}
 	minsh->com_array = duplicate_string_array(minsh, repl_var_array);
+	if (minsh->com_array == NULL)
+		return (1);
 	minsh->command_amount = count_commands(minsh->com_array);
 	minsh->list_com = init_list_of_comands(minsh);
 	if (minsh->list_com == NULL)

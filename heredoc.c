@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 20:10:00 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/01 15:52:13 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/14 14:32:04 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*hrdc_out(t_mnshll *minsh, char	*del, char *line)
 	if (!ft_strchr(del, '\'') && !ft_strchr(del, '\"'))
 		out = replace_var_in_str(minsh, line);
 	else
-		out = ft_strdup(line);
+	out = ft_strdup(line);
 	return (out);
 }
 
@@ -67,7 +67,7 @@ void	heredoc_child(t_mnshll *minsh, int fd, char *del)
 	free_heredoc(minsh, fd);
 }
 
-void	init_heredoc(t_mnshll *minsh, char *del, int num_indx)
+void	start_heredoc(t_mnshll *minsh, char *del, int num_indx)
 {
 	int		fd;
 	pid_t	pid;
@@ -94,6 +94,19 @@ void	init_heredoc(t_mnshll *minsh, char *del, int num_indx)
 		}
 	}
 }
+int	init_heredoc(t_mnshll *minsh, char **str, int i)
+{
+	start_heredoc(minsh, str[i + 1], i);
+	free(str[i + 1]);
+	str[i + 1] = ft_strdup(minsh->heredoc_buf);
+	free(minsh->heredoc_buf);
+	if (g_global == SIGINT)
+	{
+		g_global = 0;
+		return (1);
+	}
+	return (0);
+}
 
 int	if_there_heredoc(t_mnshll *minsh, char **str)
 {
@@ -106,16 +119,10 @@ int	if_there_heredoc(t_mnshll *minsh, char **str)
 	{
 		if (ft_strcmp(str[i], "<<") == 0)
 		{
-			init_heredoc(minsh, str[i + 1], i);
-			free(str[i + 1]);
-			str[i + 1] = ft_strdup(minsh->heredoc_buf);
-			free(minsh->heredoc_buf);
-			if (g_global == SIGINT)
-			{
-				g_global = 0;
+			if (init_heredoc(minsh, str, i) == 1)
 				return (1);
-			}
-			i += 2;
+			i++;
+			i++;
 		}
 		else
 			i++;

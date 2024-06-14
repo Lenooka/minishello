@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 14:06:39 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/01 16:53:55 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/10 16:43:30 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	free_heredoc(t_mnshll *minsh, int fd)
 	exit_s = minsh->exit;
 	if (minsh->input)
 		free(minsh->input);
-	free_all_arrays(minsh->com_array);
+	//free_all_arrays(minsh->com_array);
 	if (minsh->envl)
 		free_env(minsh->envl);
 	free(minsh->heredoc_buf);

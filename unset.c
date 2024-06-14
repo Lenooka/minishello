@@ -6,13 +6,11 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:14:17 by jhuber            #+#    #+#             */
-/*   Updated: 2024/05/31 14:13:18 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/12 13:25:01 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-
 
 void	rm_first(t_envl **env)
 {
@@ -34,7 +32,7 @@ void	rm_nodes(t_envl **env, char *str)
 	tmp = lst;
 	if (!lst)
 		return ;
-	while (lst->next)		//Small change here from != NULL
+	while (lst->next)
 	{
 		if (ft_strcmp((char *)(tmp)->identificator, str) == 0)
 		{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace_var2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 15:35:05 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/14 14:29:20 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/14 14:36:30 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*replace_var_in_str(t_mnshll *minsh, char *str)
 			quote = rep_res[indx];
 		else if (quote && rep_res[indx] == quote)
 			quote = '\0';
-		if (rep_res[indx] == '$' && quote != '\'')    //&& quote != '\"')
+		if (rep_res[indx] == '$' && quote != '\'')
 		{
 			minsh->lenvar = indx_from(minsh, rep_res, quote, indx);
 			rep_res = rep_var_w_val(minsh, rep_res, quote, indx);
