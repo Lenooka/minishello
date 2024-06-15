@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   frees.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 14:06:39 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/10 16:43:30 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/14 22:19:49 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	free_heredoc(t_mnshll *minsh, int fd)
 		close(minsh->fdout);
 	if (minsh)
 		free(minsh);
-	rl_clear_history();
+	//rl_clear_history();
 	exit(exit_s);
 }
 
@@ -91,7 +91,7 @@ void	free_exit_procces(t_mnshll *minsh, char *mess)
 		close(minsh->fdout);
 	if (minsh)
 		free(minsh);
-	rl_clear_history();
+	//rl_clear_history();
 	exit(exit_s);
 	exit(exit_s);
 }

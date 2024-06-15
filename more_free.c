@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   more_free.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 15:57:05 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/01 17:01:24 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/14 22:19:54 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,6 @@ void	free_exit_out_all(t_mnshll *minsh, char *mess)
 		close(minsh->fdout);
 	if (minsh)
 		free(minsh);
-	rl_clear_history();
+	//rl_clear_history();
 	exit(exit_s);
 }

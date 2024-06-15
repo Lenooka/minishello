@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 20:10:00 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/14 19:40:13 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/14 22:10:15 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	start_heredoc(t_mnshll *minsh, char *del, int num_indx)
 
 	fd = file_des_create(minsh, num_indx);
 	pid = fork();
+	signal(SIGINT, SIG_IGN);
 	if (pid == 0 && fd != 0)
 	{
 		signal(SIGINT, heredoc_signal_handle);
