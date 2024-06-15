@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/15 14:25:54 by olena            ###   ########.fr       */
+/*   Updated: 2024/06/15 19:04:30 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,9 +143,9 @@ char		*ft_strncpy(char *dest, char *s, int n);
 char		*ft_strndup(t_mnshll *mnshll, char *s, int n);
 char		**free_arrays(char **str_tab, int i);
 char		*replace_var_in_str(t_mnshll *minsh, char *str);
-char		**replace_var(t_mnshll *minsh);
+char		**rreplace_var(t_mnshll *minsh);
 size_t		indx_from(t_mnshll *minsh, char *rep_res, char q, int indx);
-int			get_var_len(char *str);
+int			ft_varlen(char *str);
 char		*iterati(t_mnshll *minsh, char *var);
 char		**duplicate_string_array(t_mnshll *minsh, char **old_arr);
 int			count_commands(char **str_tab);
@@ -155,12 +155,12 @@ char		*rep_var_w_val2(char *result, char *fix, char *buffer);
 
 //Herdoc
 int			if_there_heredoc(t_mnshll *minsh, char **str);
-int			init_heredoc(t_mnshll *minsh, char **str, int i);
+int			iinit_heredoc(t_mnshll *minsh, char **str, int i);
 void		start_heredoc(t_mnshll *minsh, char *del, int num_indx);
 void		heredoc_signal_handle(int signal);
 int			file_des_create(t_mnshll *minsh, int here_num);
-void		heredoc_child(t_mnshll *minsh, int fd, char *del);
-int			create_file(t_mnshll *minsh, char *filename);
+void		hheredoc_child(t_mnshll *minsh, int fd, char *del);
+//int			create_file(t_mnshll *minsh, char *filename);
 void		free_and_null(void **ptr);
 void		disable_quit_signals(void);
 void		heredoc_warn(char *del);
@@ -239,14 +239,14 @@ int			get_flag(t_mnshll *ms, char *ident, char *new_con, char *content);
 void		list_swap(t_mnshll *mini, t_envl *list);
 
 void		change_terminal(void);
-int			create_file(t_minishell *ms, char *filename);
+int			create_file(t_mnshll *ms, char *filename);
 char		*create_filename(int here_num);
 void		heredoc_signal(int signum);
 
 //! in heredoc.c
 
-char		*heredoc(t_minishell *ms, char *limiter, int here_num);
-int	init_heredoc(t_minishell *ms, char **main_arr);
-char	*heredoc_output(t_minishell *ms, char *limiter, char *line);
-void	heredoc_child(t_minishell *ms, char *filename, char *limiter);
+char		*heredoc(t_mnshll *ms, char *limiter, int here_num);
+int	init_heredoc(t_mnshll *ms, char **main_arr);
+char	*heredoc_output(t_mnshll *ms, char *limiter, char *line);
+void	heredoc_child(t_mnshll *ms, char *filename, char *limiter);
 #endif

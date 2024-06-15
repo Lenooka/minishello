@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   frees.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 14:06:39 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/14 22:19:49 by olena            ###   ########.fr       */
+/*   Updated: 2024/06/15 16:28:58 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,9 @@ void	free_heredoc(t_mnshll *minsh, int fd)
 	exit_s = minsh->exit;
 	if (minsh->input)
 		free(minsh->input);
-	//free_all_arrays(minsh->com_array);
+	free_all_arrays(minsh->com_array);
 	if (minsh->envl)
 		free_env(minsh->envl);
-	free(minsh->heredoc_buf);
 	close(0);
 	close(1);
 	if (minsh->fdin != -1)
@@ -41,7 +40,7 @@ void	free_heredoc(t_mnshll *minsh, int fd)
 		close(minsh->fdout);
 	if (minsh)
 		free(minsh);
-	//rl_clear_history();
+	rl_clear_history();
 	exit(exit_s);
 }
 
@@ -73,7 +72,7 @@ void	free_exit_procces(t_mnshll *minsh, char *mess)
 
 	exit_s = minsh->exit;
 	if (mess != NULL)
-		printf("%s", mess);
+		ft_putstr_fd(mess, STDERR_FILENO);
 	if (minsh->input)
 		free(minsh->input);
 	if (minsh->list_com)
@@ -91,7 +90,6 @@ void	free_exit_procces(t_mnshll *minsh, char *mess)
 		close(minsh->fdout);
 	if (minsh)
 		free(minsh);
-	//rl_clear_history();
-	exit(exit_s);
+	rl_clear_history();
 	exit(exit_s);
 }

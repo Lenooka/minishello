@@ -5,7 +5,8 @@
 		"minishell.h": "c",
 		"array": "c",
 		"*.tcc": "c",
-		"limits.h": "c"
+		"limits.h": "c",
+		"libft.h": "c"
 	},
 	"CodeGPT.apiKey": "CodeGPT Plus Beta"
 }

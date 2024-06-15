@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 20:10:00 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/14 22:10:15 by olena            ###   ########.fr       */
+/*   Updated: 2024/06/15 17:14:13 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	free_and_null(void **ptr)
 	*ptr = NULL;
 }
 
-void	heredoc_child(t_mnshll *minsh, int fd, char *del)
+void	hheredoc_child(t_mnshll *minsh, int fd, char *del)
 {
 	char	*output;
 	char	*line;
@@ -78,7 +78,7 @@ void	start_heredoc(t_mnshll *minsh, char *del, int num_indx)
 	if (pid == 0 && fd != 0)
 	{
 		signal(SIGINT, heredoc_signal_handle);
-		heredoc_child(minsh, fd, del);
+		hheredoc_child(minsh, fd, del);
 		close(fd);
 	}
 	else if (pid < 0 || fd < 0)
@@ -94,7 +94,7 @@ void	start_heredoc(t_mnshll *minsh, char *del, int num_indx)
 		}
 	}
 }
-int	init_heredoc(t_mnshll *minsh, char **str, int i)
+int	iinit_heredoc(t_mnshll *minsh, char **str, int i)
 {
 	start_heredoc(minsh, str[i + 1], i);
 	free(str[i + 1]);
@@ -119,7 +119,7 @@ int	if_there_heredoc(t_mnshll *minsh, char **str)
 	{
 		if (ft_strcmp(str[i], "<<") == 0)
 		{
-			if (init_heredoc(minsh, str, i) == 1)
+			if (iinit_heredoc(minsh, str, i) == 1)
 				return (1);
 			i++;
 			i++;

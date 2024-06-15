@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_extras.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:06:37 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/11 19:59:24 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/15 16:28:09 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ void	error_msg(t_mnshll *minsh, char *msg, int exit_code, char *com)
 {
 	if (exit_code == 1 && msg)
 	{
-		printf("Error: %s: %s\n", com, msg);
+		ft_putstr_fd("Error: ", STDERR_FILENO);
+		ft_putstr_fd(com, STDERR_FILENO);
+		exit_code = 1;
 	}
 	else if (exit_code == 2)
 	{

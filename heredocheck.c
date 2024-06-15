@@ -3,30 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   heredocheck.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 14:22:07 by olena             #+#    #+#             */
-/*   Updated: 2024/06/15 14:29:45 by olena            ###   ########.fr       */
+/*   Updated: 2024/06/15 19:09:34 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 
-char	*var_iter(t_minishell *ms, char *var)
+char	*var_iter(t_mnshll *ms, char *var)
 {
 	char	*buf;
-	t_list	*tmp;
+	t_envl	*tmp;
 
 	if (ft_strcmp(var, "?") == 0)
 	{
 		buf = ft_itoa(ms->exit);
 		return (buf);
 	}
-	tmp = *ms->env;
+	tmp = *ms->envl;
 	while (tmp)
 	{
-		if (ft_strcmp((tmp)->ident, var) == 0)
+		if (ft_strcmp((tmp)->identificator, var) == 0)
 			buf = ft_strdup((tmp)->content);
 		else
 			buf = NULL;
@@ -39,9 +39,9 @@ char	*var_iter(t_minishell *ms, char *var)
 }
 
 // equivalent to `env | grep va
-char	*var_str(t_list *env, char *var)
+char	*var_str(t_envl *env, char *var)
 {
-	t_list	*tmp;
+	t_envl	*tmp;
 
 	tmp = env;
 	while (tmp->content)
@@ -69,7 +69,7 @@ int	parser_op(char c)
 	return (0);
 }
 
-int	get_var_len(char *str)
+int	get_var(char *str)
 {
 	int	i;
 
@@ -85,7 +85,7 @@ int	get_var_len(char *str)
 }
 
 // This function replaces one environment variable with its value
-char	*replace_var(t_minishell *ms, char *result, char quotes, int str_index)
+char	*replace_var(t_mnshll *ms, char *result, char quotes, int str_index)
 {
 	char	*var;
 	char	*fix;
@@ -94,18 +94,18 @@ char	*replace_var(t_minishell *ms, char *result, char quotes, int str_index)
 	var = NULL;
 	fix = NULL;
 	buffer = NULL;
-	fix = ft_strndup(result, str_index);
+	fix = ft_strndup(ms, result, str_index);
 	if (!(parser_op(result[str_index + 1]) == 3 && !quotes))
-		buffer = ft_strndup(result + str_index, \
-		get_var_len(result + str_index));
+		buffer = ft_strndup(ms, result + str_index, \
+		get_var(result + str_index));
 	if (buffer && ft_strcmp(buffer, "$") == 0)
 		var = ft_strdup(buffer);
 	else if (buffer)
-		var = var_iter(ms, buffer + 1);
+		var = iterati(ms, buffer + 1);
 	free(buffer);
 	buffer = ft_strjoin(fix, var);
 	free(fix);
-	fix = ft_strdup(result + str_index + get_var_len(result + str_index));
+	fix = ft_strdup(result + str_index + ft_varlen(result + str_index));
 	free(var);
 	free(result);
 	result = ft_strjoin(buffer, fix);
@@ -114,7 +114,7 @@ char	*replace_var(t_minishell *ms, char *result, char quotes, int str_index)
 	return (result);
 }
 
-size_t	get_new_index(t_minishell *ms, char *result, char quotes, int str_index)
+size_t	get_new_index(t_mnshll *ms, char *result, char quotes, int str_index)
 {
 	char	*var;
 	char	*buffer;
@@ -124,8 +124,8 @@ size_t	get_new_index(t_minishell *ms, char *result, char quotes, int str_index)
 	buffer = NULL;
 	new_index = 0;
 	if (!(parser_op(result[str_index + 1]) == 3 && !quotes))
-		buffer = ft_strndup(result + str_index, \
-		get_var_len(result + str_index));
+		buffer = ft_strndup(ms, result + str_index, \
+		get_var(result + str_index));
 	if (buffer && ft_strcmp(buffer, "$") == 0)
 		var = ft_strdup(buffer);
 	else if (buffer)
@@ -136,8 +136,8 @@ size_t	get_new_index(t_minishell *ms, char *result, char quotes, int str_index)
 	return (new_index);
 }
 
-//function that replaces a given string. To be used in heredoc.
-char	*replace_str(t_minishell *ms, char *str)
+
+char	*replace_str(t_mnshll *ms, char *str)
 {
 	int		var_len;
 	char	*result;
@@ -165,9 +165,8 @@ char	*replace_str(t_minishell *ms, char *str)
 	return (result);
 }
 
-void	free_hdoc(t_minishell *ms)
+void	free_hdoc(t_mnshll *ms)
 {
-	int	exit_status;
 
 	close(0);
 	close(1);
@@ -175,17 +174,17 @@ void	free_hdoc(t_minishell *ms)
 		close(ms->fdin);
 	if (ms->fdout != -1)
 		close(ms->fdout);
-	if (ms->input)
-		free(ms->input);
-	if (ms->prompt)
-		free(ms->prompt);
-	if (ms->main_arr)
-		free_arr(ms->main_arr);
-	free_list_malloc(ms->env);
-	exit_status = ms->exit;
-	free(ms);
-	//rl_clear_history();
-	exit (exit_status);
+	rl_clear_history();
+	exit (1);
+}
+int	strlen_chr(char *s, char c)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] && s[i] != c)
+		i++;
+	return (i);
 }
 
 int	strcmp_nochr(char *s1, char *s2, char c)
@@ -209,7 +208,7 @@ void	change_terminal(void)
 	tcsetattr(STDIN_FILENO, TCSANOW, &term);
 }
 
-int	create_file(t_minishell *ms, char *filename)
+int	create_file(t_mnshll *ms, char *filename)
 {
 	int	fd;
 
@@ -251,25 +250,25 @@ void	heredoc_signal(int signum)
 }
 
 
-char	*heredoc_output(t_minishell *ms, char *limiter, char *line)
+char	*heredoc_output(t_mnshll *ms, char *limiter, char *line)
 {
 	char	*buf;
 
 	buf = remove_quotes(limiter);
-	if (g_global == SIGINT || !line || strcmp_nochr(buf, line, '\n') == 0)
+	if (g_global == SIGINT || !line || spec_strcmp(buf, line, '\n') == 0)
 	{
 		free(buf);
 		return (NULL);
 	}
 	free(buf);
 	if (!ft_strchr(limiter, '\'') && !ft_strchr(limiter, '\"'))
-		buf = replace_str(ms, line);
+		buf = replace_var_in_str(ms, line);
 	else
 		buf = ft_strdup(line);
 	return (buf);
 }
 
-void	heredoc_child(t_minishell *ms, char *filename, char *limiter)
+void	heredoc_child(t_mnshll *ms, char *filename, char *limiter)
 {
 	char	*output;
 	char	*line;
@@ -284,8 +283,8 @@ void	heredoc_child(t_minishell *ms, char *filename, char *limiter)
 		if (g_global == SIGINT)
 			ms->exit = 128 + SIGINT;
 		else if (!line)
-			heredoc_eof(limiter);
-		output = heredoc_output(ms, limiter, line);
+			heredoc_warn(limiter);
+		output = hrdc_out(ms, limiter, line);
 		if (!output)
 			break ;
 		free(line);
@@ -295,10 +294,10 @@ void	heredoc_child(t_minishell *ms, char *filename, char *limiter)
 	if (line)
 		free(line);
 	close(fd);
-	free_hdoc(ms);
+	free_heredoc(ms, fd);
 }
 
-char	*heredoc(t_minishell *ms, char *limiter, int here_num)
+char	*heredoc(t_mnshll *ms, char *limiter, int here_num)
 {
 	char	*filename;
 	pid_t	pid;
@@ -327,7 +326,7 @@ char	*heredoc(t_minishell *ms, char *limiter, int here_num)
 	return (filename);
 }
 
-int	init_heredoc(t_minishell *ms, char **main_arr)
+int	init_heredoc(t_mnshll *ms, char **main_arr)
 {
 	int		index;
 	char	*buf;

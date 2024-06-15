@@ -6,13 +6,13 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 19:10:26 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/11 19:56:15 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/15 19:04:12 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	get_var_len(char *str)
+int	ft_varlen(char *str)
 {
 	int	i;
 

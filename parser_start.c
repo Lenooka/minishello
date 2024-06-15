@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:33:06 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/14 19:40:34 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/15 17:05:47 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ int	parser_start(t_mnshll *minsh)
 	{
 		return (printf("Tokenizing fail!\n"), 1);
 	}
-	if (if_there_heredoc(minsh, minsh->com_array) == 1)
+	if (init_heredoc(minsh, minsh->com_array) == 1)
 		return (1);
-	repl_var_array = replace_var(minsh);
+	repl_var_array = rreplace_var(minsh);
 	if (repl_var_array == NULL)
 	{
 		printf("Replacing of variabls failed!\n");

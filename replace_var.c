@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace_var.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 13:22:02 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/14 14:05:27 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/15 19:05:21 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ size_t	indx_from(t_mnshll *minsh, char *rep_res, char q, int indx)
 	indx_from = 0;
 	if (!(check_quotes(rep_res, indx + 1) && !q))
 	{
-		varlena = get_var_len(rep_res + indx);
+		varlena = ft_varlen(rep_res + indx);
 		tmp = ft_strndup(minsh, rep_res + indx, varlena);
 	}
 	if (tmp && ft_strcmp(tmp, "$") == 0)
@@ -104,7 +104,7 @@ char	*rep_var_w_val(t_mnshll *ms, char *res, char quotes, int str_index)
 	buffer = NULL;
 	fix = ft_strrepdup(res, str_index);
 	if (!(check_quotes(res, str_index + 1) && !quotes))
-		buffer = ft_strrepdup(res + str_index, get_var_len(res + str_index));
+		buffer = ft_strrepdup(res + str_index, ft_varlen(res + str_index));
 	if (buffer && ft_strcmp(buffer, "$") == 0)
 		var = ft_strdup(buffer);
 	else if (buffer)
@@ -115,7 +115,7 @@ char	*rep_var_w_val(t_mnshll *ms, char *res, char quotes, int str_index)
 	else
 		buffer = NULL;
 	free(fix);
-	fix = ft_strdup(res + str_index + get_var_len(res + str_index));
+	fix = ft_strdup(res + str_index + ft_varlen(res + str_index));
 	free(var);
 	free(res);
 	return (rep_var_w_val2(res, fix, buffer));
