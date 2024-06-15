@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olena <olena@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/14 14:37:03 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/15 14:25:54 by olena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,4 +238,15 @@ void		ft_lstadd_front(t_envl **lst, t_envl *new);
 int			get_flag(t_mnshll *ms, char *ident, char *new_con, char *content);
 void		list_swap(t_mnshll *mini, t_envl *list);
 
+void		change_terminal(void);
+int			create_file(t_minishell *ms, char *filename);
+char		*create_filename(int here_num);
+void		heredoc_signal(int signum);
+
+//! in heredoc.c
+
+char		*heredoc(t_minishell *ms, char *limiter, int here_num);
+int	init_heredoc(t_minishell *ms, char **main_arr);
+char	*heredoc_output(t_minishell *ms, char *limiter, char *line);
+void	heredoc_child(t_minishell *ms, char *filename, char *limiter);
 #endif
