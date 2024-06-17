@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:41:46 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/15 14:21:28 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/17 18:34:27 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	check_global_end(void)
 	if (!g_global)
 		return ;
 	if (g_global == SIGQUIT)
-		ft_putstr_fd("Quit\n", 2);
+		ft_putstr_fd("Exit\n", 2);
 	if (g_global == SIGINT)
 		printf("\n");
 	g_global = 0;

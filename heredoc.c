@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 20:10:00 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/15 17:14:13 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/17 17:57:14 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,8 @@ char	*hrdc_out(t_mnshll *minsh, char	*del, char *line)
 	return (out);
 }
 
-void	free_and_null(void **ptr)
-{
-	free(*ptr);
-	*ptr = NULL;
-}
 
-void	hheredoc_child(t_mnshll *minsh, int fd, char *del)
+void	heredoc_child(t_mnshll *minsh, int fd, char *del)
 {
 	char	*output;
 	char	*line;
@@ -57,16 +52,16 @@ void	hheredoc_child(t_mnshll *minsh, int fd, char *del)
 		output = hrdc_out(minsh, del, line);
 		if (!output)
 			break ;
-		free_and_null((void **)&line);
+		free(line);
 		ft_putendl_fd(output, fd);
-		free_and_null((void **)&output);
+		free(output);
 	}
 	if (line)
-		free_and_null((void **)&line);
+		free(line);
 	free_heredoc(minsh, fd);
 }
 
-void	start_heredoc(t_mnshll *minsh, char *del, int num_indx)
+char	*start_heredoc(t_mnshll *minsh, char *del, int num_indx)
 {
 	int		fd;
 	pid_t	pid;
@@ -74,12 +69,10 @@ void	start_heredoc(t_mnshll *minsh, char *del, int num_indx)
 
 	fd = file_des_create(minsh, num_indx);
 	pid = fork();
-	signal(SIGINT, SIG_IGN);
-	if (pid == 0 && fd != 0)
+	if (pid == 0 && fd > 0)
 	{
 		signal(SIGINT, heredoc_signal_handle);
-		hheredoc_child(minsh, fd, del);
-		close(fd);
+		heredoc_child(minsh, fd, del);
 	}
 	else if (pid < 0 || fd < 0)
 		fork_error(minsh, NULL);
@@ -93,8 +86,11 @@ void	start_heredoc(t_mnshll *minsh, char *del, int num_indx)
 			unlink(minsh->heredoc_buf);
 		}
 	}
+	close(fd);
+	return (minsh->heredoc_buf);
 }
-int	iinit_heredoc(t_mnshll *minsh, char **str, int i)
+
+int	init_heredoc(t_mnshll *minsh, char **str, int i)
 {
 	start_heredoc(minsh, str[i + 1], i);
 	free(str[i + 1]);
@@ -119,7 +115,7 @@ int	if_there_heredoc(t_mnshll *minsh, char **str)
 	{
 		if (ft_strcmp(str[i], "<<") == 0)
 		{
-			if (iinit_heredoc(minsh, str, i) == 1)
+			if (init_heredoc(minsh, str, i) == 1)
 				return (1);
 			i++;
 			i++;

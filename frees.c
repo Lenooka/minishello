@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 14:06:39 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/15 16:28:58 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/17 16:51:59 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	free_heredoc(t_mnshll *minsh, int fd)
 	int	exit_s;
 
 	close(fd);
+	free(minsh->heredoc_buf);
 	exit_s = minsh->exit;
 	if (minsh->input)
 		free(minsh->input);
