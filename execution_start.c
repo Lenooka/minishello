@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:27:56 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/11 17:36:00 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/18 18:53:51 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	redirect_and_close(t_mnshll *m, int fd, int op, int *pipefd)
 			dup_two_error(m, fd, pipefd);
 	}
 }
+
 /* setup fd for inp and outp 
 if one command and its a built in free/execute in a parent
 else

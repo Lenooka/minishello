@@ -6,11 +6,20 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 15:35:05 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/17 17:44:59 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/18 18:54:14 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	replace_quotes(char *rep_res, int indx, char quote)
+{
+	if (!quote && check_quotes(rep_res, indx))
+		quote = rep_res[indx];
+	else if (quote && rep_res[indx] == quote)
+		quote = '\0';
+	return (quote);
+}
 
 char	*replace_var_in_str(t_mnshll *minsh, char *str)
 {
@@ -25,10 +34,7 @@ char	*replace_var_in_str(t_mnshll *minsh, char *str)
 		return (NULL);
 	while (rep_res && rep_res[indx])
 	{
-		if (!quote && check_quotes(rep_res, indx))
-			quote = rep_res[indx];
-		else if (quote && rep_res[indx] == quote)
-			quote = '\0';
+		quote = replace_quotes(rep_res, indx, quote);
 		if (rep_res[indx] == '$' && quote != '\'')
 		{
 			minsh->lenvar = indx_from(minsh, rep_res, quote, indx);
@@ -60,7 +66,7 @@ char	**rreplace_var(t_mnshll *minsh)
 			i++;
 			continue ;
 		}
-		rep_res = replace_var_in_str(minsh, minsh->com_array[i + 1]);
+		rep_res = replace_var_in_str(minsh, minsh->com_array[i++]);
 		if (rep_res && rep_res[0])
 			rep_arr[minsh->rep_var_i++] = rep_res;
 	}
