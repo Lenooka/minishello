@@ -6,36 +6,34 @@
 /*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 18:41:45 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/14 19:46:58 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/16 15:43:25 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//removed the tmp check for Null, if issue hi.
-
-void	change_path(t_envl **envl, char *oldpath)
+void	change_path(t_envl *envl, char *oldpath)
 {
 	t_envl	*tmp;
-	char	newpath[PATH_MAX + 1];
+	char	newpath[4096 + 1];
 	int		x;
 
 	x = 0;
-	tmp = *envl;
-	while (tmp && !x)
+	tmp = envl;
+	while (envl && !x)
 	{
-		if (ft_strcmp((tmp)->identificator, "PWD") == 0)
+		if (ft_strcmp((envl)->identificator, "PWD") == 0)
 		{
 			getcwd(newpath, sizeof(newpath));
-			free((tmp)->content);
-			(tmp)->content = ft_strdup(newpath);
+			free((envl)->content);
+			(envl)->content = ft_strdup(newpath);
 			ft_bzero(newpath, ft_strlen(newpath));
 			x++;
 		}
 		if (!x)
-			tmp = (tmp)->next;
+			envl = (envl)->next;
 	}
-	change_oldpath(envl, oldpath);
+	change_oldpath(tmp, oldpath);
 }
 
 void	enter_dir(t_mnshll *mini, char *env)
@@ -57,29 +55,13 @@ void	enter_dir(t_mnshll *mini, char *env)
 	free(new_env);
 }
 
-/*
-char	*find_default(t_envl **envl)
+char	*find_default(t_envl *envl)
 {
-	t_envl	*tmp;
-
-	tmp = *envl;
-	while (tmp)
+	while (envl)
 	{
-		if (ft_strcmp((tmp)->identificator, "HOME") == 0)
-			return ((tmp)->content);
-		tmp = (tmp)->next;
-	}
-	return (NULL);
-}
-*/
-
-char	*find_default(t_envl **envl)
-{
-	while (*envl)
-	{
-		if (ft_strcmp((*envl)->identificator, "HOME") == 0)
-			return ((*envl)->content);
-		*envl = (*envl)->next;
+		if (ft_strcmp((envl)->identificator, "HOME") == 0)
+			return ((envl)->content);
+		envl = (envl)->next;
 	}
 	return (NULL);
 }
@@ -90,7 +72,9 @@ void	cd_default(t_mnshll *mini)
 	int		x;
 
 	x = 0;
-	def = find_default(mini->envl);
+	if (mini->envl == NULL)
+		return ;
+	def = find_default(*mini->envl);
 	if (!def)
 		error_msg(mini, "Home not set", 1, "cd");
 	else
@@ -104,7 +88,7 @@ void	cd_default(t_mnshll *mini)
 
 void	cd(t_mnshll *mini, char **env)
 {
-	char	oldenv[PATH_MAX + 1];
+	char	oldenv[4096 + 1];
 
 	getcwd(oldenv, sizeof(oldenv));
 	if (env && size_of_2d(env) > 2)
@@ -127,6 +111,6 @@ void	cd(t_mnshll *mini, char **env)
 		error_msg(mini, "No such file or directory", 1, "cd");
 		mini->exit = 1;
 	}
-	change_path(mini->envl, oldenv);
+	change_path(*mini->envl, oldenv);
 	ft_bzero(oldenv, ft_strlen(oldenv));
 }
