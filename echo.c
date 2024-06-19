@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 21:35:11 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/19 13:42:47 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/19 16:09:13 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	no_flag(char **input)
 	while (input[x])
 	{
 		printf("%s", input[x]);
-		x++;
 		if (input[x + 1])
 			printf(" ");
+		x++;
 	}
 	printf("\n");
 }
