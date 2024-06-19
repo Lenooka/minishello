@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_extras.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:06:37 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/16 15:41:24 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/19 13:37:42 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	change_oldpath(t_envl *envl, char *oldpath)
 	x = 0;
 	while (envl && !x)
 	{
-		if (strcmp((envl)->identificator, "OLDPWD") == 0)
+		if (ft_strcmp((envl)->identificator, "OLDPWD") == 0)
 		{
 			new_content = ft_strdup(oldpath);
 			free((envl)->content);
