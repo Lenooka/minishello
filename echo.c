@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 21:35:11 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/19 16:09:13 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/19 17:28:20 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,22 @@ void	no_flag(char **input)
 	x = 1;
 	while (input[x])
 	{
-		printf("%s", input[x]);
+		ft_putstr_fd(input[x], STDOUT_FILENO);
 		if (input[x + 1])
-			printf(" ");
+			ft_putstr_fd(" ", STDOUT_FILENO);
 		x++;
 	}
-	printf("\n");
+	write(1, "\n", 1);
 }
 
 void	echo_flag(char **input, int x)
 {
 	while (input[x])
 	{
-		printf("%s", input[x]);
+		ft_putstr_fd(input[x], STDOUT_FILENO);
 		x++;
 		if (input[x])
-			printf(" ");
+			ft_putstr_fd(" ", STDOUT_FILENO);
 	}
 }
 

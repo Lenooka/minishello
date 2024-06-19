@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:06:37 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/19 15:53:52 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/19 17:19:00 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ void	error_msg(t_mnshll *minsh, char *msg, int exit_code, char *com)
 {
 	if (exit_code == 1 && msg)
 	{
-		ft_putstr_fd("Error: ", STDERR_FILENO);
+		ft_putstr_fd(msg, STDERR_FILENO);
 		ft_putstr_fd(com, STDERR_FILENO);
+		write(STDERR_FILENO, "\n", 2);
 		exit_code = 1;
 	}
 	else if (exit_code == 2)
