@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:19:24 by olena             #+#    #+#             */
-/*   Updated: 2024/06/19 13:42:41 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/19 20:19:50 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	*find_ex_path(t_mnshll *minsh, char **array, char *cmd)
 	{
 		printf("Error: %s: command not found!\n", cmd);
 		minsh->exit = 127;
-		return (NULL);
+		return (free(cmd), NULL);
 	}
 	return (NULL);
 }

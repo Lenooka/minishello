@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:25:46 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/11 19:47:53 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/19 20:22:12 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,17 @@ if i exit my life what would be my exit status
 void	exit_status(t_mnshll *minsh, pid_t pid, int com_run)
 {
 	int	status;
+	int	i;
 
 	status = 0;
+	i = 0;
 	if (minsh->command_amount == 1 && isbuilt(minsh->list_com->tokens[0]))
 	{
 		wait(&status);
 		reset_fd(minsh);
 		return ;
 	}
-	while (com_run > 0)
+	while (i < com_run)
 	{
         wait(&status);
         if (pid != -1 && WIFEXITED(status))
@@ -57,9 +59,9 @@ void	exit_status(t_mnshll *minsh, pid_t pid, int com_run)
             minsh->exit = 128 + WTERMSIG(status);
         else
             minsh->exit = 127;
-        com_run--;
+        i++;
     }
-    reset_fd(minsh); 
+    reset_fd(minsh);
 }
 
 /*wait(&status);

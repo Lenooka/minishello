@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 15:57:05 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/15 16:43:13 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/19 19:37:43 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ int	open_error(t_mnshll *minsh, char *filename, int process)
 	if (process)
 	{
 		perror(filename);
-		if (filename)
-			free(filename);
 		minsh->exit = 1;
 		minsh->extra = 1;
 		free_exit_procces(minsh, NULL);

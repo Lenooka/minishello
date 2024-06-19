@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 19:10:26 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/15 19:04:12 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/19 19:31:29 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,9 @@ void	free_all_arrays(char **str_tab)
 	while (str_tab[j])
 	{
 		free(str_tab[j]);
+		str_tab[j] = NULL;
 		j++;
 	}
 	free(str_tab);
+	str_tab = NULL;
 }

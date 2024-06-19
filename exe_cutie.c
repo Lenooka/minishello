@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:37:59 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/14 19:24:12 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/19 20:21:47 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ void	executie_ve(t_mnshll *minsh, char *path, char **cm_rem, char **array)
 	minsh->exit = errno;
 	free_all_arrays(env);
 	free_all_arrays(cm_rem);
+	free_all_arrays(minsh->com_array);
 	free_exit_procces(minsh, array[0]);
 }
 
