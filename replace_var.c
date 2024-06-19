@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   replace_var.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 13:22:02 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/15 19:05:21 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/19 21:38:55 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*iterati(t_mnshll *minsh, char *var)
+/*char	*iterati(t_mnshll *minsh, char *var)
 {
 	char	*buf;
 	t_envl	*tmp;
@@ -35,6 +35,38 @@ char	*iterati(t_mnshll *minsh, char *var)
 		free(buf);
 	}
 	return (NULL);
+}*/
+
+
+char *rec_list(t_envl *tmp, char *var)
+{
+    char *buf;
+
+    buf = NULL;
+    if (tmp == NULL)
+        return (NULL);
+    if (ft_strcmp(tmp->ident, var) == 0) 
+	{
+        buf = ft_strdup(tmp->content);
+        return buf;
+    }
+    buf = recursive_var_iter(tmp->next, var);
+    if (buf == NULL)
+        free(buf);
+    return buf;
+}
+// Call the recursive function with the initial environment list pointer
+
+char *rec_iterati(t_mnshll *minsh, char *var)
+{
+    char *buf;
+
+    if (ft_strcmp(var, "?") == 0)
+    {
+        buf = ft_itoa(ms->exit);
+        return buf;
+    }
+    return (rec_list(*minsh->envl, var));
 }
 
 size_t	indx_from(t_mnshll *minsh, char *rep_res, char q, int indx)
@@ -53,7 +85,7 @@ size_t	indx_from(t_mnshll *minsh, char *rep_res, char q, int indx)
 		tmp = ft_strndup(minsh, rep_res + indx, varlena);
 	}
 	if (tmp && ft_strcmp(tmp, "$") == 0)
-		vari = iterati(minsh, tmp + 1);
+		vari = rec_list(minsh, tmp + 1);
 	if (vari)
 		indx_from = ft_strlen(vari);
 	free(tmp);
@@ -82,18 +114,17 @@ char	*ft_strrepdup(char *str, int len)
 	return (res);
 }
 
-char	*rep_var_w_val2(char *result, char *fix, char *buffer)
+char	*rep_var_w_val2(char *suf, char *res, char *result, char *inter)
 {
-	if (buffer && fix)
-		result = ft_strjoin(buffer, fix);
-	else
-		result = NULL;
-	free(buffer);
-	free(fix);
+    suf = ft_strdup(res + i + ft_varlen(res + i));
+    free(res);
+    result = ft_strjoin(inter, suf);
+    free(inter);
+    free(suf);
 	return (result);
 }
 
-char	*rep_var_w_val(t_mnshll *ms, char *res, char quotes, int str_index)
+/*char	*rep_var_w_val(t_mnshll *ms, char *res, char quotes, int i)
 {
 	char	*var;
 	char	*fix;
@@ -102,9 +133,9 @@ char	*rep_var_w_val(t_mnshll *ms, char *res, char quotes, int str_index)
 	var = NULL;
 	fix = NULL;
 	buffer = NULL;
-	fix = ft_strrepdup(res, str_index);
-	if (!(check_quotes(res, str_index + 1) && !quotes))
-		buffer = ft_strrepdup(res + str_index, ft_varlen(res + str_index));
+	fix = ft_strrepdup(res, i);
+	if (!(check_quotes(res, i + 1) && !quotes))
+		buffer = ft_strrepdup(res + i, ft_varlen(res + i));
 	if (buffer && ft_strcmp(buffer, "$") == 0)
 		var = ft_strdup(buffer);
 	else if (buffer)
@@ -115,8 +146,38 @@ char	*rep_var_w_val(t_mnshll *ms, char *res, char quotes, int str_index)
 	else
 		buffer = NULL;
 	free(fix);
-	fix = ft_strdup(res + str_index + ft_varlen(res + str_index));
+	fix = ft_strdup(res + i + ft_varlen(res + i));
 	free(var);
 	free(res);
 	return (rep_var_w_val2(res, fix, buffer));
+}*/
+
+
+char	*rep_var_w_val(t_mnshll *minsh, char *res, char quote, int i)
+{
+    char *var;
+    char *pref;
+    char *suf;
+    char *inter;
+    char *result;
+
+	var = NULL
+	pref = NULL;
+	suf = NULL;
+	result = NULL;
+    pref = ft_strrepdup(res, i);
+    if (!(check_quotes(input[i + 1]) && !quote))
+    {
+        suf = ft_strrepdup(input + index, ft_varlen(res + i));
+        if (suf && ft_strcmp(suf, "$") == 0)
+            var = ft_strdup(suf);
+        else if (suf)
+            var = iterati(minsh, suf + 1);
+        free(suf);
+    }
+    inter = ft_strjoin(pref, var);
+    free(pref);
+    free(var);
+	result = rep_var_w_val2(suf, res, result, inter);
+    return (result);
 }
