@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/19 13:42:58 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/19 19:29:53 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ char		*identify_env(const char *str, int c);
 char		*envl_content_fill(const char *str, int c);
 void		free_env(t_envl **env);
 void		ft_lstadd_back(t_envl **lst, t_envl *new);
-void		print_lst(t_envl **lst, int flag);
 t_envl		*ft_lstlast(t_envl *lst);
 
 //Signals

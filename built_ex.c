@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_ex.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 17:14:21 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/19 17:37:12 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/19 18:59:54 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,4 @@ void	built_ex(t_mnshll *minsh, char **tokens)
 	else if (ft_strcmp(tokens[0], "exit") == 0)
 		ft_exit(minsh, tokens);
 	free_all_arrays(tokens);
-	free_exit_proccess(minsh, NULL);
 }
