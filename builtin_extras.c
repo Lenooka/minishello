@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:06:37 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/15 16:28:09 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/19 13:42:33 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,24 +28,23 @@ void	error_msg(t_mnshll *minsh, char *msg, int exit_code, char *com)
 	}
 }
 
-void	change_oldpath(t_envl **envl, char *oldpath)
+void	change_oldpath(t_envl *envl, char *oldpath)
 {
-	t_envl	*tmp;
 	char	*new_content;
+	int		x;
 
-	tmp = *envl;
-	if (!tmp)
-		return ;
-	while (tmp)
+	x = 0;
+	while (envl && !x)
 	{
-		if (strcmp((char *)(tmp)->identificator, "OLDPWD") == 0)
+		if (ft_strcmp((envl)->identificator, "OLDPWD") == 0)
 		{
 			new_content = ft_strdup(oldpath);
-			free((tmp)->content);
-			(tmp)->content = new_content;
-			break ;
+			free((envl)->content);
+			(envl)->content = new_content;
+			x++;
 		}
-		tmp = (tmp)->next;
+		if (!x)
+			envl = (envl)->next;
 	}
 }
 

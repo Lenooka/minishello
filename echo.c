@@ -6,79 +6,60 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 21:35:11 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/15 19:11:09 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/19 13:42:47 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	no_flag(char **input) //Do we reeeeallly need ft_printf? We shall see.
+void	no_flag(char **input)
 {
 	int		x;
-	char	*str;
 
 	x = 1;
 	while (input[x])
 	{
-		str = ft_strdup(input[x]);
-		if (!str)
-		{
-			printf("%s", input[x]);
-			if (input[x + 1])
-				printf(" ");
-		}
-		else
-		{
-			printf("%s", str);
-			if (input[x + 1])
-				printf(" ");
-			free(str);
-		}
+		printf("%s", input[x]);
 		x++;
+		if (input[x + 1])
+			printf(" ");
 	}
 	printf("\n");
 }
 
 void	echo_flag(char **input, int x)
 {
-	char	*str;
-
 	while (input[x])
 	{
-		str = ft_strdup(input[x]);
-		if (!str)
-			printf("%s", input[x]);
-		else
-		{
-			printf("%s", str);
-			free(str);
-		}
-		if (str[x + 1])
-			ft_printf(" ");
+		printf("%s", input[x]);
 		x++;
+		if (input[x])
+			printf(" ");
 	}
 }
 
-int	check_flag(char *input)
+int check_flag(char *input)
 {
 	int	x;
 
 	x = 0;
 	if (!input)
 		return (0);
-	if (input[x] == '-')
+	if (ft_strlen(input) < 2)
+		return (0);
+	if (input[x] == '-' && input[x + 1] == 'n')
 	{
 		x++;
-		while (input[x] == 'n')
+		while (input[x])
+		{
+			if (input[x] != 'n')
+				return (0);
 			x++;
-	}
-	if (x < 2)
-		return (0);
-	if (!input[x])
+		}
 		return (1);
+	}
 	return (0);
 }
-
 void	ft_echo(char **inputs)
 {
 	int	x;
@@ -86,18 +67,20 @@ void	ft_echo(char **inputs)
 
 	x = 1;
 	option = 0;
-	if (!inputs[x])
+	if (inputs[x] == NULL)
 	{
-		printf("\n");
+		write(1, "\n", 1);
 		return ;
 	}
+	option = check_flag(inputs[x]);
+	x = option;
 	while (check_flag(inputs[x]))
-	{
-		option++;
 		x++;
-	}
 	if (option)
+	{
 		echo_flag(inputs, x);
-	else
-		no_flag(inputs);
+		return ;
+	}
+	no_flag(inputs);
+	return ;
 }

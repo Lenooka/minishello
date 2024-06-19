@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/17 16:56:10 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/19 13:42:58 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,10 +211,10 @@ void		error_msg(t_mnshll *minsh, char *msg, int exit_code, char *com);
 void		built_ex(t_mnshll *minsh, char **tokens);
 void		cd(t_mnshll *mini, char **env);
 void		cd_default(t_mnshll *mini);
-char		*find_default(t_envl **envl);
+char		*find_default(t_envl *envl);
 void		enter_dir(t_mnshll *mini, char *env);
-void		change_path(t_envl **envl, char *oldpath);
-void		change_oldpath(t_envl **envl, char *oldpath);
+void		change_path(t_envl *envl, char *oldpath);
+void		change_oldpath(t_envl *envl, char *oldpath);
 void		ft_echo(char **inputs);
 int			check_flag(char *input);
 void		echo_flag(char **input, int x);
