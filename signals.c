@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:41:46 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/17 18:34:27 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/20 19:14:56 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	make_sigaction(void)
 	signal(SIGQUIT, SIG_IGN);
 }
 
-void	handler_cd(t_mnshll *minsh) // This is about Control+D
+void	handler_cd(t_mnshll *minsh)
 {
 	if (!(minsh->input))
 		free_exit_procces(minsh, NULL);
