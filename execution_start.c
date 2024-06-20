@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_start.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:27:56 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/20 09:23:51 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/20 18:34:10 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	 child(t_mnshll *ms, int *pipe_fd, int cmds_run, int pos)
 	cmd = ms->list_com;
 	i = cmds_run;
 	signal(SIGPIPE, signal_global);
+	signal(SIGQUIT, SIG_DFL);
+	signal(SIGINT, SIG_DFL);
 	while (i > 0)
 	{
 		cmd = cmd->next;
@@ -90,7 +92,8 @@ void	parent(t_mnshll *m, int *pipe_fd, int cmrun, int pos)
 	if (fd_flag == 1)
 		close_fd(pipe_fd);
 	close(pipe_fd[1]);
-	signal(SIGINT, signal_global);
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 }
 
 

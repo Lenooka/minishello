@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_status.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:25:46 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/19 20:22:12 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/20 18:44:36 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,15 @@ void	exit_status(t_mnshll *minsh, pid_t pid, int com_run)
 	}
 	while (i < com_run)
 	{
-        wait(&status);
+        waitpid(pid, &status, 0);
         if (pid != -1 && WIFEXITED(status))
             minsh->exit = WEXITSTATUS(status);
-        else if (pid != -1 && WIFSIGNALED(status))
-            minsh->exit = 128 + WTERMSIG(status);
-        else
-            minsh->exit = 127;
+		else if (pid != -1 && WIFSIGNALED(status))
+		{
+        	minsh->exit = WTERMSIG(status) + 128;
+			if (minsh->exit == 131)
+				ft_putstr_fd("Quit (core dumped)\n", 2);
+		}
         i++;
     }
     reset_fd(minsh);
