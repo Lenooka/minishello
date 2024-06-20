@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:25:46 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/20 19:35:47 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/20 19:37:45 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	exit_status(t_mnshll *minsh, pid_t pid, int com_run)
 	{
         waitpid(pid, &status, 0);
         if (pid != -1 && WIFEXITED(status))
-		{
             minsh->exit = WEXITSTATUS(status);
 		else if (pid != -1 && WIFSIGNALED(status))
 		{
@@ -62,8 +61,8 @@ void	exit_status(t_mnshll *minsh, pid_t pid, int com_run)
 			if (minsh->exit == 131)
 				ft_putstr_fd("Quit (core dumped)\n", 2);
 		}
-        i++;
-    }
+		com_run--;
+		}
     reset_fd(minsh);
 }
 

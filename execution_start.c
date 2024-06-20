@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:27:56 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/20 19:35:13 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/20 20:07:59 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,13 @@ void	redirect_and_close(t_mnshll *m, int fd, int op, int *pipefd)
 	}
 }
 
+void	child_signal(void)
+{
+	signal(SIGPIPE, signal_global);
+	signal(SIGQUIT, SIG_DFL);
+	signal(SIGINT, SIG_DFL);
+}
+
 /* setup fd for inp and outp 
 if one command and its a built in free/execute in a parent
 else
@@ -39,9 +46,7 @@ void	 child(t_mnshll *ms, int *pipe_fd, int cmds_run, int pos)
 	new_cmds = NULL;
 	cmd = ms->list_com;
 	i = cmds_run;
-	signal(SIGPIPE, signal_global);
-	signal(SIGQUIT, SIG_DFL);
-	signal(SIGINT, SIG_DFL);
+	child_signal();
 	while (i > 0)
 	{
 		cmd = cmd->next;

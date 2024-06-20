@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 13:22:02 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/20 09:32:06 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/20 19:46:41 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,25 +114,25 @@ char	*ft_strrepdup(char *str, int len)
 	return (res);
 }
 
-char	*rep_var_w_val2(char *suf, char *res, char *result, char *inter)
+/*char	*rep_var_w_val2(char *suf, char *res, char *result, char *inter)
 {
     free(res);
     result = ft_strjoin(inter, suf);
     free(inter);
     free(suf);
 	return (result);
-}
+}*/
 
 /*char	*rep_var_w_val(t_mnshll *ms, char *res, char quotes, int i)
 {
 	char	*var;
-	char	*fix;
+	char	*pref;
 	char	*buffer;
 
 	var = NULL;
-	fix = NULL;
+	pref = NULL;
 	buffer = NULL;
-	fix = ft_strrepdup(res, i);
+	pref = ft_strrepdup(res, i);
 	if (!(check_quotes(res, i + 1) && !quotes))
 		buffer = ft_strrepdup(res + i, ft_varlen(res + i));
 	if (buffer && ft_strcmp(buffer, "$") == 0)
@@ -140,19 +140,56 @@ char	*rep_var_w_val2(char *suf, char *res, char *result, char *inter)
 	else if (buffer)
 		var = iterati(ms, buffer + 1);
 	free(buffer);
-	if (fix && var)
-		buffer = ft_strjoin(fix, var);
+	if (pref && var)
+		buffer = ft_strjoin(pref, var);
 	else
 		buffer = NULL;
-	free(fix);
-	fix = ft_strdup(res + i + ft_varlen(res + i));
+	free(pref);
+	pref = ft_strdup(res + i + ft_varlen(res + i));
 	free(var);
 	free(res);
-	return (rep_var_w_val2(res, fix, buffer));
+	return (rep_var_w_val2(res, pref, buffer));
 }*/
+char	*rep_var_w_val2(char *result, char *pref, char *buffer)
+{
+	if (buffer && pref)
+		result = ft_strjoin(buffer, pref);
+	else
+		result = NULL;
+	free(buffer);
+	free(pref);
+	return (result);
+}
 
+char	*rep_var_w_val(t_mnshll *ms, char *res, char quotes, int i)
+{
+	char	*var;
+	char	*pref;
+	char	*buffer;
 
-char	*rep_var_w_val(t_mnshll *minsh, char *res, char quote, int i)
+	var = NULL;
+	pref = NULL;
+	buffer = NULL;
+	pref = ft_strrepdup(res, i);
+	if (!(check_quotes(res, i + 1) && !quotes))
+		buffer = ft_strrepdup(res + i, ft_varlen(res + i));
+	if (buffer && ft_strcmp(buffer, "$") == 0)
+		var = ft_strdup(buffer);
+	else if (buffer)
+		var = iterati(ms, buffer + 1);
+	free(buffer);
+	if (pref && var)
+		buffer = ft_strjoin(pref, var);
+	else
+		buffer = NULL;
+	free(pref);
+	pref = ft_strdup(res + i + ft_varlen(res + i));
+	free(var);
+	free(res);
+	return (rep_var_w_val2(res, pref, buffer));
+}
+
+/*char	*rep_var_w_val(t_mnshll *minsh, char *res, char quote, int i)
 {
     char *var;
     char *pref;
@@ -179,4 +216,4 @@ char	*rep_var_w_val(t_mnshll *minsh, char *res, char quote, int i)
     free(var);
 	 suf = ft_strdup(res + i + ft_varlen(res + i));
 	return (rep_var_w_val2(suf, res, result, inter));
-}
+}*/

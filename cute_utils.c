@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:19:24 by olena             #+#    #+#             */
-/*   Updated: 2024/06/19 20:19:50 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/20 19:54:20 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ Check if the com path is a dir or has exec permi.
 If is a dir, error message and set exit status to 126.
 If no exec perm,  error message and set exit to 126.
 If no access to path, error message and set exit to 1.
+/* STAT : Get file attributes for FILE and put them in BUF.  */
  */
 
 int	perm_and_isdir(t_mnshll *minsh, char *cmd_path, char **array)
