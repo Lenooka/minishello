@@ -6,7 +6,7 @@
 /*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/20 15:31:51 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/20 15:35:42 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,12 +145,13 @@ char		*replace_var_in_str(t_mnshll *minsh, char *str);
 char		**rreplace_var(t_mnshll *minsh);
 size_t		indx_from(t_mnshll *minsh, char *rep_res, char q, int indx);
 int			ft_varlen(char *str);
-char 		*rec_iterati(t_mnshll *minsh, char *var)
+char 		*rec_iterati(t_mnshll *minsh, char *var);
 char		**duplicate_string_array(t_mnshll *minsh, char **old_arr);
 int			count_commands(char **str_tab);
 t_lexer		*init_list_of_comands(t_mnshll *minsh);
 char		*rep_var_w_val(t_mnshll *ms, char *result, char quotes, int i);
-char		*rep_var_w_val2(char *suf, char *res, char *result, char *inter)
+char		*rep_var_w_val2(char *suf, char *res, char *result, char *inter);
+
 
 //Herdoc
 int			if_there_heredoc(t_mnshll *minsh, char **str);
