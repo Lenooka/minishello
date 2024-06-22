@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 13:22:02 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/20 19:46:41 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/22 22:33:05 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,11 @@ char	*ft_strrepdup(char *str, int len)
 /*char	*rep_var_w_val2(char *suf, char *res, char *result, char *inter)
 {
     free(res);
-    result = ft_strjoin(inter, suf);
-    free(inter);
+	if (inter && suf)
+   		result = ft_strjoin(inter, suf);
+    else
+		result = NULL;
+	free(inter);
     free(suf);
 	return (result);
 }*/
@@ -149,7 +152,8 @@ char	*ft_strrepdup(char *str, int len)
 	free(var);
 	free(res);
 	return (rep_var_w_val2(res, pref, buffer));
-}*/
+}
+*/
 char	*rep_var_w_val2(char *result, char *pref, char *buffer)
 {
 	if (buffer && pref)
@@ -161,7 +165,22 @@ char	*rep_var_w_val2(char *result, char *pref, char *buffer)
 	return (result);
 }
 
-char	*rep_var_w_val(t_mnshll *ms, char *res, char quotes, int i)
+char	*var_assing(t_mnshll *minsh, char *var, char *buffer)
+{
+	if (buffer && ft_strcmp(buffer, "$") == 0)
+	{
+		var = ft_strdup(buffer);
+		return (var);
+	}
+	else if (buffer)
+	{
+		var = iterati(minsh, buffer + 1);
+		return (var);
+	}
+	return (var);
+}
+
+char	*rep_var_w_val(t_mnshll *minsh, char *res, char quotes, int i)
 {
 	char	*var;
 	char	*pref;
@@ -176,7 +195,7 @@ char	*rep_var_w_val(t_mnshll *ms, char *res, char quotes, int i)
 	if (buffer && ft_strcmp(buffer, "$") == 0)
 		var = ft_strdup(buffer);
 	else if (buffer)
-		var = iterati(ms, buffer + 1);
+		var = iterati(minsh, buffer + 1);
 	free(buffer);
 	if (pref && var)
 		buffer = ft_strjoin(pref, var);
@@ -205,15 +224,15 @@ char	*rep_var_w_val(t_mnshll *ms, char *res, char quotes, int i)
     if (!(check_quotes(res, i + 1) && !quote))
     {
         suf = ft_strrepdup(res + i, ft_varlen(res + i));
-        if (suf && ft_strcmp(suf, "$") == 0)
-            var = ft_strdup(suf);
-        else if (suf)
-            var = iterati(minsh, suf + 1);
         free(suf);
     }
-    inter = ft_strjoin(pref, var);
+		var = var_assing(minsh, var, suf);
+	if (pref && var)
+    	inter = ft_strjoin(pref, var);
+	else
+		inter = NULL;
     free(pref);
     free(var);
-	 suf = ft_strdup(res + i + ft_varlen(res + i));
+	suf = ft_strdup(res + i + ft_varlen(res + i));
 	return (rep_var_w_val2(suf, res, result, inter));
 }*/

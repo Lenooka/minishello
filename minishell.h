@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/20 19:43:07 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/22 20:48:03 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct mnshll
 	int		fdcheck;
 	int		extra;
 	int		pipefd[2];
+	char	**env_array;
 	t_envl	**envl;
 	t_lexer	*list_com;
 }	t_mnshll;
