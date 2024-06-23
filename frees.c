@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   frees.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 14:06:39 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/19 19:31:08 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/23 21:18:36 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ void	free_exit_procces(t_mnshll *minsh, char *mess)
 		free_cmd_list(minsh->list_com);
 	if (minsh->com_array)
 		free_all_arrays(minsh->com_array);
-	//minsh->com_array = NULL;
 	if (minsh->envl)
 		free_env(minsh->envl);
 	close(0);

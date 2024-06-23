@@ -6,7 +6,7 @@
 /*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:27:56 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/20 18:34:10 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/23 21:12:56 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,5 +131,7 @@ void	minishell(t_mnshll *mnshll)
 	free_cmd_list(mnshll->list_com);
 	mnshll->list_com = NULL;
 	free_all_arrays(mnshll->com_array);
+	//if (mnshll->envl)
+		//free_env(mnshll->envl);
 	mnshll->com_array = NULL;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 16:43:24 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/11 17:17:31 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/23 16:54:37 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,17 +117,17 @@ void	ft_export(t_mnshll *mini, char **input)
 	char	*content;
 
 	x = 1;
-	if (!input[x])
-	{
+	if (!input[1])
 		export_empty(mini);
-		return ;
-	}
-	while (input[x])
+	else
 	{
-		content = ft_strdup(input[x]);
-		check = check_identifier(mini, content);
-		ft_export_2(mini, content, check);
-		x++;
-		free(content);
+		while (input[x])
+		{
+			content = ft_strdup(input[x]);
+			check = check_identifier(mini, content);
+			ft_export_2(mini, content, check);
+			x++;
+			free(content);
+		}
 	}
 }
