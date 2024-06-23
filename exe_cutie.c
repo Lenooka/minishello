@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:37:59 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/22 22:38:38 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/23 20:15:29 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,22 @@ int	check_executie(t_mnshll *minsh, char **array, char *cmd)
 	char	*temp;
 	char	*buf;
 	int		access_result;
-	int		result;
 
 	indx = 0;
-	result = 0;
+	access_result = 0;
 	while (array[indx])
 	{
 		temp = ft_strjoin(array[indx], "/");
 		buf = ft_strjoin(temp, cmd);
-		free(temp);
 		access_result = access(buf, F_OK);
 		if (access_result == 0)
 		{
-			result = perm_and_isdir(minsh, buf, array);
+			access_result = perm_and_isdir(minsh, buf, array);
 			free(buf);
-			return (result);
+			free(temp);
+			return (access_result);
 		}
+		free(temp);
 		free(buf);
 		indx++;
 	}
@@ -61,14 +61,32 @@ int	cmpr_cutlines(char *s)
 	return (res);
 }
 
+char	**direc_from_path(t_envl *tmp)
+{
+	char **result;
+	char **dir;
+	int	indx;
+	
+	indx = 0;
+	result = ft_split(tmp->content + 5, ':');
+	dir = malloc(sizeof(char *) * (size_of_2d(result) + 1));
+	if (!dir)
+		return (NULL);
+	while (indx < size_of_2d(result))
+	{
+		dir[indx] = ft_strjoin(result[indx], "/");
+		indx++;
+	}
+	dir[indx] = NULL;	
+	free_all_arrays(result);
+	return (dir);
+}
+
 char	**retrive_path_dir(t_envl **env, char *s)
 {
-	int		indx;
-	char	**result;
 	char	**direc;
 	t_envl	*tmp;
 
-	indx = 0;
 	if (cmpr_cutlines(s) == 1)
 		return (retrive_rel_abs_path(s));
 	tmp = *env;
@@ -76,17 +94,7 @@ char	**retrive_path_dir(t_envl **env, char *s)
 		tmp = tmp->next;
 	if (!tmp)
 		return (NULL);
-	result = ft_split(tmp->content + 5, ':');
-	direc = malloc(sizeof(char *) * (size_of_2d(result) + 1));
-	if (!direc)
-		return (NULL);
-	while (indx < size_of_2d(result))
-	{
-		direc[indx] = ft_strjoin(result[indx], "/");
-		indx++;
-	}
-	direc[indx] = NULL;	
-	free_all_arrays(result);
+	direc = direc_from_path(tmp);
 	return (direc);
 }
 
@@ -130,6 +138,7 @@ void	executie_ve(t_mnshll *minsh, char *path, char **cm_rem, char **array)
 	minsh->exit = errno;
 	free_all_arrays(env);
 	free_all_arrays(cm_rem);
+	ft_putstr_fd("Error: execve failed\n", STDERR_FILENO);
 	free_all_arrays(minsh->com_array);
 	free_exit_procces(minsh, array[0]);
 }
@@ -145,7 +154,7 @@ void	exe_cutie(t_mnshll *minsh, char **array, char **new_cmd)
 		built_ex(minsh, array);
 	if (g_global == SIGPIPE)
 		free_exit_procces(minsh, "Error: Broken pipe\n");
-	if ((!array || !array[0] || !array[0][0]) || isbuilt(array[0]) == 1)
+	if (isbuilt(array[0]) == 1)
 		free_exit_procces(minsh, NULL);
 	split_pathvar = retrive_path_dir(minsh->envl, array[0]);
 	if (split_pathvar == NULL)

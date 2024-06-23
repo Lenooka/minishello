@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:27:56 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/22 21:03:10 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/23 20:25:09 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,6 @@ void	redirect_and_close(t_mnshll *m, int fd, int op, int *pipefd)
 		if (dup2(fd, STDOUT_FILENO) == -1)
 			dup_two_error(m, fd, pipefd);
 	}
-}
-
-void	child_signal(void)
-{
-	signal(SIGPIPE, signal_global);
-	signal(SIGQUIT, SIG_DFL);
-	signal(SIGINT, SIG_DFL);
 }
 
 /* setup fd for inp and outp 

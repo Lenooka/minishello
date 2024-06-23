@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:25:46 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/20 19:37:45 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/23 18:45:24 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	exit_status(t_mnshll *minsh, pid_t pid, int com_run)
 	i = 0;
 	if (minsh->command_amount == 1 && isbuilt(minsh->list_com->tokens[0]))
 	{
-		wait(&status);
+		waitpid(pid, &status, 0);
 		reset_fd(minsh);
 		return ;
 	}
@@ -62,7 +62,7 @@ void	exit_status(t_mnshll *minsh, pid_t pid, int com_run)
 				ft_putstr_fd("Quit (core dumped)\n", 2);
 		}
 		com_run--;
-		}
+	}
     reset_fd(minsh);
 }
 

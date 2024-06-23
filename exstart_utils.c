@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   exstart_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:18:04 by olena             #+#    #+#             */
-/*   Updated: 2024/06/01 15:43:12 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/23 20:25:24 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	child_signal(void)
+{
+	signal(SIGPIPE, signal_global);
+	signal(SIGQUIT, SIG_DFL);
+	signal(SIGINT, SIG_DFL);
+}
 
 int	find_com_pos(char **arr, int pos)
 {

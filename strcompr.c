@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:57:54 by jhuber            #+#    #+#             */
-/*   Updated: 2024/04/13 14:39:01 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/23 20:19:38 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,18 @@ int	ft_strcmp(char *s1, char *s2)
 	a = s1[i];
 	b = s2[i];
 	return (a - b);
+}
+
+char	*ft_strrepdup(char *str, int len)
+{
+	char	*res;
+
+	res = malloc(sizeof(char) * len + 1);
+	if (!res)
+	{
+		printf("Minishell: Malloc error!\n");
+		return (NULL);
+	}
+	ft_strlcpy(res, str, len + 1);
+	return (res);
 }
