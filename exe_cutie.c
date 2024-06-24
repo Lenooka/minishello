@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:37:59 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/24 15:32:36 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/24 20:24:58 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,10 @@ char	**retrive_path_dir(t_envl **env, char *s)
 	return (direc);
 }
 
-void	executie_ve(t_mnshll *minsh, char *path, char **cm_rem, char **array)
+void	executie_ve(t_mnshll *minsh, char *path, char **array)
 {
 	char	**env;
+	char	**cm_rem;
 
 	env = convert_env(minsh->envl);
 	if (env == NULL)
@@ -103,7 +104,7 @@ void	executie_ve(t_mnshll *minsh, char *path, char **cm_rem, char **array)
 	free_exit_procces(minsh, array[0]);
 }
 
-void	exe_cutie(t_mnshll *minsh, char **array, char **new_cmd)
+void	exe_cutie(t_mnshll *minsh, char **array)
 {
 	char	**split_pathvar;
 	char	*path;
@@ -128,5 +129,5 @@ void	exe_cutie(t_mnshll *minsh, char **array, char **new_cmd)
 		free_exit_procces(minsh, NULL);
 	}
 	free_all_arrays(split_pathvar);
-	executie_ve(minsh, path, new_cmd, array);
+	executie_ve(minsh, path, array);
 }

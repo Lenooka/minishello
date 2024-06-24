@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:27:56 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/24 15:42:04 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/24 21:19:39 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,12 @@ void	redirect_and_close(t_mnshll *m, int fd, int op, int *pipefd)
 if one command and its a built in free/execute in a parent
 else
 function for execution (simmilar to pipex???)*/
-void	child(t_mnshll *ms, int *pipe_fd, int cmds_run, int pos)
+void	child(t_mnshll *m, int *pipe_fd, int cmds_run, int pos)
 {
 	t_lexer		*cmd;
-	char		**new_cmds;
 	int			i;
 
-	new_cmds = NULL;
-	cmd = ms->list_com;
+	cmd = m->list_com;
 	i = cmds_run;
 	child_signal();
 	while (i > 0)
@@ -47,16 +45,16 @@ void	child(t_mnshll *ms, int *pipe_fd, int cmds_run, int pos)
 	}
 	if (cmds_run != 0)
 	{
-		redirect_and_close(ms, ms->fd_cmd, 1, pipe_fd);
-		close(ms->fd_cmd);
+		redirect_and_close(m, m->fd_cmd, 1, pipe_fd);
+		close(m->fd_cmd);
 	}
-	if (cmds_run < ms->command_amount - 1)
-		redirect_and_close(ms, pipe_fd[1], 2, pipe_fd);
+	if (cmds_run < m->command_amount - 1)
+		redirect_and_close(m, pipe_fd[1], 2, pipe_fd);
 	close_fd(pipe_fd);
-	if ((ms->command_amount == 1) && isbuilt(cmd->tokens[0]))
-		free_exit_procces(ms, NULL);
-	redir(ms, ms->com_array, pos, 1);
-	exe_cutie(ms, cmd->tokens, new_cmds);
+	if ((m->command_amount == 1) && isbuilt(cmd->tokens[0]))
+		free_exit_procces(m, NULL);
+	redir(m, m->com_array, pos, 1);
+	exe_cutie(m, cmd->tokens);
 }
 /*if one command and is a built,check redir succs if yes close the pipe fd!!
 and call builtin
@@ -128,7 +126,5 @@ void	minishell(t_mnshll *mnshll)
 	free_cmd_list(mnshll->list_com);
 	mnshll->list_com = NULL;
 	free_all_arrays(mnshll->com_array);
-	//if (mnshll->envl)
-		//free_env(mnshll->envl);
 	mnshll->com_array = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/24 15:42:36 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/24 20:25:43 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,7 @@ void		parent(t_mnshll *m, int *pipe_fd, int cmrun, int pos);
 void		child(t_mnshll *ms, int *pipe_fd, int cmds_run, int pos);
 int			isbuilt(char *com);
 void		redirect_and_close(t_mnshll *m, int fd, int op, int *pipefd);
-void		exe_cutie(t_mnshll *minsh, char **array, char **new_cmd);
-void		executie_ve(t_mnshll *minsh, char *path, char **cm_rem, char **a);
+void		executie_ve(t_mnshll *minsh, char *path, char **array);
 char		**retrive_path_dir(t_envl **env, char *s);
 int			perm_and_isdir(t_mnshll *minsh, char *cmd_path, char **array);
 char		**retrive_rel_abs_path(const char *cmd);
@@ -126,6 +125,7 @@ int			cmpr_cutlines(char *s);
 char		**convert_env(t_envl **envlist);
 char		*find_ex_path(t_mnshll *minsh, char **array, char *cmd);
 int			isbuilt(char *com);
+void		exe_cutie(t_mnshll *minsh, char **array);
 //Redirections
 int			redir(t_mnshll *minsh, char **array, int pos, int process);
 int			redirout(t_mnshll *minsh, char *check, char *filename, int process);

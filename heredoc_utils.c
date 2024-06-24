@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:20:11 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/17 16:42:34 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/24 19:37:44 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ int	file_des_create(t_mnshll *minsh, int here_num)
 
 	i = 0;
 	tmp = NULL;
-	minsh->heredoc_buf = ft_strdup("/tmp/minsh");
+	minsh->heredoc_buf = ft_strdup("/tmp/file");
 	while (i < here_num)
 	{
 		tmp = ft_strdup(minsh->heredoc_buf);
 		free(minsh->heredoc_buf);
 		if (tmp == NULL)
 			return (-1);
-		minsh->heredoc_buf = ft_strjoin(tmp, "h");
+		minsh->heredoc_buf = ft_strjoin(tmp, "e");
 		free(tmp);
 		if (minsh->heredoc_buf == NULL)
 			return (-1);
