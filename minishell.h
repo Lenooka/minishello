@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/24 15:36:14 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/24 15:42:36 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,8 +223,9 @@ void		echo_flag(char **input, int x);
 void		no_flag(char **input);
 void		env(t_mnshll *mini);
 void		ft_exit(t_mnshll *mini, char **input);
-int			prep_atoi(t_mnshll *ms, char *str);
-int			exit_num(int n);
+int			exit_error(t_mnshll *mini, int x);
+int			prep_atoi(char *str);
+int			exit_num(int number);
 void		pwd(void);
 void		unset(t_mnshll *mini, char **input);
 void		ft_export(t_mnshll *mini, char **input);

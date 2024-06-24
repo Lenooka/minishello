@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:27:56 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/24 15:38:14 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/24 15:42:04 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,5 +128,7 @@ void	minishell(t_mnshll *mnshll)
 	free_cmd_list(mnshll->list_com);
 	mnshll->list_com = NULL;
 	free_all_arrays(mnshll->com_array);
+	//if (mnshll->envl)
+		//free_env(mnshll->envl);
 	mnshll->com_array = NULL;
 }
