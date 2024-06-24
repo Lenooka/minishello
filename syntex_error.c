@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 22:14:57 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/15 15:31:29 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/24 15:39:32 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	syntax_message(char *error_message)
 int	other_syntax_errors(char *input)
 {
 	int	x;
-	int len;
+	int	len;
 
 	len = ft_strlen(input) - 1;
 	x = check_redir_syntax(input);

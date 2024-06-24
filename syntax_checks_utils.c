@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_checks_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 06:22:38 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/10 06:30:10 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/24 15:34:33 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	check_squotes(char *str, int x)
 	else
 		return (0);
 	while (str[x] && str[x] != '\'')
-			x++;
+		x++;
 	if (str[x] == '\0')
 		return (1);
 	x++;

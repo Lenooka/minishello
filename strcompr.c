@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:57:54 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/23 20:19:38 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/24 15:38:32 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,19 @@ char	*ft_strrepdup(char *str, int len)
 		return (NULL);
 	}
 	ft_strlcpy(res, str, len + 1);
+	return (res);
+}
+
+int	cmpr_cutlines(char *s)
+{
+	int	res;
+
+	res = 0;
+	if (ft_strncmp(s, "../", 3) == 0)
+		res = 1;
+	else if (ft_strncmp(s, "./", 2) == 0)
+		res = 1;
+	else if (s[0] == '/')
+		res = 1;
 	return (res);
 }

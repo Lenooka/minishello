@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 20:10:00 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/17 17:57:14 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/24 15:29:49 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ char	*hrdc_out(t_mnshll *minsh, char	*del, char *line)
 		out = ft_strdup(line);
 	return (out);
 }
-
 
 void	heredoc_child(t_mnshll *minsh, int fd, char *del)
 {

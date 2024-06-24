@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 13:22:02 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/23 20:19:16 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/24 15:28:22 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ char	*iterati(t_mnshll *minsh, char *var)
 	}
 	return (NULL);
 }
-
 
 size_t	indx_from(t_mnshll *minsh, char *rep_res, char q, int indx)
 {
@@ -120,4 +119,3 @@ char	*rep_var_w_val(t_mnshll *minsh, char *res, char quotes, int i)
 	free(res);
 	return (rep_var_w_val2(res, pref, buffer));
 }
-

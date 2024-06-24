@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:17:47 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/22 20:48:03 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/24 15:36:14 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void		handler_cd(t_mnshll *mnshll);
 void		check_global_end(void);
 void		signal_global(int signum);
 void		handle_sigint(int signum, siginfo_t *info, void *context);
-
+void		child_signal(void);
 //Syntax Errors
 int			syntax_error(t_mnshll *mnshll);
 int			has_syntax_error(char *input);
@@ -146,13 +146,13 @@ char		*replace_var_in_str(t_mnshll *minsh, char *str);
 char		**rreplace_var(t_mnshll *minsh);
 size_t		indx_from(t_mnshll *minsh, char *rep_res, char q, int indx);
 int			ft_varlen(char *str);
-char 		*rec_iterati(t_mnshll *minsh, char *var);
+//char 		*rec_iterati(t_mnshll *minsh, char *var);
 char		**duplicate_string_array(t_mnshll *minsh, char **old_arr);
 int			count_commands(char **str_tab);
 t_lexer		*init_list_of_comands(t_mnshll *minsh);
 char		*rep_var_w_val(t_mnshll *ms, char *result, char quotes, int i);
 //char		*rep_var_w_val2(char *suf, char *res, char *result, char *inter);
-char	*rep_var_w_val2(char *result, char *fix, char *buffer);
+char		*rep_var_w_val2(char *result, char *fix, char *buffer);
 
 //Herdoc
 int			if_there_heredoc(t_mnshll *minsh, char **str);
@@ -169,14 +169,13 @@ char		*hrdc_out(t_mnshll *minsh, char	*del, char *line);
 int			spec_strcmp(char *s1, char *s2, char c);
 int			len_un_chr(char *str, char c);
 
-
 //Utilities
 int			check_quotes(char *str, int x);
 int			check_redir_pipe(char *str, int x);
 int			check_space_tabs(char *str, int x);
 int			check_dollar(char *str, int x);
 int			check_all(char *str, int x);
-int			find_com_pos(char **com_array, int	pos);
+int			find_com_pos(char **com_array, int pos);
 int			big_skip_quotes(char *str, char c, int x);
 int			little_skip_quotes(char *str, int x, int len);
 int			skip_spaces(char *str, int x);
@@ -192,6 +191,8 @@ int			ft_lstsize(t_envl *lst);
 char		**rem_q_from_2d(char **array);
 char		**retrive_path_dir(t_envl **env, char *s);
 int			find_com_pos(char **arr, int pos);
+char		*ft_strrepdup(char *str, int len);
+int			cmpr_cutlines(char *s);
 
 //FREES AND CLOSE
 

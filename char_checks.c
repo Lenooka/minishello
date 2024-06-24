@@ -3,46 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   char_checks.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 13:19:35 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/14 14:31:00 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/24 15:39:13 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int check_quotes(char *str, int x)
+int	check_quotes(char *str, int x)
 {
 	if (str[x] == '\"' || str[x] == '\'')
 		return (1);
 	return (0);
 }
 
-int check_redir_pipe(char *str, int x)
+int	check_redir_pipe(char *str, int x)
 {
 	if (str[x] == '|' || str[x] == '>' || str[x] == '<')
 		return (1);
 	return (0);
 }
 
-int check_space_tabs(char *str, int x)
+int	check_space_tabs(char *str, int x)
 {
 	if (str[x] == ' ' || str[x] == '\t')
 		return (1);
 	return (0);
 }
 
-int check_dollar(char *str, int x)
+int	check_dollar(char *str, int x)
 {
 	if (str[x] == '$')
 		return (1);
 	return (0);
 }
 
-int check_all(char *str, int x)
+int	check_all(char *str, int x)
 {
-	int y;
+	int	y;
 
 	y = 0;
 	y += check_quotes(str, x);

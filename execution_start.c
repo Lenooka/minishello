@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:27:56 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/23 20:25:09 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/24 15:38:14 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	redirect_and_close(t_mnshll *m, int fd, int op, int *pipefd)
 if one command and its a built in free/execute in a parent
 else
 function for execution (simmilar to pipex???)*/
-void	 child(t_mnshll *ms, int *pipe_fd, int cmds_run, int pos)
+void	child(t_mnshll *ms, int *pipe_fd, int cmds_run, int pos)
 {
 	t_lexer		*cmd;
 	char		**new_cmds;
@@ -75,7 +75,7 @@ void	parent(t_mnshll *m, int *pipe_fd, int cmrun, int pos)
 	cmnds = m->list_com + cmrun;
 	if (m->command_amount == 1)
 	{
-		if(isbuilt(cmnds->tokens[0]) && redir(m, m->com_array, pos, 0) == 0)
+		if (isbuilt(cmnds->tokens[0]) && redir(m, m->com_array, pos, 0) == 0)
 		{
 			fd_flag = 1;
 			built_ex(m, cmnds->tokens);
@@ -94,19 +94,18 @@ void	parent(t_mnshll *m, int *pipe_fd, int cmrun, int pos)
 	signal(SIGQUIT, SIG_IGN);
 }
 
-
-void    start_procces(t_mnshll *minsh)
+void	start_procces(t_mnshll *minsh)
 {
-    int     com_run;
-    pid_t   pid;
-    int     position;
+	int		com_run;
+	pid_t	pid;
+	int		position;
 
-    com_run = 0;
+	com_run = 0;
 	position = 0;
 	if (!minsh->list_com)
 		return ;
-    while (com_run < minsh->command_amount)
-    {
+	while (com_run < minsh->command_amount)
+	{
 		if (pipe(minsh->pipefd) == -1)
 			pepe_error(minsh, minsh->pipefd);
 		pid = fork();
@@ -118,7 +117,7 @@ void    start_procces(t_mnshll *minsh)
 			parent(minsh, minsh->pipefd, com_run, position);
 		position = find_com_pos(minsh->com_array, position);
 		com_run++;
-    }
+	}
 	exit_status(minsh, pid, com_run);
 }
 

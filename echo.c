@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 21:35:11 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/19 17:28:20 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/24 15:21:41 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	echo_flag(char **input, int x)
 	}
 }
 
-int check_flag(char *input)
+int	check_flag(char *input)
 {
 	int	x;
 
@@ -60,6 +60,7 @@ int check_flag(char *input)
 	}
 	return (0);
 }
+
 void	ft_echo(char **inputs)
 {
 	int	x;

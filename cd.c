@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 18:41:45 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/16 15:43:25 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/24 15:29:26 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	cd(t_mnshll *mini, char **env)
 		cd_default(mini);
 		if (env && env[1] && env[1][0])
 		{
-			if (env[1][0] == '~' && env[1][1] == '/' && env[1][2] && env) 
+			if (env[1][0] == '~' && env[1][1] == '/' && env[1][2] && env)
 				enter_dir(mini, env[1]);
 		}
 	}

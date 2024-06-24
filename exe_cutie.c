@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:37:59 by otolmach          #+#    #+#             */
-/*   Updated: 2024/06/23 20:15:29 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/24 15:32:36 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,26 +47,12 @@ int	check_executie(t_mnshll *minsh, char **array, char *cmd)
 	return (1);
 }
 
-int	cmpr_cutlines(char *s)
-{
-	int	res;
-
-	res = 0;
-	if (ft_strncmp(s, "../", 3) == 0)
-		res = 1;
-	else if (ft_strncmp(s, "./", 2) == 0)
-		res = 1;
-	else if (s[0] == '/')
-		res = 1;
-	return (res);
-}
-
 char	**direc_from_path(t_envl *tmp)
 {
-	char **result;
-	char **dir;
-	int	indx;
-	
+	char	**result;
+	char	**dir;
+	int		indx;
+
 	indx = 0;
 	result = ft_split(tmp->content + 5, ':');
 	dir = malloc(sizeof(char *) * (size_of_2d(result) + 1));
@@ -77,7 +63,7 @@ char	**direc_from_path(t_envl *tmp)
 		dir[indx] = ft_strjoin(result[indx], "/");
 		indx++;
 	}
-	dir[indx] = NULL;	
+	dir[indx] = NULL;
 	free_all_arrays(result);
 	return (dir);
 }
@@ -96,32 +82,6 @@ char	**retrive_path_dir(t_envl **env, char *s)
 		return (NULL);
 	direc = direc_from_path(tmp);
 	return (direc);
-}
-
-char	**convert_env(t_envl **envlist)
-{
-	int		indx;
-	int		list_len;
-	char	**env;
-	char	*indetef;
-	t_envl	*tmp;
-
-	indx = 0;
-	tmp = *envlist;
-	list_len = ft_lstsize(tmp);
-	env = malloc(sizeof(char *) * (list_len + 1));
-	if (!env)
-		return (NULL);
-	while (tmp && indx < list_len)
-	{
-		indetef = ft_strjoin(tmp->identificator, "=");
-		env[indx] = ft_strjoin(indetef, tmp->content);
-		tmp = tmp->next;
-		free(indetef);
-		indx++;
-	}
-	env[indx] = NULL;
-	return (env);
 }
 
 void	executie_ve(t_mnshll *minsh, char *path, char **cm_rem, char **array)
