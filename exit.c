@@ -6,7 +6,7 @@
 /*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 04:45:13 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/24 20:46:05 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/24 21:59:10 by otolmach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ft_exit(t_mnshll *mini, char **input)
 	{
 		close_fd(mini->pipefd);
 		free_all_arrays(input);
-		free_exit_procces(mini, "exit");
+		free_exit_procces(mini, "exit\n");
 	}
 	return ;
 }
