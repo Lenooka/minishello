@@ -6,7 +6,7 @@
 /*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 12:38:17 by olena             #+#    #+#             */
-/*   Updated: 2024/06/01 15:53:32 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/24 21:27:46 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_envl	*ft_lstlast(t_envl *lst)
 		else
 			lst = lst->next;
 	}
-	return (0);
+	return (NULL);
 }
 
 void	ft_lstadd_back(t_envl **lst, t_envl *new)

@@ -6,12 +6,13 @@
 /*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 16:43:24 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/23 16:54:37 by jhuber           ###   ########.fr       */
+/*   Updated: 2024/06/24 22:36:34 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/*
 int	valid_ident(char *str)
 {
 	int	x;
@@ -128,6 +129,130 @@ void	ft_export(t_mnshll *mini, char **input)
 			ft_export_2(mini, content, check);
 			x++;
 			free(content);
+		}
+	}
+}
+*/
+
+char	*get_content(char *str)
+{
+	int		x;
+	int		y;
+	char	*content;
+
+	x = 0;
+	y = ft_strlen(str);
+	while (str[x])
+	{
+		if (str[x] == '=')
+			break ;
+		x++;
+	}
+	content = (char *)malloc(sizeof(char) * (y - x + 1));
+	if (!content)
+		return (NULL);
+	y = 0;
+	x++;
+	while (str[x])
+	{
+		content[y] = str[x];
+		x++;
+		y++;
+	}
+	content[y] = '\0';
+	return (content);
+}
+
+int	check_equal_flag(char *str)
+{
+	int	x;
+	int	check;
+
+	x = 0;
+	check = 0;
+	while (str[x])
+	{
+		if (str[x] == '=')
+		{
+			check = 1;
+			break ;
+		}
+		x++;
+	}
+	if (check)
+	{
+		if (str[x + 1] == '\0')
+			return (0);
+		return (1);
+	}
+	return (0);
+}
+
+char	*get_identificator(char *str, t_mnshll *mini)
+{
+	int	x;
+	int	check;
+
+	if (ft_strcmp(str, "_") == 0)
+		return (NULL);
+	x = 0;
+	check = 0;
+	if ((str[x] <= '9' && str[x] >= '0') || str[x] == '=')
+		check = 1;
+	while (str[x] != '=' && str[x])
+	{
+		if (!((str[x] >= 'a' && str[x] <= 'z') || (str[x] >= '0' && str[x] <= '9')
+			|| (str[x] >= 'A' && str[x] <= 'Z') || str[x] == '_'))
+			check = 1;
+		x++;
+	}
+	if (check)
+	{
+		error_msg(mini, "Not a valid Identifier", 1, "Export: ");
+		mini->exit = 1;
+		return (NULL);
+	}
+	if (!str[x])
+		return (ft_strdup(str));
+	return (ft_strndup(mini, str, x));		//if the content is off take the - 1 off
+}
+
+void	make_new_node(char *str, t_mnshll *mini)
+{
+	t_envl	*new_node;
+
+	new_node = malloc(sizeof(t_envl));
+	new_node->identificator = get_identificator(str, mini);
+	if (new_node->identificator == NULL)
+		return ;
+	if (check_equal_flag(str))
+	{
+		new_node->content = get_content(str);
+		if (!new_node->content)
+			return ;
+		new_node->equal_flag = 1;
+	}
+	else
+	{
+		new_node->content = ft_strdup(" ");
+		new_node->equal_flag = 0;
+	}
+	ft_lstadd_front(mini->envl, new_node);
+}
+
+void	ft_export(t_mnshll *mini, char **input)
+{
+	int		x;
+
+	x = 1;
+	if (!input[1])
+		export_empty(mini);
+	else
+	{
+		while (input[x])
+		{
+			make_new_node(input[x], mini);
+			x++;
 		}
 	}
 }

@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   libft_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 13:28:41 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/01 16:54:13 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/24 22:40:08 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
+/*
 int	get_flag(t_mnshll *ms, char *ident, char *new_con, char *content)
 {
 	if (!ft_strchr(content, '='))
@@ -32,6 +32,7 @@ int	get_flag(t_mnshll *ms, char *ident, char *new_con, char *content)
 	}
 	return (0);
 }
+*/
 
 void	ft_lstadd_front(t_envl **lst, t_envl *new)
 {

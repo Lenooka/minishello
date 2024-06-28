@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_extras.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otolmach <otolmach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhuber <jhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:06:37 by jhuber            #+#    #+#             */
-/*   Updated: 2024/06/19 17:19:00 by otolmach         ###   ########.fr       */
+/*   Updated: 2024/06/24 22:26:26 by jhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	error_msg(t_mnshll *minsh, char *msg, int exit_code, char *com)
 {
 	if (exit_code == 1 && msg)
 	{
-		ft_putstr_fd(msg, STDERR_FILENO);
 		ft_putstr_fd(com, STDERR_FILENO);
+		ft_putstr_fd(msg, STDERR_FILENO);
 		write(STDERR_FILENO, "\n", 2);
 		exit_code = 1;
 	}
@@ -74,7 +74,7 @@ void	list_swap(t_mnshll *mini, t_envl *list)
 	top->next->content = content;
 }
 
-char	*get_ident(char *str, int c) //might need const
+char	*get_ident(char *str, int c)
 {
 	int		i;
 	int		j;
@@ -99,7 +99,7 @@ char	*get_ident(char *str, int c) //might need const
 	return (res);
 }
 
-char	*get_cont(char *str, int c) //might need const char
+char	*get_cont(char *str, int c)
 {
 	int		i;
 	int		j;
@@ -112,7 +112,7 @@ char	*get_cont(char *str, int c) //might need const char
 		if (str[i] == (char)c)
 			break ;
 	if (i == (int)ft_strlen(str) || str[i + 1] == '\0')
-		return (ft_strdup("  "));
+		return (ft_strdup(" "));
 	len = ft_strlen(str) - i + 1;
 	res = malloc(sizeof(char) * len);
 	if (!res)
